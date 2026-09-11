@@ -1,0 +1,23 @@
+import assert from 'node:assert/strict';
+import * as E from '../dist/engine.js';
+import * as R from '../dist/relationships.js';
+import * as X from '../dist/expansion.js';
+const s=E.createGame('관계 검사',109);
+assert.equal(R.AGENCIES.length,50);assert.equal(new Set(R.AGENCIES.map(a=>a.name)).size,50);
+for(const c of X.CAMPAIGNS)assert.equal(R.AGENCIES.filter(a=>a.channel===c.id).length,10);
+assert.deepEqual([0,20,40,60,80,100].map(R.level),['매우 나쁨','나쁨','보통','좋음','매우 좋음','매우 좋음']);
+const p=E.people(s).find(p=>!E.busyFilm(s,p.id)&&p.role==='lead'),q=E.people(s).find(p=>!E.busyFilm(s,p.id)&&p.role==='support');
+const chemistry=E.pairCompatibility(s,p.id,q.id),initial=R.affinity(s,p.id,q.id),snapshot=JSON.stringify(s);assert.equal(R.affinity(s,q.id,p.id),initial);assert.equal(JSON.stringify(s),snapshot);
+R.adjust(s,p.id,q.id,20,'검사');assert.equal(E.pairCompatibility(s,p.id,q.id),chemistry);assert.equal(R.affinity(s,p.id,q.id),Math.min(100,initial+20));
+R.adjust(s,p.id,'c0',-100,'검사');const bad=E.contractQuote(s,p,[q.id]);R.adjust(s,p.id,'c0',100,'검사');const good=E.contractQuote(s,p,[q.id]);assert.ok(good.fee<bad.fee);
+const originalMonth=s.month;const outcomes=new Set();for(let i=0;i<200;i++){const a='p'+i,b='c0';s.month=originalMonth;const before=R.affinity(s,a,b);s.month++;const after=R.affinity(s,a,b);outcomes.add(after===before?'held':after>before?'up':'down');}assert.equal(outcomes.size,3);s.month=originalMonth;
+const saved=structuredClone(s);saved.month+=24;s.month+=24;assert.equal(R.affinity(saved,p.id,q.id),R.affinity(s,p.id,q.id));
+const compatible={genres:['family','drama'],subgenres:{family:'bond',drama:'human'}},conflicting={genres:['family','thriller'],subgenres:{family:'bond',thriller:'psychology'}};assert.ok(R.subgenreEffect(compatible)>R.subgenreEffect(conflicting));
+for(const [g,subs] of Object.entries(R.SUBGENRES)){assert.equal(subs.length,3);assert.equal(R.normalizeSubgenres({genres:[g]})[g],subs[0][0]);}
+const pitch=s.pitches.find(x=>!E.busyFilm(s,x.writer));let draft=E.recommend(s,{script:pitch,title:pitch.title,genres:[pitch.genre],scale:'small',leads:[],supports:[]});assert.ok(draft.subgenres[pitch.genre]);const stale=structuredClone(draft);stale.subgenres.invalid='bad';assert.throws(()=>E.greenlight(s,stale),/세부장르/);
+const film=E.greenlight(s,draft);assert.deepEqual(film.subgenres,draft.subgenres);assert.equal(film.subgenreBonus,R.subgenreEffect(draft));
+const agency=R.AGENCIES.find(a=>a.channel==='press');R.adjust(s,agency.id,'c0',-100,'검사');for(const id of film.leads)R.adjust(s,agency.id,id,-100,'검사');const badTerms=R.mediaTerms(s,film,agency,1);R.adjust(s,agency.id,'c0',100,'검사');for(const id of film.leads)R.adjust(s,agency.id,id,100,'검사');const goodTerms=R.mediaTerms(s,film,agency,1);assert.ok(goodTerms.cost<badTerms.cost);assert.ok(goodTerms.bonus>badTerms.bonus);
+const pre=JSON.stringify(s);assert.throws(()=>X.promote(s,film.id,'press',0,'agency-tv-0'));assert.equal(JSON.stringify(s),pre);
+const result=X.promote(s,film.id,'press',0,agency.id);assert.equal(result.agency,agency.id);assert.equal(result.cost,goodTerms.cost);
+const old=structuredClone(s);old.version=3;delete old.relationSeed;delete old.relationStart;delete old.relations;const cash=E.player(old).cash;E.migrateSave(old);assert.equal(old.version,5);assert.equal(E.player(old).cash,cash);assert.ok(E.validateSave(old));
+console.log('PASS: 50 agencies, five levels, independent affinity, monthly hold/up/down, save continuity, contract and campaign effects, 39 subgenres, validation and migration');

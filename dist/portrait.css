@@ -1,0 +1,42 @@
+/* Phone portrait: one-column cards and a viewport-sized production dialog. */
+@media (max-width:600px), (max-width:900px) and (orientation:portrait) {
+  html{-webkit-text-size-adjust:100%;scroll-padding-top:120px}
+  .workspace{padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+  .content{padding:20px max(14px,env(safe-area-inset-left)) 24px;min-width:0}
+  .topbar{height:auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px 12px;padding:calc(8px + env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) 10px}
+  .topbar-right{display:contents}.calendar-box{display:none}
+  .topbar-date strong{font-size:15px}.topbar-date small{font-size:12px}
+  .cash-button{border:0;padding:0;min-height:44px;min-width:0}.cash-button strong{font-size:18px;overflow-wrap:anywhere}
+  .advance-button{grid-column:1/-1;min-height:44px;width:100%;font-size:15px}
+  .mobile-nav{padding:6px max(8px,env(safe-area-inset-left)) calc(6px + env(safe-area-inset-bottom))}.mobile-nav button{min-height:48px;font-size:12px}
+  .page-head{flex-wrap:wrap;gap:12px}.page-head>div{flex-basis:100%}.page-head .btn{flex:1;white-space:normal;min-height:44px;font-size:14px}
+  .page-head h1{font-size:25px}.page-head p{font-size:14px}
+  .production-grid,.people-grid,.picker .people-grid,.script-grid,.portfolio-grid,.award-grid,.dashboard-bottom,.finance-grid,.casting-layout,.summary-grid,.cast-slots,.subgenre-grid{grid-template-columns:minmax(0,1fr)}
+  .card{padding:18px}.film-card,.script-card{padding:0}.film-cover,.script-head{min-height:118px;padding:18px}.film-cover h3,.script-head h3{font-size:23px;margin-top:16px}.film-body,.script-body{padding:18px}.script-body p{min-height:0}
+  .person-card,.picker .person-card{padding:16px;gap:12px}.person-card .person-name{font-size:18px}.person-card .avatar.portrait,.cast-slot .avatar.portrait{width:48px;height:48px}.person-card .person-stats{font-size:14px}.person-card .person-footer{flex-wrap:wrap}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stat{padding:15px 12px}.stat strong{font-size:25px;overflow-wrap:anywhere}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .section-head{flex-wrap:wrap;gap:8px}.section-head h2{flex-wrap:wrap;font-size:19px}
+  .toolbar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.toolbar .search-wrap,.toolbar .check-label{grid-column:1/-1;min-width:0}.toolbar select,.picker .toolbar select{max-width:none;width:100%;font-size:16px}.toolbar>.small{grid-column:1/-1}
+  input,select,.search-wrap input{font-size:16px;min-height:46px}.btn,.btn.small-btn,.icon-btn,.text-btn,.genre-option,.tabbar button{min-height:44px}.tag{max-width:100%}.tabbar{max-width:100%}
+  .ready-row{display:grid;grid-template-columns:minmax(0,1fr) auto;padding:16px;gap:12px}.ready-row>.btn{grid-column:1/-1;width:100%;margin:0}.ready-row>div{min-width:0}
+  .notice,.event-alert{flex-wrap:wrap;padding:15px;gap:10px}.notice>.btn,.event-alert>.btn{width:100%;margin-left:0}.notice>div{min-width:0}
+  .message p,.script-body p,.film-meta,.detail-synopsis{font-size:14px}.message .row{align-items:flex-start;flex-wrap:wrap}.message time{margin-left:0}
+  .table-wrap{max-width:100%;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}.table-wrap::before{content:'표는 좌우로 밀어 확인하세요';display:block;padding:9px 12px;font-size:12px;color:var(--muted)}
+  .company-card{grid-template-columns:32px minmax(0,1fr);gap:12px}.company-card .company-number,.company-card .company-number:nth-last-child(2){grid-column:2;display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding-top:10px}.company-card .company-number:last-child{display:flex}.company-card .company-number strong{font-size:17px}
+  .schedule-item{display:grid;grid-template-columns:54px minmax(0,1fr);gap:12px;padding:16px}.schedule-date{min-width:0;padding-right:10px}.schedule-item>.tag{grid-column:2;margin:0;justify-self:start;white-space:normal}
+  .ledger-entry{align-items:flex-start;gap:12px}.ledger-entry>div{min-width:0;overflow-wrap:anywhere}.ledger-entry strong{font-size:14px}
+  .start-page{padding:calc(14px + env(safe-area-inset-top)) 16px calc(20px + env(safe-area-inset-bottom))}.start-top{flex-wrap:wrap;gap:10px}.start-top .brand{padding:0}.start-top>.text-btn{font-size:13px}.start-grid{display:flex;flex-direction:column;align-items:stretch;gap:20px;padding:20px 0}.start-intro{display:block}.wordmark{font-size:44px;line-height:1;letter-spacing:-.06em}.wordmark span{display:inline;margin-left:10px}.start-intro h1{font-size:21px;margin:12px 0 6px}.start-intro h1 br{display:none}.start-intro>p,.start-facts{display:none}.setup-card{padding:20px;min-width:0}.setup-card>p br{display:none}.setup-card .logo-picker label{margin-top:0}.logo-picker span{width:44px;height:44px}.start-bottom{line-height:1.6}
+  dialog[open],dialog.wide[open]{display:grid;grid-template-rows:auto minmax(0,1fr) auto;position:fixed;inset:0;width:100%;max-width:100%;height:100svh;height:100dvh;max-height:100dvh;margin:0;border:0;border-radius:0;overflow:hidden}
+  .dialog-header{position:relative;top:auto;padding:calc(12px + env(safe-area-inset-top)) 16px 12px;gap:12px}.dialog-header>div{min-width:0}.dialog-header h2{font-size:18px}.dialog-header p{font-size:13px}.dialog-header .icon-btn{width:44px;height:44px}
+  .dialog-body{overflow:auto;overscroll-behavior:contain;min-height:0;min-width:0;padding:18px 16px 24px;scroll-padding:16px;-webkit-overflow-scrolling:touch}
+  .dialog-footer{position:relative;bottom:auto;display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));max-height:35svh;overflow:auto}
+  .dialog-footer>.btn{flex:1 1 120px}.dialog-footer>.row{flex:1 1 100%;width:100%;margin:0;display:flex;flex-wrap:wrap;gap:8px}.dialog-footer .btn{min-height:46px;white-space:normal;font-size:14px}.dialog-footer>.row>.btn{flex:1}.dialog-footer p{font-size:12px;max-width:none;flex:1}
+  .steps{gap:7px;margin-bottom:20px}.step{flex:1;flex-direction:column;text-align:center;gap:5px;font-size:12px}.step-line{flex:0 1 20px}.step span{width:26px;height:26px}
+  .field-label{align-items:flex-start;flex-wrap:wrap;gap:5px}.genre-option{font-size:14px}.scale-grid{grid-template-columns:1fr}.scale-option{grid-template-columns:minmax(0,1fr) auto;gap:7px 12px;padding:15px}.scale-option strong{font-size:16px}.scale-option .scale-description{display:block;grid-column:1;font-size:13px}.scale-option span{grid-column:2;grid-row:1/3;margin:0;align-self:center;font-size:23px}.scale-option>small:last-child{grid-column:1/-1}
+  .cast-slot{padding:13px;min-height:76px}.cast-slot>span{min-width:0}.cast-slot strong{font-size:16px}.cast-slot small{font-size:13px}.budget-box{position:static;padding:17px}.budget-line{flex-wrap:wrap;font-size:14px}.budget-box>p{font-size:13px}
+  .detail-metrics{grid-template-columns:minmax(0,1fr);gap:14px}.detail-metrics>div{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-left:12px}.detail-metrics strong{font-size:22px;margin:0}.detail-metrics small{font-size:13px}.review-grid{grid-template-columns:1fr}.review-card{display:grid;grid-template-columns:minmax(0,1fr) auto;text-align:left;gap:7px;padding:15px}.review-card strong{grid-column:2;grid-row:1/3}.review-card p{margin:0;font-size:13px}
+  .event-account,.choice-top,.decision-row>.row,.relationship-row{flex-wrap:wrap}.choice-top strong{font-size:16px}.choice-effects{font-size:13px;margin-left:0}.relationship-row{gap:8px}.relationship-row>span:first-child{min-width:0;overflow-wrap:anywhere}.relation{font-size:14px}
+  .business-summary{flex-wrap:wrap}.business-summary>div:last-child{min-width:180px}.media-card>.media-art{float:none;width:96px;margin:0 0 14px}.agency-heading{flex-wrap:wrap;gap:12px}.media-card .row.wrap>.btn{width:100%}.poster-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.poster-option>span{font-size:12px}.timeline-record dl{grid-template-columns:1fr}.market-event .tag{white-space:normal}
+  .toast{bottom:calc(84px + env(safe-area-inset-bottom));min-width:0;width:max-content;max-width:calc(100% - 28px)}.page-footer{flex-wrap:wrap;line-height:1.7}
+}
+@media(max-width:360px){.topbar-date strong{font-size:14px}.cash-button strong{font-size:16px}.dialog-body{padding-inline:12px}.dialog-header,.dialog-footer{padding-inline:12px}.person-card .person-name{font-size:16px}.business-summary>div:last-child{min-width:0;flex-basis:100%}.amount-grid{gap:6px}.stat strong{font-size:22px}}

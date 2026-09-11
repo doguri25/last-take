@@ -1,0 +1,2 @@
+export function dialogKey(ui){const m=ui.modal;if(!m)return null;if(m.type==='wizard')return `wizard:${ui.draft?.script?.id}:${ui.step}`;if(m.type==='picker')return `picker:${ui.draft?.script?.id}:${JSON.stringify(ui.picker)}`;return `${m.type}:${m.id??''}`;}
+export function createDialogScroll(){let current=null;const positions=new Map();return{transition(next,position){if(current)positions.set(current,Math.max(0,Number(position)||0));current=next;return next?positions.get(next)??0:0;},clear(){current=null;positions.clear();}};}
