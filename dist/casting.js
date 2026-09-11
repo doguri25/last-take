@@ -1,4 +1,4 @@
-import { hash, person, contractQuote } from './career.js';
+import { hash, person, contractQuote, eligible } from './career.js';
 import { affinity } from './relationships.js';
 const round = n => Math.round((n + Number.EPSILON) * 100) / 100;
 const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
@@ -57,4 +57,34 @@ export function validateNegotiations(s, d) {
   const reports = negotiationReport(s, d);
   if (reports.some(r => r.status === 'refused')) throw Error('섭외를 거절한 제작진이 있습니다. 인물을 교체해 주세요.');
   if (reports.some(r => !r.confirmed)) throw Error('추가 개런티 조건을 확인하고 수락해 주세요.');
+}
+
+/** Resolve a selected role from the draft, not from mutable UI indices. */
+export function replacementSlot(d, id) {
+  if (!id || !d) throw Error('교체할 인물을 찾을 수 없습니다.');
+  if (d.director === id) return { role: 'director', index: 0 };
+  for (const [field, role] of [['leads', 'lead'], ['supports', 'support']]) {
+    const index = (d[field] || []).indexOf(id);
+    if (index >= 0) return { role, index };
+  }
+  throw Error('기존 캐스팅이 변경되었습니다. 최종 섭외 조건에서 다시 교체해 주세요.');
+}
+/** Pure preview: replacing one role invalidates signatures for the entire team.
+ * No cash, relationships, history, or original selections are changed here.
+ * The caller commits this draft only after the candidate's reply is accepted.
+ */
+export function castingReplacement(s, d, previousId, nextId) {
+  const slot = replacementSlot(d, previousId), p = person(s, nextId);
+  if (!p || p.role !== slot.role) throw Error('동일한 직군의 인물을 선택해 주세요.');
+  if (projectIds(d).includes(nextId)) throw Error('이미 선정된 인물은 중복 섭외할 수 없습니다.');
+  if (!eligible(s, p, d.genres)) throw Error('활동 상태 또는 배역 조건상 섭외할 수 없습니다.');
+  const busy = s.films.find(f => ['production', 'reshoot'].includes(f.status) &&
+    [...projectIds(f), ...(f.cameos || [])].includes(nextId));
+  if (busy) throw Error(`「${busy.title}」 촬영·제작 중이므로 섭외할 수 없습니다.`);
+  const next = structuredClone(d);
+  if (slot.role === 'director') next.director = nextId;
+  else next[slot.role === 'lead' ? 'leads' : 'supports'][slot.index] = nextId;
+  next.requireNegotiation = true;
+  next.castingAgreements = {};
+  return next;
 }

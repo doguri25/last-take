@@ -73,3 +73,11 @@ dialog.wide[open]{width:min(1080px,calc(100vw - 40px));height:min(850px,calc(100
 @media(max-width:620px){.stats .stat{padding:9px 12px;display:flex;align-items:center;justify-content:space-between;gap:5px;min-height:54px}.stat>small{display:none}.stat-label{font-size:11px}.stat-label svg{display:none}.stat strong{font-size:20px;margin:0;text-align:right;overflow-wrap:anywhere}.stat strong small{font-size:10px;margin-left:2px}.stats{margin-bottom:16px}.film-cover{padding:11px 12px;min-height:94px}.film-cover h3{font-size:17px;margin-top:8px}.film-body{padding:10px 12px;gap:7px}.compact-dashboard{margin-top:16px}.studio-inbox>summary{font-size:12px}.script-card .writer-line small{font-size:10px}}
 
 @media(max-width:620px){.content[data-view="scripts"] .page-head{flex-wrap:wrap;gap:9px;margin-bottom:14px}.content[data-view="scripts"] .page-head>div{flex-basis:100%}.content[data-view="scripts"] .page-head p{font-size:12px}.content[data-view="scripts"] .page-head>.btn{flex:1;white-space:nowrap;font-size:12px;min-height:38px}.content[data-view="scripts"] .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}.content[data-view="scripts"] .toolbar>select{flex:1;min-width:0}.content[data-view="scripts"] .toolbar>span{flex-basis:100%}.content[data-view="scripts"] .script-head{min-height:82px}.content[data-view="scripts"] .script-head h3{font-size:18px}.content[data-view="scripts"] .script-body{padding:12px;gap:9px}.content[data-view="scripts"] .pagination{margin-top:14px;margin-bottom:14px}}
+
+/* v1.4.3: every final offer, including accepted ones, can be replaced. */
+.negotiation-card .replace-cast-btn{width:100%;min-height:44px;margin-top:12px}
+.replacement-notice{margin-bottom:12px;line-height:1.65}
+.replacement-notice p{margin-top:6px}
+.final-casting-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 16px;flex-wrap:wrap}
+.final-casting-toolbar .btn{min-height:44px}
+@media(max-width:600px){.final-casting-toolbar .btn{width:100%}}

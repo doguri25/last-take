@@ -1,68 +1,58 @@
 {
-  "version": "1.4.2",
-  "nodeTests": 95,
-  "nodePassed": 95,
+  "version": "1.4.3",
+  "nodeTests": 105,
+  "nodePassed": 105,
   "nodeFailed": 0,
-  "browserChecks": 265,
-  "browserPassed": 265,
+  "browserChecks": 241,
+  "browserPassed": 241,
+  "browserFailed": 0,
   "browserGroups": {
-    "mobileV142Focused": 84,
-    "mobileNavigationRegression": 181
+    "mobileV143Focused": 157,
+    "mobileV142Regression": 84
   },
-  "viewportSizes": 12,
+  "viewportSizes": 8,
+  "focusedViewportSizes": 4,
+  "viewports": [
+    [
+      320,
+      568
+    ],
+    [
+      360,
+      640
+    ],
+    [
+      390,
+      844
+    ],
+    [
+      412,
+      915
+    ],
+    [
+      568,
+      320
+    ],
+    [
+      844,
+      390
+    ],
+    [
+      768,
+      1024
+    ],
+    [
+      1366,
+      768
+    ]
+  ],
   "pageErrors": [],
-  "browserTransport": "Actual dist JavaScript/CSS/images loaded through existing offline blob harness; real Chromium History API. Fixture storage is simulated; game logic is not replaced.",
-  "changedRuntimeFiles": [
-    "dist/app.js",
-    "dist/cinema.js",
-    "dist/engine.js",
-    "dist/index.html",
-    "dist/portraits.js",
-    "dist/release.js",
-    "dist/studio-v12.js"
-  ],
-  "addedRuntimeFiles": [
-    "dist/mobile-v142.css"
-  ],
-  "unchangedRuntimeFiles": [
-    "dist/abilities.js",
-    "dist/assets/media.png",
-    "dist/assets/portraits-F.png",
-    "dist/assets/portraits-M.png",
-    "dist/assets/posters.png",
-    "dist/career.js",
-    "dist/casting.js",
-    "dist/clock.js",
-    "dist/content-v14.js",
-    "dist/data.js",
-    "dist/dialog-state.js",
-    "dist/expansion.js",
-    "dist/experience.css",
-    "dist/finance-history.js",
-    "dist/license-offers.js",
-    "dist/mobile-v141.css",
-    "dist/navigation.js",
-    "dist/plot-seeds.js",
-    "dist/portrait.css",
-    "dist/relationships.js",
-    "dist/runtime.js",
-    "dist/sound.js",
-    "dist/source-rights.js",
-    "dist/start-screen.css",
-    "dist/start-screen.js",
-    "dist/studio-v12.css",
-    "dist/studio-v13.css",
-    "dist/studio-v13.js",
-    "dist/studio-v14.css",
-    "dist/style.css",
-    "dist/taxes.js",
-    "dist/weekly-experience.js"
-  ],
-  "portraitAssetsUnchanged": true,
-  "saveKeyAndSchemaChanged": false,
-  "realDeviceTested": false,
-  "liveDeploymentTested": false,
-  "remotePushed": false,
-  "deployed": false,
-  "specialScreeningCostModel": "Game estimates informed by production workflows, not actual vendor quotes or a verified industry-wide price list."
+  "browserTransport": "Actual dist JavaScript/CSS/images loaded through existing offline blob harness; native Chromium DOM and History API. Fixture storage is simulated; game logic is not replaced.",
+  "realMobileDevicesTested": false,
+  "deployedAddressTested": false,
+  "nativeMobileOSPickerTested": false,
+  "scopeNote": "Verified retained native select DOM nodes, zero added select nodes, no synthetic select refocus, coarse-pointer blur and live descriptions. Real iPhone Safari/Android native picker UI was not available.",
+  "remotePush": "not_performed",
+  "deployment": "not_performed",
+  "archivedReportsNote": "Other versioned files in this folder are historical results, not added to the 1.4.3 totals."
 }

@@ -29,3 +29,20 @@ test('market tabs and wizard steps are distinct screens',()=>{assert.notEqual(sc
 test('a new company invalidates historical screens instead of reviving the old game',async()=>{const h=harness();h.set(screen('scripts'));await tick();h.nav.reset();h.win.history.go(-1);await tick();assert.equal(h.current.home,true);assert.equal(h.current.modal,null)});
 test('Close skips internal film tabs and returns to the parent person',async()=>{const h=harness(screen('talents'));h.set(screen('talents',{type:'person',id:'p1'}));await tick();h.set({...screen('talents',{type:'film',id:'f1'}),state:{filmTab:'overview'}});await tick();h.set({...screen('talents',{type:'film',id:'f1'}),state:{filmTab:'timeline'}});await tick();h.nav.closeModal();await tick();assert.deepEqual(h.current.modal,{type:'person',id:'p1'})});
 test('internal wizard back consumes the existing entry instead of pushing a reverse step',async()=>{const h=harness(screen('scripts'));h.set({...screen('scripts',{type:'wizard'}),state:{step:0}});await tick();h.set({...screen('scripts',{type:'wizard'}),state:{step:1}});await tick();h.set({...screen('scripts',{type:'wizard'}),state:{step:0}});await tick();await tick();assert.equal(h.win.history.state.index,2);assert.equal(h.current.state.step,0)});
+test('replacement picker and candidate preview return to the same final negotiation entry',async()=>{
+ const h=harness(screen('scripts')),final=screen('scripts',{type:'negotiation'});
+ h.set({...screen('scripts',{type:'wizard'}),state:{step:2}});await tick();
+ h.set(final);await tick();const finalIndex=h.win.history.state.index;
+ h.set({...screen('scripts',{type:'picker'}),state:{picker:{role:'director',index:0},replacement:{person:'old'}}});await tick();
+ h.set({...screen('scripts',{type:'negotiation',id:'new'}),state:{replacement:{person:'old'}}});await tick();
+ h.set({...final,state:{replacement:null}});await tick();await tick();
+ assert.equal(h.win.history.state.index,finalIndex);assert.deepEqual(h.current.modal,{type:'negotiation'});
+ h.nav.closeModal();await tick();assert.equal(h.current.modal.type,'wizard');assert.equal(h.current.state.step,2);
+});
+test('cancelling a candidate returns to its picker; cancelling picker returns to final terms',async()=>{
+ const h=harness(screen('scripts'));h.set(screen('scripts',{type:'negotiation'}));await tick();
+ h.set({...screen('scripts',{type:'picker'}),state:{replacement:{person:'old'},picker:{role:'lead',index:1}}});await tick();
+ h.set(screen('scripts',{type:'negotiation',id:'new'}));await tick();h.nav.closeModal();await tick();
+ assert.equal(h.current.modal.type,'picker');assert.equal(h.current.state.replacement.person,'old');
+ h.nav.closeModal();await tick();assert.deepEqual(h.current.modal,{type:'negotiation'});
+});

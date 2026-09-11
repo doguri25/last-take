@@ -136,10 +136,10 @@ function completeCast(d){return !!(d.director&&d.leads.filter(Boolean).length===
 function wizardDialog(){const d=ui.draft;if(!d)return '';const e=E.estimate(d,game);let content='';
   if(ui.step===0)content=`<div class="brief"><div class="row between"><span class="eyebrow">${d.script.license?'LICENSED ADAPTATION':'ORIGINAL SCREENPLAY'}</span>${tags([d.script.genre])}</div><h3>${esc(d.script.title)}</h3><p>${esc(d.script.synopsis)}</p><p class="mt-sm">${esc(PERSON[d.script.writer].name)} 작가 · 시나리오 ${d.script.quality}점</p>${d.script.license?btn('원작 정보 · 라이선스 조건','rights-info',`data-id="${d.script.license.id}"`,'ghost small-btn mt-sm'):''}</div><label for="film-title" class="field-label">영화 제목 <small>시나리오에 맞게 자동 제안</small></label><input id="film-title" value="${esc(d.title)}" maxlength="40" data-field="film-title"><div class="field-label">장르 조합 <small>최대 3개 · 재클릭하면 선택 취소</small></div><div class="genre-options">${GENRES.map(g=>`<button class="genre-option ${d.genres.includes(g.id)?'selected':''}" data-action="genre-toggle" data-id="${g.id}" aria-pressed="${d.genres.includes(g.id)}" >${g.name}${g.id===d.script.genre?' · 원작':''}</button>`).join('')}</div><p class="synergy-note">장르 조합에 따른 품질 <strong class="${E.genreBonus(d.genres)>=0?'lime':'red'}">${plus(E.genreBonus(d.genres))}</strong> · ${E.genreBonus(d.genres)>=4?'서로의 매력을 살리는 조합입니다.':E.genreBonus(d.genres)<0?'장르의 분위기가 달라 품질이 낮아질 수 있습니다.':'최소 한 장르를 골라 작품의 방향을 정해 주세요.'}</p>${subgenrePicker(d)}<div class="field-label">제작 규모 <small>제작 기간은 최대 12개월</small></div><div class="scale-grid">${SCALES.map(scale=>`<button class="scale-option ${d.scale===scale.id?'selected':''}" data-action="scale" data-id="${scale.id}" aria-pressed="${d.scale===scale.id}"><strong>${scale.name}</strong><small class="scale-description">${scale.label}</small><span>${scale.months*4}주 <small>(${scale.months}개월)</small></span><small>기본 ${scale.base}억 + 장르·계약료</small></button>`).join('')}</div>${features.formatOptions(d)}${updates.runtimeOptions(d)}`;
   else if(ui.step===1)content=`<div class="row between wrap" style="margin-bottom:22px"><div><h3>${esc(d.title)}</h3><p class="small muted mt-sm">성별 조합 제한 없이 주연 2명, 조연 4명을 선정합니다.</p></div>${btn(`${icon('spark')} 추천 캐스팅`,'recommend','','ghost')}</div><div class="casting-layout"><div><div class="cast-group"><h3>감독 <small>1명</small></h3>${castSlot('director',0,d.director)}</div><div class="cast-group"><h3>주연배우 <small>2명</small></h3><div class="cast-slots">${d.leads.map((id,i)=>castSlot('lead',i,id)).join('')}</div></div><div class="cast-group"><h3>조연배우 <small>4명</small></h3><div class="cast-slots">${d.supports.map((id,i)=>castSlot('support',i,id)).join('')}</div></div><p class="small muted">실력과 장르 적합도가 품질에, 주연의 인지도가 관객 유입에 영향을 줍니다. 제작 중인 인물은 다른 작품에 참여할 수 없습니다.</p></div>${budgetBox(d)}</div>${teamNotes(d)}`;
-  else content=`<div class="summary-grid"><div><div class="row wrap" style="gap:6px">${tags(d.genres)}<span class="tag outline">${SCALE[d.scale].name}</span><span class="tag outline">${RT.runtimeOf(d)}분 · 하루 ${RT.dailyShows(d)}회</span></div><h3 class="detail-title">${esc(d.title)}</h3><p class="detail-synopsis">${esc(d.script.synopsis)}</p><div class="cast-credit"><span>각본</span><strong>${esc(PERSON[d.script.writer].name)}</strong></div><div class="cast-credit"><span>감독</span><strong>${esc(PERSON[d.director]?.name)}</strong></div><div class="cast-credit"><span>주연</span><strong>${d.leads.map(id=>esc(PERSON[id]?.name)).join(' · ')}</strong></div><div class="cast-credit"><span>조연</span><strong>${d.supports.map(id=>esc(PERSON[id]?.name)).join(' · ')}</strong></div><div class="notice mt">${icon('calendar')}<div><strong>${E.weekDate(E.weekOf(game)+e.months*4)} 제작 완료 예정</strong><p>현장 사건 4개 · 완성 후 평론 확인<br>선택 시 1회, 12개월 추가 제작 가능</p></div></div></div>${budgetBox(d)}</div>${teamNotes(d)}${E.player(game).cash<e.total?`<div class="notice warning mt"><div><strong>${E.money(e.total-E.player(game).cash)}의 자금이 부족합니다.</strong><p>제작을 확정하기 전에 자금을 보충할 수 있습니다. 월 이자율 0.5%.</p><div class="row wrap mt-sm">${[10,30,50].map(n=>btn(`${n}억 대출`,'borrow',`data-amount="${n}" ${E.player(game).debt+n>E.loanLimit(game)?'disabled':''}`,'small-btn')).join('')}</div></div></div>`:''}`;
+  else content=`<div class="final-casting-toolbar"><p class="small muted">제작을 시작하기 전 인물별 섭외 조건을 확인하고 교체할 수 있습니다.</p>${btn('최종 섭외 조건 · 인물 교체','review-negotiations','','ghost')}</div><div class="summary-grid"><div><div class="row wrap" style="gap:6px">${tags(d.genres)}<span class="tag outline">${SCALE[d.scale].name}</span><span class="tag outline">${RT.runtimeOf(d)}분 · 하루 ${RT.dailyShows(d)}회</span></div><h3 class="detail-title">${esc(d.title)}</h3><p class="detail-synopsis">${esc(d.script.synopsis)}</p><div class="cast-credit"><span>각본</span><strong>${esc(PERSON[d.script.writer].name)}</strong></div><div class="cast-credit"><span>감독</span><strong>${esc(PERSON[d.director]?.name)}</strong></div><div class="cast-credit"><span>주연</span><strong>${d.leads.map(id=>esc(PERSON[id]?.name)).join(' · ')}</strong></div><div class="cast-credit"><span>조연</span><strong>${d.supports.map(id=>esc(PERSON[id]?.name)).join(' · ')}</strong></div><div class="notice mt">${icon('calendar')}<div><strong>${E.weekDate(E.weekOf(game)+e.months*4)} 제작 완료 예정</strong><p>현장 사건 4개 · 완성 후 평론 확인<br>선택 시 1회, 12개월 추가 제작 가능</p></div></div></div>${budgetBox(d)}</div>${teamNotes(d)}${E.player(game).cash<e.total?`<div class="notice warning mt"><div><strong>${E.money(e.total-E.player(game).cash)}의 자금이 부족합니다.</strong><p>제작을 확정하기 전에 자금을 보충할 수 있습니다. 월 이자율 0.5%.</p><div class="row wrap mt-sm">${[10,30,50].map(n=>btn(`${n}억 대출`,'borrow',`data-amount="${n}" ${E.player(game).debt+n>E.loanLimit(game)?'disabled':''}`,'small-btn')).join('')}</div></div></div>`:''}`;
   return dialogFrame('새 영화 제작',`기획 중 · ${esc(PERSON[d.script.writer].name)} 작가의 시나리오`,stepIndicator()+content,`${btn(ui.step===0?'나중에 기획하기':'이전 단계',ui.step===0?'close':'wizard-back','','ghost')}<div class="row"><p>${ui.step===0?'작품의 방향을 정해 주세요.':ui.step===1?`감독 1 · 주연 ${d.leads.filter(Boolean).length}/2 · 조연 ${d.supports.filter(Boolean).length}/4`:`${E.money(e.total)} · ${e.months*4}주 제작`}</p>${btn(ui.step===2?`제작 시작 ${icon('studio')}`:`${ui.step===0?'캐스팅하기':'최종 확인'} ${icon('arrow')}`,ui.step===2?'greenlight':'wizard-next',ui.step===1&&!completeCast(d)||ui.step===2&&E.player(game).cash<e.total?'disabled':'','primary')}</div>`);
 }
-function pickerDialog(){return dialogFrame(`${ROLE_NAMES[ui.picker.role]} 선정`,`선택한 영화 「${esc(ui.draft.title)}」 · ${ui.draft.genres.map(g=>GENRE[g].name).join(' / ')}`,`<div class="picker">${peopleToolbar(ui.picker,'picker')}${peopleResults(ui.picker,'picker')}</div>`,`${btn(`${icon('back')} 캐스팅으로 돌아가기`,'close','','ghost')}<p>제작 중인 인물은 중복 섭외할 수 없습니다.</p>`);}
+function pickerDialog(){return dialogFrame(`${ROLE_NAMES[ui.picker.role]} ${ui.replacement?'교체':'선정'}`,`선택한 영화 「${esc(ui.draft.title)}」 · ${ui.draft.genres.map(g=>GENRE[g].name).join(' / ')}`,`<div class="picker">${peopleToolbar(ui.picker,'picker')}${peopleResults(ui.picker,'picker')}</div>`,`${btn(`${icon('back')} ${ui.replacement?'최종 섭외 조건으로 돌아가기':'캐스팅으로 돌아가기'}`,'close','','ghost')}<p>${ui.replacement?'후보만 확인하면 기존 인물과 계약 조건이 유지됩니다.':'제작 중인 인물은 중복 섭외할 수 없습니다.'}</p>`);}
 function eventDialog(f){if(!f||f.pending==null)return dialogFrame('현장 사건','',`<p>모든 사건을 결정했습니다.</p>`);const event=EVENTS[f.pending],c=E.player(game);return dialogFrame('현장에서 온 카드',`「${esc(f.title)}」 · ${E.date(game.month)}`,`<div class="event-intro"><span class="event-count">${String(f.decisions.length+1).padStart(2,'0')}<small> / 04</small></span><div><span class="eyebrow">PRODUCTION EVENT</span><h3>${event[0]}</h3></div></div><p class="event-story">${event[1]}${event[3]?`<br>대상: ${esc(PERSON[event[3].type==='director'?f.director:(f.leads.find(id=>PERSON[id].age>=18)??f.director)].name)}`:''}</p>${event[3]?`<div class="notice mt-sm"><p>추가 개런티는 대상 계약료의 30%. 귀책 하차는 계약료 전액 반환 + 30% 위약금 수령. 제작사 교체는 25% 반환 + 25% 보상금 지급. 대체 인물의 새 계약료는 별도이며 교체 시 품질 -3입니다.</p></div>`:''}<div class="event-choices">${event[2].map((choice,i)=>{const cost=E.eventCost(f,choice);return `<button class="event-choice" data-action="decide" data-id="${f.id}" data-index="${i}" ${cost>0&&c.cash<cost?'disabled':''}><span class="choice-top"><span class="choice-letter">${['A','B','C'][i]}</span><strong>${choice[0]}</strong></span><span class="choice-effects"><span>${cost?E.money(cost)+' 추가 지출':event[3]&&i===1?'하차·새 계약 차액 정산':event[3]?.type==='fee'&&i===0?'계약료 30% 추가':'추가 비용 없음'}</span><span class="${choice[2]>=0?'lime':'red'}">품질 ${plus(choice[2])}</span>${choice[3]?`<span class="amber">인지도 ${plus(choice[3])}</span>`:''}</span></button>`;}).join('')}</div><div class="event-account"><span>현재 현금 <strong class="${c.cash<0?'red':''}">${E.money(c.cash)}</strong></span><button class="text-btn" data-action="nav" data-view="finance">은행 이용 ${icon('arrow')}</button></div>`,`<p>네 번의 선택이 영화의 완성도를 바꿉니다.</p>${btn('잠시 닫기','close','','ghost')}`);}
 const critique=n=>n>=88?'장면마다 밀도가 살아 있다.':n>=77?'이야기와 연출의 균형이 좋다.':n>=66?'익숙한 이야기 속 작은 발견.':n>=53?'가능성은 보이지만 아쉬움도 남는다.':'이야기를 더 다듬을 필요가 있다.';
 function filmDialog(f){return features.filmDialog(f);}
@@ -215,7 +215,7 @@ function licenseDialog(){return dialogFrame('원작 라이선스','애니 · 만
 
 
 function relationBadge(a,b){const value=R.affinity(game,a,b);return `<span class="relation rel-${Math.min(4,Math.floor(value/20))}">${R.level(value)} <small>${value}/100</small></span>`;}
-function subgenrePicker(d){return `<section class="subgenre-picker"><div class="field-label">세부장르 <small>선택한 장르마다 하나</small></div><div class="subgenre-grid">${d.genres.map(g=>{const sub=R.SUBGENRES[g].find(x=>x[0]===d.subgenres?.[g])??R.SUBGENRES[g][0];return `<label>${GENRE[g].name}<select id="subgenre-${g}" data-field="subgenre" data-genre="${g}">${R.SUBGENRES[g].map(x=>`<option value="${x[0]}" ${sub[0]===x[0]?'selected':''}>${x[1]}</option>`).join('')}</select><small>조화: ${sub[2].map(g=>GENRE[g].name).join(' · ')}<br>충돌: ${sub[3].map(g=>GENRE[g].name).join(' · ')}</small></label>`;}).join('')}</div><p class="synergy-note">세부장르와 전체 장르의 조합 효과: 품질 ${plus(R.subgenreEffect(d))}. 같은 조합에서도 제작진과 현장 선택에 따라 결과가 달라집니다.</p></section>`;}
+function subgenrePicker(d){return `<section class="subgenre-picker"><div class="field-label">세부장르 <small>선택한 장르마다 하나</small></div><div class="subgenre-grid">${d.genres.map(g=>{const sub=R.SUBGENRES[g].find(x=>x[0]===d.subgenres?.[g])??R.SUBGENRES[g][0];return `<label>${GENRE[g].name}<select id="subgenre-${g}" data-field="subgenre" data-genre="${g}">${R.SUBGENRES[g].map(x=>`<option value="${x[0]}" ${sub[0]===x[0]?'selected':''}>${x[1]}</option>`).join('')}</select><small data-subgenre-notes="${g}">조화: ${sub[2].map(g=>GENRE[g].name).join(' · ')}<br>충돌: ${sub[3].map(g=>GENRE[g].name).join(' · ')}</small></label>`;}).join('')}</div><p class="synergy-note" data-subgenre-effect aria-live="polite">세부장르와 전체 장르의 조합 효과: 품질 ${plus(R.subgenreEffect(d))}. 같은 조합에서도 제작진과 현장 선택에 따라 결과가 달라집니다.</p></section>`;}
 function personRelations(p){return `<div class="divider"></div><h3>친밀도 · 관계망</h3><p class="small muted mt-sm">전문적 궁합과 별도의 관계입니다. 매월 변하거나 유지되며 계약·현장 협업·홍보·카메오에 반영됩니다.</p><details class="relations-list"><summary>제작사 10곳과의 관계</summary>${game.companies.map(c=>`<div class="relationship-row"><span>${esc(c.name)}</span>${relationBadge(p.id,c.id)}</div>`).join('')}</details><details class="relations-list"><summary>홍보 기관 50곳과의 관계</summary>${R.AGENCIES.map(a=>`<div class="relationship-row"><button class="text-btn" data-action="agency" data-id="${a.id}">${a.name}</button>${relationBadge(p.id,a.id)}</div>`).join('')}</details>`;}
 function mediaCards(f,before){
  if(f.activePromotion){const plan=f.activePromotion,a=R.AGENCIES.find(a=>a.id===plan.agency);return `<div class="campaign-running">${mediaArt(plan.channel)}<span class="tag green">진행 중</span><h3>${a.name}</h3><p>${X.TONES[plan.tone]}</p><strong>${E.weekDate(plan.dueWeek)} 결과 도착</strong><p class="small muted">${E.money(plan.cost)} 집행 완료. 한 번에 한 홍보사와 진행합니다.</p>${btn('닫고 1주 진행하기','close','','ghost')}</div>`;}
@@ -236,7 +236,7 @@ function warehouseNotice(){const count=E.myFilms(game).filter(f=>f.status==='she
 function warehousePage(){const stored=E.myFilms(game).filter(f=>f.status==='shelved'),ready=E.myFilms(game).filter(f=>f.status==='ready');return `${pageHead('창고영화','완성된 이야기를 가장 알맞은 시기에 선보이세요.')}<div class="notice"><p>제작 슬롯 사용 없음 · 보관료 없음 · 기간 제한 없음. 보관 중에는 자동으로 개봉되지 않습니다. 홍보를 준비하거나 원하는 때 직접 개봉할 수 있습니다.</p></div>${marketEventCards()}<div class="section-head mt"><h2>보관 중 <span class="count">${stored.length}편</span></h2></div>${stored.length?`<div class="portfolio-grid">${stored.map(f=>`<section class="card"><h3>${esc(f.title)}</h3><p class="small muted mt-sm">제작 완료 ${f.productionCompletedMonth!=null?E.date(f.productionCompletedMonth):'기록 없음'} · 창고 보관 ${game.month-f.shelvedMonth}개월</p><p class="small mt-sm">현재 장르 이벤트 +${V.marketBoost(game,f)}% · 평론 예상 ${E.reviewScore(game,f)}점</p><div class="row wrap mt-sm">${btn('기록·홍보·개봉 결정','film',`data-id="${f.id}"`,'primary')}${btn('꺼내기','unshelve',`data-id="${f.id}"`,'ghost')}</div></section>`).join('')}</div>`:'<div class="card empty"><h3>보관 중인 영화가 없습니다.</h3><p>제작이 끝난 영화의 상세 화면에서 창고에 넣을 수 있습니다.</p></div>'}${ready.length?`<div class="section-head mt"><h2>보관할 수 있는 완성작</h2></div><div class="stack">${ready.map(f=>`<div class="card row wrap"><strong>${esc(f.title)}</strong><span class="spacer"></span>${btn('영화 보기','film',`data-id="${f.id}"`,'ghost')}${btn('창고에 보관','shelve',`data-id="${f.id}"`,'ghost')}</div>`).join('')}</div>`:''}`;}
 
 function renderDialog(){navigation?.schedule();const more=document.querySelector('.mobile-nav [data-action="more"]');if(more){more.classList.toggle('active',ui.modal?.type==='more'||!navs.slice(0,4).some(n=>n[0]===ui.view));more.setAttribute('aria-expanded',String(ui.modal?.type==='more'));}const dialog=$('dialog');const focus=document.activeElement?.id,selection=document.activeElement?.selectionStart,wasOpen=dialog.open;const scrollBody=dialog.querySelector('.dialog-body');const ownScroll=scrollBody&&getComputedStyle(scrollBody).overflowY==='auto';const top=dialogScroll.transition(dialogKey(ui),ownScroll?scrollBody.scrollTop:dialog.scrollTop);
-  if(!ui.modal){if(dialog.open)dialog.close();document.documentElement.classList.remove('modal-open');renderPopups();return;}
+  if(!ui.modal){if(dialog.open)dialog.close();document.documentElement.classList.remove('modal-open');renderPopups();fitCatalog();return;}
   const m=ui.modal;let content=updates?.modalMarkup(m)??features?.modalMarkup(m)??'';
   if(m.type==='completion'){const f=game.films.find(f=>f.id===m.id);if(f&&ui.posterContext!==m.id){ui.posterContext=m.id;ui.posterPage=Math.floor((ui.posterChoices[f.id]??f.poster??GENRES.findIndex(g=>g.id===f.genres[0])%12)/6);}content=completionDialog(f);}
   if(m.type==='negotiation')content=negotiationDialog();
@@ -258,16 +258,16 @@ function renderDialog(){navigation?.schedule();const more=document.querySelector
   if(m.type==='extend-confirm'){const f=game.films.find(f=>f.id===m.id);content=dialogFrame('12개월 추가 제작',esc(f.title),`<div class="notice">${icon('studio')}<p>더 나은 완성도를 위해 기존 제작진과 다시 작업합니다.</p></div><div class="detail-metrics"><div><small>추가 제작비</small><strong>${E.money(E.round(f.budget*.4))}</strong></div><div><small>기간</small><strong>12개월</strong></div><div><small>완료 시 품질</small><strong class="lime">+8점</strong></div></div><p class="small muted">제작 슬롯 1개를 사용합니다. 추가 제작은 한 번만 가능하며, 기존 제작진의 일정이 비어 있어야 합니다. 품질 최대치는 99점입니다.</p>`,`${btn('돌아가기','film',`data-id="${f.id}"`,'ghost')}${btn('추가 제작 시작','extend',`data-id="${f.id}"`,'primary')}`);}
   if(m.type==='reset-confirm')content=dialogFrame('새로운 제작사를 세울까요?','',`<p>현재 제작사와 모든 영화, 자금, 수상 기록이 삭제됩니다.</p><p class="small muted mt-sm">삭제한 진행 내용은 되돌릴 수 없습니다.</p>`,`${btn('계속 플레이','close','','ghost')}${btn('기록을 지우고 새 게임','reset','','danger')}`);
   dialog.className=['rights-info','licenses','runtime-edit','studio-stat','tax-details','wizard','picker','business','completion','film','ott-offers','company-info','film-chart','finance-chart','critic-reviews','audience-reviews'].includes(m.type)?'wide':'';dialog.dataset.modal=m.type;dialog.innerHTML=content;dialog.setAttribute('aria-labelledby','dialog-title');document.documentElement.classList.add('modal-open');if(!wasOpen)dialog.showModal();
-  if(focus&&$(focus)){const node=$(focus);node.focus({preventScroll:true});if(typeof selection==='number'&&node.setSelectionRange){try{node.setSelectionRange(selection,selection)}catch{}}}
+  if(focus&&$(focus)&&$(focus).tagName!=='SELECT'){const node=$(focus);node.focus({preventScroll:true});if(typeof selection==='number'&&node.setSelectionRange){try{node.setSelectionRange(selection,selection)}catch{}}}
   const body=dialog.querySelector('.dialog-body');const inner=body&&getComputedStyle(body).overflowY==='auto';dialog.scrollTop=inner?0:top;if(body)body.scrollTop=inner?top:0;hydratePortraits(dialog,id=>PERSON[id]);renderPopups();
 }
-function render(){catalogPrepare();const focus=document.activeElement?.id,selection=document.activeElement?.selectionStart;$('app').innerHTML=game&&!ui.home?shell():startPage();startScreen.sync();syncMobileDock();renderDialog();hydratePortraits($('app'),id=>PERSON[id]);renderPopups();fitCatalog();if(focus&&$(focus)&&!$('dialog').open){const node=$(focus);node.focus({preventScroll:true});if(typeof selection==='number'&&node.setSelectionRange){try{node.setSelectionRange(selection,selection)}catch{}}}}
+function render(){catalogPrepare();const focus=document.activeElement?.id,selection=document.activeElement?.selectionStart;$('app').innerHTML=game&&!ui.home?shell():startPage();startScreen.sync();syncMobileDock();renderDialog();hydratePortraits($('app'),id=>PERSON[id]);renderPopups();fitCatalog();if(focus&&$(focus)&&$(focus).tagName!=='SELECT'&&!$('dialog').open){const node=$(focus);node.focus({preventScroll:true});if(typeof selection==='number'&&node.setSelectionRange){try{node.setSelectionRange(selection,selection)}catch{}}}}
 function startPlanning(id){
   if(!game)throw Error('먼저 제작사를 설립해 주세요.');
   const p=game.pitches.find(p=>p.id===id);if(!p)throw Error('시나리오를 찾을 수 없습니다.');
   if(E.active(game).filter(f=>f.company==='c0').length>=3)throw Error('세 개 제작 슬롯을 모두 사용 중입니다.');
   if(!E.available(game,PERSON[p.writer])||E.busyFilm(game,p.writer))throw Error('이 작가는 다른 작품을 제작 중입니다.');
-  dialogScroll.clear();ui.draft={requireNegotiation:true,castingAgreements:{},formats:[],runtime:120,script:p,title:p.title,genres:[p.genre],scale:'medium',director:null,leads:[null,null],supports:[null,null,null,null]};if(p.sequelOf){const parent=game.films.find(f=>f.id===p.sequelOf);ui.draft.scale=parent.scale;ui.draft.runtime=RT.runtimeOf(parent);ui.draft.genres=[...parent.genres];const keep=id=>E.eligible(game,PERSON[id],ui.draft.genres)&&!E.busyFilm(game,id)?id:null;ui.draft.director=keep(parent.director);ui.draft.leads=parent.leads.map(keep);ui.draft.supports=parent.supports.map(keep);}
+  dialogScroll.clear();ui.replacement=null;ui.replacementNotice=null;ui.pendingSelection=null;ui.offerPerson=null;ui.draft={requireNegotiation:true,castingAgreements:{},formats:[],runtime:120,script:p,title:p.title,genres:[p.genre],scale:'medium',director:null,leads:[null,null],supports:[null,null,null,null]};if(p.sequelOf){const parent=game.films.find(f=>f.id===p.sequelOf);ui.draft.scale=parent.scale;ui.draft.runtime=RT.runtimeOf(parent);ui.draft.genres=[...parent.genres];const keep=id=>E.eligible(game,PERSON[id],ui.draft.genres)&&!E.busyFilm(game,id)?id:null;ui.draft.director=keep(parent.director);ui.draft.leads=parent.leads.map(keep);ui.draft.supports=parent.supports.map(keep);}
   ui.draft.subgenres=R.normalizeSubgenres({...ui.draft,subgenres:p.sequelOf?game.films.find(f=>f.id===p.sequelOf)?.subgenres:undefined});ui.step=0;open('wizard');return{pitchId:id,title:p.title,stage:'planning'};
 }
 async function nextWeek(){
@@ -339,7 +339,7 @@ document.addEventListener('click',event=>{
     if(a==='wizard-next'){if(!ui.draft.title.trim())return toast('영화 제목을 적어 주세요.',true);if(!ui.draft.genres.length)return toast('장르를 하나 이상 선택해 주세요.',true);if(ui.step===1&&!completeCast(ui.draft))return toast('감독과 출연진을 모두 선정해 주세요.',true);if(ui.step===1)E.assertCrewAvailable(game,ui.draft);ui.step=Math.min(2,ui.step+1);renderDialog();$('dialog').scrollTop=0;const body=$('dialog').querySelector('.dialog-body');if(body)body.scrollTop=0;return;}
     if(a==='wizard-back'){ui.step=Math.max(0,ui.step-1);renderDialog();$('dialog').scrollTop=0;const body=$('dialog').querySelector('.dialog-body');if(body)body.scrollTop=0;return;}
     if(a==='recommend'){if(!ui.draft.genres.length)return toast('장르를 먼저 선택해 주세요.',true);ui.draft=E.recommend(game,ui.draft);renderDialog();return toast('제작진을 추천했습니다. 최종 제작 전에 섭외 응답과 추가 조건을 확인합니다.');}
-    if(a==='cast-slot'){ui.picker={role:button.dataset.role,index:Number(button.dataset.index),gender:'all',genre:'all',query:'',sort:'fit-desc',available:true,page:0,age:'all',status:'all'};return open('picker');}
+    if(a==='cast-slot'){ui.replacement=null;ui.pendingSelection=null;ui.picker={role:button.dataset.role,index:Number(button.dataset.index),gender:'all',genre:'all',query:'',sort:'fit-desc',available:true,page:0,age:'all',status:'all'};return open('picker');}
     if(a==='choose-person')return choosePerson(id);
     if(a==='greenlight')return confirmGreenlight();
     if(a==='decide')return mutate(()=>{E.resolveEvent(game,id,Number(button.dataset.index));ui.modal=nextRequiredTask();},'현장에 결정을 전달했습니다.');
@@ -355,7 +355,19 @@ function fieldChanged(event){if(updates.handleField(event)||features.handleField
   if(target.dataset.field==='promotion-tone'){ui.promoTone=Number(target.value);renderDialog();return;}
   if(target.dataset.field==='agency-query'){ui.agencyQuery=target.value;renderDialog();return;}
   if(target.dataset.field==='agency'){ui.agencies[target.dataset.channel]=target.value;renderDialog();return;}
-  if(target.dataset.field==='subgenre'){ui.draft.subgenres??={};ui.draft.subgenres[target.dataset.genre]=target.value;renderDialog();return;}
+  if(target.dataset.field==='subgenre'){
+    const genre=target.dataset.genre,sub=R.SUBGENRES[genre]?.find(x=>x[0]===target.value);
+    if(!ui.draft?.genres.includes(genre)||!sub)return;
+    ui.draft.subgenres??={};ui.draft.subgenres[genre]=sub[0];
+    // Keep the exact native select node alive. Replacing and focusing it during
+    // a mobile picker's change event can reopen an extra bottom-sheet picker.
+    const notes=target.closest('label')?.querySelector('[data-subgenre-notes]');
+    if(notes)notes.innerHTML=`조화: ${sub[2].map(g=>GENRE[g].name).join(' · ')}<br>충돌: ${sub[3].map(g=>GENRE[g].name).join(' · ')}`;
+    const effect=$('dialog').querySelector('[data-subgenre-effect]');
+    if(effect)effect.textContent=`세부장르와 전체 장르의 조합 효과: 품질 ${plus(R.subgenreEffect(ui.draft))}. 같은 조합에서도 제작진과 현장 선택에 따라 결과가 달라집니다.`;
+    if(matchMedia('(pointer:coarse)').matches)target.blur();
+    navigation?.remember();return;
+  }
   if(target.dataset.field==='compat-query'){ui.comparisonQuery=target.value;renderDialog();return;}
   if(target.dataset.field==='film-title'){ui.draft.title=target.value;return;}
   if(target.dataset.field==='script-query'){ui.scriptQuery=target.value;ui.scriptPage=0;render();return;}
@@ -405,7 +417,8 @@ function catalogPrepare(){
 }
 function fitCatalog(){
  cancelAnimationFrame(catalogFrame);catalogFrame=requestAnimationFrame(()=>{
-  if(!document.documentElement.classList.contains('catalog-fit'))return;
+  // A background catalog must not replace controls inside an open native dialog.
+  if(ui.modal||!document.documentElement.classList.contains('catalog-fit'))return;
   const host=document.querySelector('#main .catalog-results');if(!host)return;
   const nav=document.querySelector('.mobile-dock');document.documentElement.style.setProperty('--catalog-nav-height',(nav&&getComputedStyle(nav).display!=='none'?nav.getBoundingClientRect().height:0)+'px');
   const width=host.clientWidth,height=host.clientHeight;if(width<1||height<1)return;
@@ -437,20 +450,29 @@ function acknowledgeCompletion(id,apply){
 }
 function promotionHistory(f){return (f.promotions??[]).length?`<details class="fold-section"><summary>완료한 홍보 · ${f.promotions.length}회</summary>${f.promotions.map(r=>`<p class="small record-line">${R.AGENCIES.find(a=>a.id===r.agency)?.name??'이전 홍보'} · 인지도 ${plus(r.effect)} · ${E.money(r.cost)}</p>`).join('')}</details>`:'';}
 function refreshDialog(){return dialogFrame('시나리오를 다시 받을까요?','대기 기간 없이 새 제안 6편을 받습니다.',`<div class="detail-metrics"><div><small>수신 비용</small><strong>0.5억 원</strong></div><div><small>처리 후 현금</small><strong>${E.money(E.player(game).cash-E.PITCH_REFRESH_COST)}</strong></div></div><p>현재 받은 시나리오 목록을 새 제안 6편으로 교체합니다. 제작 중인 영화와 완료한 영화는 바뀌지 않습니다.</p><p class="small muted mt-sm">이미 계약한 영화의 시나리오 비용과는 별도입니다.</p>`,`${btn('취소','close','','ghost')}${btn('0.5억 · 다시 받기','refresh-confirmed',E.player(game).cash<E.PITCH_REFRESH_COST?'disabled':'','primary')}`);}
-function choosePerson(id){
+function prospectiveCast(id){
  const p=PERSON[id],picker=ui.picker;
  if(!p||!picker||p.role!==picker.role||!E.eligible(game,p,ui.draft.genres)||E.busyFilm(game,id)||E.crewIds(ui.draft).includes(id))throw Error('지금 해당 배역에 섭외할 수 없는 인물입니다.');
+ if(ui.replacement)return N.castingReplacement(game,ui.draft,ui.replacement.person,id);
  const prospective=structuredClone(ui.draft);
  if(picker.role==='director')prospective.director=id;else prospective[picker.role==='lead'?'leads':'supports'][picker.index]=id;
- const offer=N.castingOffer(game,prospective,id);
- if(offer.status==='accepted'){ui.draft=prospective;ui.modal={type:'wizard'};renderDialog();return;}
- ui.pendingSelection=prospective;ui.offerPerson=id;open('negotiation');sound.play(offer.status==='refused'?'error':'notify');
+ return prospective;
+}
+function choosePerson(id){
+ const prospective=prospectiveCast(id),offer=N.castingOffer(game,prospective,id);
+ if(offer.status==='accepted'&&!ui.replacement){ui.draft=prospective;ui.modal={type:'wizard'};renderDialog();return;}
+ ui.pendingSelection=prospective;ui.offerPerson=id;open('negotiation',id);sound.play(offer.status==='refused'?'error':'notify');
+}
+function replacementNotice(){
+ const change=ui.replacementNotice;
+ if(!change||!N.castIds(ui.draft).includes(change.to)||N.castIds(ui.draft).includes(change.from))return '';
+ return `<div class="notice replacement-notice" role="status"><div><strong>${esc(PERSON[change.from]?.name)} → ${esc(PERSON[change.to]?.name)} 교체 완료</strong><p>새 조합으로 감독·주연·조연 전체의 상호관계와 요구 조건을 다시 계산했습니다. 기존 추가 조건 수락은 해제되었습니다.</p><p class="small">조건이 달라진 기존 제작진 ${change.changed}명 · 기본 계약료와 추가 개런티를 다시 확인해 주세요. 같은 조건이 유지되는 인물도 있습니다.</p></div></div>`;
 }
 function negotiationDialog(){
  const single=!!ui.pendingSelection,d=ui.pendingSelection??ui.draft;
  const reports=single?[N.castingOffer(game,d,ui.offerPerson)]:N.negotiationReport(game,d);
  const refused=reports.some(r=>r.status==='refused'),extra=E.round(reports.reduce((n,r)=>n+r.extra,0));
- return dialogFrame(single?'섭외 답장이 도착했습니다':'최종 섭외 조건 확인',`「${esc(d.title)}」 · 비용은 제작 확정 시에만 지출됩니다.`,`${!single?`<div class="notice small">제작진이나 장르가 바뀌면 상대방의 조건도 다시 확인합니다. 현재 추가 개런티 총 ${E.money(extra)}.</div>`:''}<div class="negotiation-list">${reports.map(r=>{const p=PERSON[r.person];return `<article class="negotiation-card ${r.status}"><div class="row">${avatar(p,true)}<div><h3>${esc(p.name)} <small>${ROLE_NAMES[p.role]}</small></h3><span class="tag ${r.status==='refused'?'orange':r.status==='counter'?'outline':'green'}">${r.status==='refused'?'섭외 거절':r.status==='counter'?'추가 조건':'참여 수락'}</span></div></div><p class="offer-message">${esc(r.message)}</p>${r.reasons.length?`<details ${single?'open':''}><summary>답장 사유 ${r.reasons.length}개</summary>${r.reasons.map(t=>`<p class="small muted mt-sm">${esc(t)}</p>`).join('')}</details>`:''}<div class="offer-price"><span>기본 ${E.money(r.fee)}</span>${r.extra?`<strong>추가 ${E.money(r.extra)} (${r.percent}%)</strong>`:''}<strong>총 ${E.money(r.total)}</strong></div>${!single&&r.status==='refused'?btn('이 인물 교체','replace-negotiation',`data-id="${r.person}"`,'ghost small-btn'):''}</article>`}).join('')}</div>`,`${btn(single?'다른 인물 찾아보기':'캐스팅으로 돌아가기','negotiation-back','','ghost')}${!refused?btn(single?'조건을 수락하고 선정':'추가 조건 수락','accept-negotiation','','primary'):''}`);
+ return dialogFrame(single?'섭외 답장이 도착했습니다':'최종 섭외 조건 확인',`「${esc(d.title)}」 · 비용은 제작 확정 시에만 지출됩니다.`,`${!single?replacementNotice():''}${!single?`<div class="notice small">제작진이나 장르가 바뀌면 상대방의 조건도 다시 확인합니다. 현재 추가 개런티 총 ${E.money(extra)}.</div>`:''}<div class="negotiation-list">${reports.map(r=>{const p=PERSON[r.person];return `<article class="negotiation-card ${r.status}" data-person-id="${r.person}" data-role="${p.role}"><div class="row">${avatar(p,true)}<div><h3>${esc(p.name)} <small>${ROLE_NAMES[p.role]}</small></h3><span class="tag ${r.status==='refused'?'orange':r.status==='counter'?'outline':'green'}">${r.status==='refused'?'섭외 거절':r.status==='counter'?'추가 조건':'참여 수락'}</span></div></div><p class="offer-message">${esc(r.message)}</p>${r.reasons.length?`<details ${single?'open':''}><summary>답장 사유 ${r.reasons.length}개</summary>${r.reasons.map(t=>`<p class="small muted mt-sm">${esc(t)}</p>`).join('')}</details>`:''}<div class="offer-price"><span>기본 ${E.money(r.fee)}</span>${r.extra?`<strong>추가 ${E.money(r.extra)} (${r.percent}%)</strong>`:''}<strong>총 ${E.money(r.total)}</strong></div>${!single?btn('교체','replace-negotiation',`data-id="${r.person}" aria-label="${esc(p.name)} 교체"`,'ghost small-btn replace-cast-btn'):''}</article>`}).join('')}</div>`,`${btn(single?'다른 인물 찾아보기':'캐스팅으로 돌아가기','negotiation-back','','ghost')}${!refused?btn(single?(ui.replacement?'조건을 수락하고 교체':'조건을 수락하고 선정'):'전체 섭외 조건 수락','accept-negotiation','','primary'):''}`);
 }
 function confirmGreenlight(){
  E.assertCrewAvailable(game,ui.draft);
@@ -516,18 +538,32 @@ function handleNewAction(a,id,button){
  if(a==='confirm-poster'){mutate(()=>X.selectPoster(game,id,ui.posterChoices[id]??game.films.find(f=>f.id===id).poster??0),'포스터를 적용했습니다.');return true;}
  if(a==='completion'){open('completion',id);return true;}
  if(a==='completion-later'||a==='completion-done'){acknowledgeCompletion(id,a==='completion-done');return true;}
+ if(a==='review-negotiations'){ui.pendingSelection=null;ui.replacement=null;open('negotiation');return true;}
  if(a==='negotiation-back'){
-   const single=!!ui.pendingSelection;ui.pendingSelection=null;ui.modal={type:single?'picker':'wizard'};if(!single)ui.step=1;renderDialog();return true;
+   if(ui.pendingSelection){close();return true;}
+   ui.replacement=null;ui.offerPerson=null;ui.modal={type:'wizard'};ui.step=1;renderDialog();return true;
  }
  if(a==='accept-negotiation'){
    E.assertCrewAvailable(game,ui.pendingSelection??ui.draft);
-   if(ui.pendingSelection){const d=ui.pendingSelection,r=N.castingOffer(game,d,ui.offerPerson);if(r.status==='refused')throw Error('거절한 인물은 선택할 수 없습니다.');d.castingAgreements??={};d.castingAgreements[r.person]={fingerprint:r.fingerprint,accepted:true,total:r.total,extra:r.extra};ui.draft=d;ui.pendingSelection=null;}
-   else N.acceptOffers(game,ui.draft);
+   if(ui.pendingSelection){
+     // Regenerate from the current draft, never an old browser-history snapshot.
+     const d=prospectiveCast(ui.offerPerson),r=N.castingOffer(game,d,ui.offerPerson);
+     if(r.status==='refused')throw Error('거절한 인물은 선택할 수 없습니다.');
+     if(ui.replacement){
+       const before=N.negotiationReport(game,ui.draft),after=N.negotiationReport(game,d);
+       ui.replacementNotice={from:ui.replacement.person,to:ui.offerPerson,changed:after.filter(n=>{const old=before.find(o=>o.person===n.person);return old&&(old.status!==n.status||old.total!==n.total||JSON.stringify(old.reasons)!==JSON.stringify(n.reasons));}).length};
+       // Leave all revised counteroffers unsigned until the full-team report is accepted.
+       ui.draft=d;ui.pendingSelection=null;ui.offerPerson=null;ui.replacement=null;
+       open('negotiation');toast('인물을 교체하고 전체 제작진의 조건을 다시 계산했습니다.');return true;
+     }
+     d.castingAgreements??={};d.castingAgreements[r.person]={fingerprint:r.fingerprint,accepted:true,total:r.total,extra:r.extra};ui.draft=d;ui.pendingSelection=null;ui.offerPerson=null;
+   }else N.acceptOffers(game,ui.draft);
    ui.modal={type:'wizard'};renderDialog();toast('섭외 조건을 수락했습니다. 제작 확정 전까지 비용은 지출되지 않습니다.');return true;
  }
  if(a==='replace-negotiation'){
-   const p=PERSON[id],d=ui.draft,index=p.role==='director'?0:d[p.role==='lead'?'leads':'supports'].indexOf(id);
-   ui.picker={role:p.role,index,gender:'all',genre:'all',query:'',sort:'fit-desc',available:true,page:0,age:'all',status:'all'};ui.pendingSelection=null;open('picker');return true;
+   const slot=N.replacementSlot(ui.draft,id);
+   ui.replacement={person:id,scriptId:ui.draft.script.id,...slot};
+   ui.picker={...slot,gender:'all',genre:'all',query:'',sort:'fit-desc',available:true,page:0,age:'all',status:'all'};ui.pendingSelection=null;ui.offerPerson=null;open('picker');return true;
  }
  return false;
 }
@@ -539,7 +575,7 @@ document.addEventListener('toggle',e=>{if(e.target.matches?.('details[data-filte
 $('notification-popups')?.addEventListener('pointerenter',()=>ui.popupHovered=true);
 $('notification-popups')?.addEventListener('pointerleave',()=>ui.popupHovered=false);
 let resizeCardsTimer;
-window.addEventListener('resize',()=>{clearTimeout(resizeCardsTimer);resizeCardsTimer=setTimeout(()=>{if(game&&!ui.home&&(['talents','scripts'].includes(ui.view)||ui.modal?.type==='picker')){if(ui.modal?.type==='picker')renderDialog();else render();}},160);});
+window.addEventListener('resize',()=>{clearTimeout(resizeCardsTimer);resizeCardsTimer=setTimeout(()=>{if(game&&!ui.home&&((!ui.modal&&['talents','scripts'].includes(ui.view))||ui.modal?.type==='picker')){if(ui.modal?.type==='picker')renderDialog();else render();}},160);});
 features=createStudioFeatures({getGame:()=>game,ui,E,X,R,esc,btn,icon,tags,avatar,dialogFrame,pageHead,open,render,renderDialog,mutate,go,persist,toast,relationBadge,timelinePanel,filmCareerNotes,posterPicker,statusLabel});
 updates=createStudioUpdates({getGame:()=>game,ui,E,X,R,esc,btn,icon,tags,avatar,dialogFrame,pageHead,open,render,renderDialog,mutate,go,persist,toast,features,personCard,statusLabel,startPlanning});
 // Prevent accidental text/image selection without disabling form editing or pinch zoom.
@@ -564,7 +600,7 @@ window.addEventListener('blur',()=>{spaceHeld=false;spaceHandled=false;});
 
 if(game){X.scanPromotionAvailability(game);ui.modal=nextRequiredTask();persist();}
 
-const navigationFields=['market','people','picker','scriptGenre','scriptQuery','scriptPage','step','filmTab','businessTab','reviewPage','ledgerPage','ledgerFilter','boxPage','ottPage','ottSelected','comparisonQuery','comparisonTarget','peekStack','agencyChannel','agencyPage','agencyQuery','agencyReturn','selectedAgency','promoTone','posterPage','retired','statsPage','awardYear','editTarget','teamOpen'];
+const navigationFields=['replacement','market','people','picker','scriptGenre','scriptQuery','scriptPage','step','filmTab','businessTab','reviewPage','ledgerPage','ledgerFilter','boxPage','ottPage','ottSelected','comparisonQuery','comparisonTarget','peekStack','agencyChannel','agencyPage','agencyQuery','agencyReturn','selectedAgency','promoTone','posterPage','retired','statsPage','awardYear','editTarget','teamOpen'];
 function navigationScreen(){
  const state={};for(const k of navigationFields)if(ui[k]!==undefined)state[k]=ui[k];
  const body=$('dialog').querySelector('.dialog-body');
@@ -579,7 +615,17 @@ function restoreNavigation(screen){
  const type=ui.modal?.type;
  if((!game||ui.home)&&!['help','versions','reset-confirm'].includes(type))ui.modal=null;
  if(['wizard','picker','negotiation'].includes(type)&&(!ui.draft||screen.draftId!==ui.draft.script?.id)){ui.modal=null;ui.peekStack=[];}
- if(type==='negotiation'&&!ui.pendingSelection&&ui.draft){ui.modal={type:'wizard'};ui.step=1;ui.peekStack=[];}
+ ui.pendingSelection=null;ui.offerPerson=null;
+ let staleReplacement=false;
+ if(ui.replacement){
+  try{if(ui.replacement.scriptId!==ui.draft?.script?.id)throw Error();N.replacementSlot(ui.draft,ui.replacement.person);}
+  catch{ui.replacement=null;staleReplacement=true;}
+ }
+ if(staleReplacement&&['picker','negotiation'].includes(ui.modal?.type))ui.modal={type:'negotiation'};
+ if(ui.modal?.type==='negotiation'&&ui.modal.id){
+  try{ui.offerPerson=ui.modal.id;ui.pendingSelection=prospectiveCast(ui.offerPerson);}
+  catch{ui.pendingSelection=null;ui.offerPerson=null;ui.replacement=null;ui.modal={type:ui.draft&&completeCast(ui.draft)?'negotiation':'wizard'};}
+ }
  const filmTypes=['film','business','completion','event','extend-confirm','ott-offers','ott-confirm','critic-reviews','audience-reviews','film-chart','runtime-edit'];
  if(game&&filmTypes.includes(type)){
   const f=game.films.find(f=>f.id===ui.modal?.id);

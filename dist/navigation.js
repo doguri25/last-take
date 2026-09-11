@@ -57,7 +57,7 @@ export function createNavigation({read, restore, home, window: win = globalThis.
     const next = read();
     if (screenKey(next) === screenKey(current)) { write('replaceState', next); return; }
     // A completed/cancelled action closes its modal instead of adding a duplicate desk.
-    const returning = !next.modal && current.modal || (next.state?.peekStack?.length ?? 0) < (current.state?.peekStack?.length ?? 0) || next.modal?.type === 'wizard' && current.modal?.type === 'wizard' && next.state.step < current.state.step;
+    const returning = next.modal?.type === 'negotiation' && !next.modal.id && ['picker','negotiation'].includes(current.modal?.type) || !next.modal && current.modal || (next.state?.peekStack?.length ?? 0) < (current.state?.peekStack?.length ?? 0) || next.modal?.type === 'wizard' && current.modal?.type === 'wizard' && next.state.step < current.state.step;
     if (returning && next.home === current.home && next.view === current.view) {
       for (let i = index - 1; i >= 0; i--) {
         if (entries.has(i) && screenKey(entries.get(i)) === screenKey(next)) { move(i, next); return; }

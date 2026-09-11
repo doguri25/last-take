@@ -1,0 +1,609 @@
+{
+  "version": "1.4.3",
+  "transport": "Actual dist modules/CSS via offline blob delivery, no game-logic patches",
+  "checks": [
+    {
+      "check": "start 320x568 preserves literal word spacing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "start 320x568 still has no page scrolling",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "start 360x640 preserves literal word spacing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "start 360x640 still has no page scrolling",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "start 390x844 preserves literal word spacing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "start 390x844 still has no page scrolling",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "start 412x915 preserves literal word spacing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "start 412x915 still has no page scrolling",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "start 568x320 preserves literal word spacing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "start 568x320 still has no page scrolling",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "start 844x390 preserves literal word spacing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "start 844x390 still has no page scrolling",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "start 768x1024 preserves literal word spacing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "start 768x1024 still has no page scrolling",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "start 1366x768 preserves literal word spacing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "start 1366x768 still has no page scrolling",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 320x568 shows all proposals without page buttons",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 320x568 scrolls only vertically",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 320x568 final actions clear the dock",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 320x568 last proposal details open",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 320x568 close stays in the script list",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "people 320x568 retains the fixed-height catalog",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "genres 320x568 keeps three usable controls on one row",
+      "passed": true,
+      "detail": [
+        {
+          "x": 18,
+          "y": 245.296875,
+          "w": 81.328125,
+          "right": 99.328125
+        },
+        {
+          "x": 119.328125,
+          "y": 245.296875,
+          "w": 81.328125,
+          "right": 200.65625
+        },
+        {
+          "x": 220.65625,
+          "y": 245.296875,
+          "w": 81.34375,
+          "right": 302
+        }
+      ]
+    },
+    {
+      "check": "genres 320x568 selected subgenre survives rendering",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 360x640 shows all proposals without page buttons",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 360x640 scrolls only vertically",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 360x640 final actions clear the dock",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 360x640 last proposal details open",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 360x640 close stays in the script list",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "people 360x640 retains the fixed-height catalog",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "genres 360x640 keeps three usable controls on one row",
+      "passed": true,
+      "detail": [
+        {
+          "x": 18,
+          "y": 281.703125,
+          "w": 94.65625,
+          "right": 112.65625
+        },
+        {
+          "x": 132.65625,
+          "y": 281.703125,
+          "w": 94.671875,
+          "right": 227.328125
+        },
+        {
+          "x": 247.328125,
+          "y": 281.703125,
+          "w": 94.65625,
+          "right": 341.984375
+        }
+      ]
+    },
+    {
+      "check": "genres 360x640 selected subgenre survives rendering",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 390x844 shows all proposals without page buttons",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 390x844 scrolls only vertically",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 390x844 final actions clear the dock",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 390x844 last proposal details open",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 390x844 close stays in the script list",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "people 390x844 retains the fixed-height catalog",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "genres 390x844 keeps three usable controls on one row",
+      "passed": true,
+      "detail": [
+        {
+          "x": 20,
+          "y": 651.703125,
+          "w": 103.328125,
+          "right": 123.328125
+        },
+        {
+          "x": 143.328125,
+          "y": 651.703125,
+          "w": 103.328125,
+          "right": 246.65625
+        },
+        {
+          "x": 266.65625,
+          "y": 651.703125,
+          "w": 103.34375,
+          "right": 370
+        }
+      ]
+    },
+    {
+      "check": "genres 390x844 selected subgenre survives rendering",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 412x915 shows all proposals without page buttons",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 412x915 scrolls only vertically",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 412x915 final actions clear the dock",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 412x915 last proposal details open",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 412x915 close stays in the script list",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "people 412x915 retains the fixed-height catalog",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "genres 412x915 keeps three usable controls on one row",
+      "passed": true,
+      "detail": [
+        {
+          "x": 20,
+          "y": 722.703125,
+          "w": 110.65625,
+          "right": 130.65625
+        },
+        {
+          "x": 150.65625,
+          "y": 722.703125,
+          "w": 110.671875,
+          "right": 261.328125
+        },
+        {
+          "x": 281.328125,
+          "y": 722.703125,
+          "w": 110.65625,
+          "right": 391.984375
+        }
+      ]
+    },
+    {
+      "check": "genres 412x915 selected subgenre survives rendering",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 568x320 shows all proposals without page buttons",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 568x320 scrolls only vertically",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 568x320 final actions clear the dock",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 568x320 last proposal details open",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 568x320 close stays in the script list",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "people 568x320 retains the fixed-height catalog",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "genres 568x320 keeps three usable controls on one row",
+      "passed": true,
+      "detail": [
+        {
+          "x": 20,
+          "y": 133.875,
+          "w": 162.65625,
+          "right": 182.65625
+        },
+        {
+          "x": 202.65625,
+          "y": 133.875,
+          "w": 162.671875,
+          "right": 365.328125
+        },
+        {
+          "x": 385.328125,
+          "y": 133.875,
+          "w": 162.671875,
+          "right": 548
+        }
+      ]
+    },
+    {
+      "check": "genres 568x320 selected subgenre survives rendering",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 844x390 shows all proposals without page buttons",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 844x390 scrolls only vertically",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 844x390 final actions clear the dock",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 844x390 last proposal details open",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 844x390 close stays in the script list",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "people 844x390 retains the fixed-height catalog",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "genres 844x390 keeps three usable controls on one row",
+      "passed": true,
+      "detail": [
+        {
+          "x": 21,
+          "y": 168.40625,
+          "w": 254,
+          "right": 275
+        },
+        {
+          "x": 295,
+          "y": 168.40625,
+          "w": 254,
+          "right": 549
+        },
+        {
+          "x": 569,
+          "y": 168.40625,
+          "w": 254,
+          "right": 823
+        }
+      ]
+    },
+    {
+      "check": "genres 844x390 selected subgenre survives rendering",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 768x1024 shows all proposals without page buttons",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 768x1024 scrolls only vertically",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 768x1024 final actions clear the dock",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 768x1024 last proposal details open",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 768x1024 close stays in the script list",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "people 768x1024 retains the fixed-height catalog",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "genres 768x1024 keeps three usable controls on one row",
+      "passed": true,
+      "detail": [
+        {
+          "x": 20,
+          "y": 643.515625,
+          "w": 229.328125,
+          "right": 249.328125
+        },
+        {
+          "x": 269.328125,
+          "y": 643.515625,
+          "w": 229.328125,
+          "right": 498.65625
+        },
+        {
+          "x": 518.65625,
+          "y": 643.515625,
+          "w": 229.328125,
+          "right": 747.984375
+        }
+      ]
+    },
+    {
+      "check": "genres 768x1024 selected subgenre survives rendering",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scripts 1366x768 retains desktop pages",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "people 1366x768 retains the fixed-height catalog",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "genres 1366x768 keeps three usable controls on one row",
+      "passed": true,
+      "detail": [
+        {
+          "x": 178,
+          "y": 575.953125,
+          "w": 314,
+          "right": 492
+        },
+        {
+          "x": 526,
+          "y": 575.953125,
+          "w": 314,
+          "right": 840
+        },
+        {
+          "x": 874,
+          "y": 575.953125,
+          "w": 314,
+          "right": 1188
+        }
+      ]
+    },
+    {
+      "check": "genres 1366x768 selected subgenre survives rendering",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "every technical quote increases for a longer runtime",
+      "passed": true,
+      "detail": {
+        "old": [
+          "+9.01억",
+          "+0.83억",
+          "+5.3억",
+          "+0.79억"
+        ],
+        "new": [
+          "+12.77억",
+          "+1.12억",
+          "+7.35억",
+          "+1.09억"
+        ]
+      }
+    },
+    {
+      "check": "all displayed format quotes match the shared production estimator",
+      "passed": true,
+      "detail": {
+        "shown": [
+          "+12.77억",
+          "+1.12억",
+          "+7.35억",
+          "+1.09억"
+        ],
+        "expected": [
+          "+12.77억",
+          "+1.12억",
+          "+7.35억",
+          "+1.09억"
+        ]
+      }
+    },
+    {
+      "check": "selecting technical formats and runtime spends no cash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "save and home has the corrected heading",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "save and home preserves the current balance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "resume returns to the studio",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "all local portrait images hydrate without failures",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "no JavaScript runtime errors",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "pageErrors": [],
+  "viewportSizes": 8,
+  "suiteVersion": "1.4.2",
+  "testedAppVersion": "1.4.3",
+  "realMobileDevicesTested": false
+}

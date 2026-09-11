@@ -18,8 +18,8 @@ for(let i=1;i<=3000;i++) {
 }
 const html=readFileSync(new URL('../dist/index.html',import.meta.url),'utf8');
 const app=readFileSync(new URL('../dist/app.js',import.meta.url),'utf8');
-assert.match(html,/start-screen\.css\?v=1\.4\.2/);
-assert.match(html,/app\.js\?v=1\.4\.2/);
+assert.match(html,/start-screen\.css\?v=1\.4\.3/);
+assert.match(html,/app\.js\?v=1\.4\.3/);
 assert.ok(html.indexOf('start-screen.css')>html.indexOf('portrait.css'));
 assert.match(app,/startScreen\.sync\(\);syncMobileDock\(\);renderDialog\(\)/);
 assert.match(app,/last-take-game-v1/,'The existing save key is unchanged');
