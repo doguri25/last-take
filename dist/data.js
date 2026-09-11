@@ -1,4 +1,4 @@
-export const VERSION = 5;
+export const VERSION = 7;
 export const GENRES = [
   {id:'drama',name:'드라마',color:'#a7b8ef',cost:1},
   {id:'comedy',name:'코미디',color:'#e6c66b',cost:1.02},

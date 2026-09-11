@@ -1,0 +1,84 @@
+/* v1.0.3 — Fit the complete founding screen, never crop its bottom to hide overflow. */
+html.start-screen,
+html.start-screen body {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+html.start-screen {
+  scroll-padding-top: 0;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+.start-viewport {
+  position: fixed;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px)
+           env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.start-viewport > .start-page {
+  flex: none;
+  width: min(1180px, 100%);
+  max-width: none;
+  height: auto;
+  min-height: 0;
+  margin: 0;
+  transform: scale(var(--start-scale, 1));
+  transform-origin: center;
+}
+.start-viewport .start-top,
+.start-viewport .start-grid,
+.start-viewport .start-bottom {
+  flex-shrink: 0;
+}
+.start-viewport .logo-picker label {position: relative; margin: 0;}
+.start-viewport .logo-picker input {min-height: 1px; padding: 0; margin: 0;}
+
+/* Use spare space efficiently before applying the same scale to the entire page. */
+.start-viewport[data-start-compact] .start-grid {padding-block: 20px;}
+.start-viewport[data-start-compact] .setup-card h2 {margin-top: 12px;}
+.start-viewport[data-start-compact] .setup-card > label {margin-top: 16px;}
+.start-viewport[data-start-compact] .logo-picker {margin-block: 16px;}
+.start-viewport[data-start-compact] .setup-summary {gap: 9px; margin-block: 16px;}
+.start-viewport[data-start-compact] .save-note {margin-top: 10px;}
+
+@media (max-width: 600px), (max-width: 900px) and (orientation: portrait) {
+  /* Safe-area padding is on the unscaled outer frame so notches stay clear. */
+  .start-viewport > .start-page {padding: 14px 16px 20px;}
+}
+
+/* Short, wide phones use both halves of the screen instead of a tall stack. */
+.start-viewport[data-start-layout="landscape"] .start-page {padding: 18px 26px;}
+.start-viewport[data-start-layout="landscape"] .start-top {flex-wrap: nowrap; gap: 20px;}
+.start-viewport[data-start-layout="landscape"] .start-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 1.2fr);
+  gap: 28px;
+  padding-block: 18px;
+  align-items: center;
+}
+.start-viewport[data-start-layout="landscape"] .start-intro {display: block;}
+.start-viewport[data-start-layout="landscape"] .wordmark {font-size: 72px; line-height: .9;}
+.start-viewport[data-start-layout="landscape"] .wordmark span {display: block; margin-left: 0;}
+.start-viewport[data-start-layout="landscape"] .start-intro h1 {font-size: 22px; margin: 20px 0 10px;}
+.start-viewport[data-start-layout="landscape"] .start-intro > p {display: block; font-size: 13px; line-height: 1.65;}
+.start-viewport[data-start-layout="landscape"] .start-facts {display: flex; margin-top: 18px; padding-top: 14px; gap: 18px;}
+.start-viewport[data-start-layout="landscape"] .start-facts strong {font-size: 20px;}
+.start-viewport[data-start-layout="landscape"] .setup-card {padding: 18px;}
+.start-viewport[data-start-layout="landscape"] .setup-card h2 {font-size: 22px; margin: 8px 0 5px;}
+.start-viewport[data-start-layout="landscape"] .setup-card > p {font-size: 13px; line-height: 1.5;}
+.start-viewport[data-start-layout="landscape"] .setup-card > p br {display: none;}
+.start-viewport[data-start-layout="landscape"] .setup-card > label {margin: 10px 0 6px;}
+.start-viewport[data-start-layout="landscape"] .setup-card input:not([type="radio"]) {height: 44px; min-height: 44px;}
+.start-viewport[data-start-layout="landscape"] .logo-picker {margin: 12px 0; gap: 7px;}
+.start-viewport[data-start-layout="landscape"] .logo-picker legend {margin-bottom: 7px;}
+.start-viewport[data-start-layout="landscape"] .setup-summary {gap: 6px; margin: 12px 0;}
+.start-viewport[data-start-layout="landscape"] .setup-card .btn {height: 44px;}
+.start-viewport[data-start-layout="landscape"] .setup-card .save-note {font-size: 12px; margin-top: 8px;}
+.start-viewport[data-start-layout="landscape"] .start-bottom {padding-top: 12px; gap: 16px;}

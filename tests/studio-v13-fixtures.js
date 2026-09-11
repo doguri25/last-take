@@ -1,0 +1,13 @@
+import * as E from '../dist/engine.js';import * as RT from '../dist/runtime.js';import * as R from '../dist/relationships.js';import * as H from '../dist/finance-history.js';import {EVENTS} from '../dist/data.js';import fs from 'node:fs';
+const out=process.argv[2];fs.mkdirSync(out,{recursive:true});
+const fresh=()=>E.createGame('도구리 영화사',270);
+const s=fresh(),script=s.pitches.find(x=>!E.busyFilm(s,x.writer)),f=E.greenlight(s,E.recommend(s,{script,title:script.title,genres:[script.genre],scale:'small',leads:[],supports:[],runtime:120}));
+const step=()=>{for(const p of E.pendingEvents(s))E.resolveEvent(s,p.id,EVENTS[p.pending][2].findIndex(o=>o[1]===0));E.advanceWeek(s);for(const p of E.pendingEvents(s))E.resolveEvent(s,p.id,EVENTS[p.pending][2].findIndex(o=>o[1]===0));};
+const save=(name,state)=>{const clone=structuredClone(state);for(const n of clone.notifications??[])n.popup=false;fs.writeFileSync(out+'/'+name+'.json',JSON.stringify(clone));};
+for(let i=0;i<21;i++)step();save('v13-edit',s);
+const dir=E.person(s,f.director);const quotes=[90,150,180].map(n=>RT.editQuote(s,f,n,dir,R.affinity(s,dir.id,'c0')));let conflict=quotes.find(q=>q.conflict),agree=quotes.find(q=>!q.conflict);
+for(let i=0;i<3;i++)step();f.completionAcknowledged=true;f.poster=6;f.awards=[{year:2026,category:'작품상'},{year:2026,category:'감독상'}];E.player(s).trophies=2;save('v13-ready',s);E.releaseFilm(s,f.id);step();save('v13-profile',s);
+const p=E.person(s,f.director);p.status='retired';p.retiredMonth=5;for(const p of s.roster.filter(p=>p.role==='writer'&&!E.busyFilm(s,p.id)).slice(0,25)){p.status='retired';p.retiredMonth=3;}s.rosterRevision=(s.rosterRevision??0)+1;save('v13-retired',s);
+const news=fresh();E.refreshPitches(news);save('v13-news',news);
+const tax=fresh();tax.companies[0].cash+=10;tax.ledger.unshift({id:++tax.ledgerCounter,month:0,week:0,amount:10,kind:'boxoffice',description:'검사용 사업 수입'});H.recordFinance(tax);for(let i=0;i<4;i++)E.advanceWeek(tax);save('v13-tax',tax);
+fs.writeFileSync(out+'/v13-meta.json',JSON.stringify({film:f.id,person:f.director,personName:p.name,title:f.title,conflictTarget:conflict?.to,agreeTarget:agree?.to},null,2));console.log('v1.3 fixtures',f.id,f.director,conflict?.to,agree?.to);

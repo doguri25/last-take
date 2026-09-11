@@ -1,0 +1,30 @@
+{
+  "checks": [
+    "home preserves saved studio",
+    "resume returns to studio",
+    "sound off preference persists",
+    "sound on preference persists",
+    "fullscreen activates or provides explicit focus fallback",
+    "clicking original genre deselects",
+    "empty genre is blocked with visible dialog feedback",
+    "final casting negotiation modal appears before any debit",
+    "accepted casting conditions are saved and production starts",
+    "weekly transition is perceptible and repeated clicks advance once",
+    "paid script reload works in actual UI",
+    "promotion availability creates bottom-right popup",
+    "promotional agency screen shows six candidates",
+    "promotion start disabled without agency",
+    "only one agency remains selected",
+    "campaign starts and charges once",
+    "start result arrives in bottom-right popup",
+    "campaign completes next week with result popup",
+    "production completion automatically opens poster modal",
+    "chosen poster and completion acknowledgement persist",
+    "completion modal closes after acknowledgement",
+    "box office report includes title and poster",
+    "box office list displays posters with film names",
+    "mobile box office has no horizontal overflow",
+    "no browser JavaScript errors"
+  ],
+  "errors": []
+}

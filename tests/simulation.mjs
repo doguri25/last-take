@@ -61,10 +61,10 @@ step(extension);step(extension);const extensionMonth=extension.month,q=ef.qualit
 E.extendFilm(extension,ef.id);assert.equal(E.expectedRelease(ef),extensionMonth+12);assert.equal(ef.spent,E.round(paid+E.round(ef.budget*.4)));
 for(let i=0;i<11;i++)step(extension);assert.equal(ef.status,'reshoot');step(extension);assert.equal(ef.status,'ready');assert.equal(ef.quality,Math.min(99,q+8));assert.equal(ef.decisions.length,4);assert.throws(()=>E.extendFilm(extension,ef.id));
 // A same-month competing film reduces the score symmetrically and the audience.
-const ordinary=structuredClone(slots);let base=E.myFilms(ordinary).find(f=>f.status==='ready');assert.ok(base);E.player(ordinary).lastRelease=ordinary.month-2;E.releaseFilm(ordinary,base.id);
+const ordinary=structuredClone(slots);let base=E.myFilms(ordinary).find(f=>f.status==='ready');assert.ok(base);E.player(ordinary).lastRelease=ordinary.month-2;E.player(ordinary).lastReleaseWeek=ordinary.week-8;E.releaseFilm(ordinary,base.id);
 const rivalGame=structuredClone(ordinary),pf=rivalGame.films.find(f=>f.id===base.id);
-const rival=structuredClone(pf);Object.assign(rival,{id:'fixture-rival',company:'c1',title:'경쟁 작품',status:'ready',releaseMonth:null,scoreLocked:false});rivalGame.companies[1].lastRelease=rivalGame.month-2;rivalGame.films.push(rival);E.releaseFilm(rivalGame,rival.id);
-assert.ok(pf.score<base.score);step(ordinary);step(rivalGame);assert.ok(pf.audience<base.audience);
+const rival=structuredClone(pf);Object.assign(rival,{id:'fixture-rival',company:'c1',title:'경쟁 작품',status:'ready',releaseMonth:null,scoreLocked:false});rivalGame.companies[1].lastRelease=rivalGame.month-2;rivalGame.companies[1].lastReleaseWeek=rivalGame.week-8;rivalGame.films.push(rival);E.releaseFilm(rivalGame,rival.id);
+assert.equal(pf.score,base.score);step(ordinary);step(rivalGame);assert.ok(pf.audience<base.audience);
 // Continuous multi-year play validates the entire financial and production model.
 const reports=[];
 for(const seed of [318,2026,9901]){

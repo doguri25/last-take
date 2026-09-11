@@ -1,0 +1,27 @@
+{
+  "sample": "3000 synthetic complete films, quality 55–99, no promotions/competition/market trend or game costs; not a real market forecast",
+  "meanCritic": 62.683,
+  "medianCritic": 63,
+  "critic90plus": 2,
+  "medianLifetimeAdmissions": 327092,
+  "p95LifetimeAdmissions": 1043170,
+  "maxLifetimeAdmissions": 3119839,
+  "overTenMillion": 0,
+  "byScale": [
+    {
+      "scale": "small",
+      "median": 163645,
+      "p95": 375867
+    },
+    {
+      "scale": "medium",
+      "median": 375908,
+      "p95": 929144
+    },
+    {
+      "scale": "large",
+      "median": 543140,
+      "p95": 1358155
+    }
+  ]
+}

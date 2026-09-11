@@ -1,0 +1,408 @@
+TAP version 13
+# {"result":"PASS","checks":["yearly aging and four age groups","retirement after current production","old-age and sudden death notices","fixed roster counts by role and gender","same avatar new child generation","archived credits preserved","production replacement","career-dependent fees","pair compatibility","ten-million milestone","sequel ownership and lineage","legacy save migration","isolated game rosters"]}
+# Subtest: tests/career.mjs
+ok 1 - tests/career.mjs
+  ---
+  duration_ms: 3262.683799
+  type: 'test'
+  ...
+# PASS: licenses, royalties, marketing, extra fees, departure settlements, booking exclusivity, free cameos, portraits, three romance reactions, migration, ledger
+# Subtest: tests/expansion.mjs
+ok 2 - tests/expansion.mjs
+  ---
+  duration_ms: 810.886634
+  type: 'test'
+  ...
+# PASS: all 1600 portraits at four age stages; independent wizard/picker/page/step scroll positions
+# Subtest: tests/portraits-scroll.mjs
+ok 3 - tests/portraits-scroll.mjs
+  ---
+  duration_ms: 113.782187
+  type: 'test'
+  ...
+# PASS: 50 agencies, five levels, independent affinity, monthly hold/up/down, save continuity, contract and campaign effects, 39 subgenres, validation and migration
+# Subtest: tests/relationships.mjs
+ok 4 - tests/relationships.mjs
+  ---
+  duration_ms: 714.24174
+  type: 'test'
+  ...
+# PASS: warehouse persistence, delayed release, no slot/fee, timelines and reshoots, timed genre boosts and expiry, historical migration, version history
+# Subtest: tests/release.mjs
+ok 5 - tests/release.mjs
+  ---
+  duration_ms: 8947.307785
+  type: 'test'
+  ...
+# {
+#   "result": "PASS",
+#   "checks": [
+#     "exact 1600-person roster",
+#     "three production slots",
+#     "exclusive bookings",
+#     "four events and blocking",
+#     "two-month release cadence",
+#     "12-month one-time extension",
+#     "competition effects",
+#     "audience-led closure",
+#     "gross versus net receipts",
+#     "loans and interest",
+#     "annual awards",
+#     "save restoration",
+#     "48-month simulations"
+#   ],
+#   "simulations": [
+#     {
+#       "seed": 318,
+#       "months": 48,
+#       "films": 123,
+#       "playerFilms": 18,
+#       "awards": 4,
+#       "cash": 41.27
+#     },
+#     {
+#       "seed": 2026,
+#       "months": 48,
+#       "films": 134,
+#       "playerFilms": 17,
+#       "awards": 4,
+#       "cash": 22.77
+#     },
+#     {
+#       "seed": 9901,
+#       "months": 48,
+#       "films": 120,
+#       "playerFilms": 14,
+#       "awards": 4,
+#       "cash": 12.73
+#     }
+#   ]
+# }
+# Subtest: tests/simulation.mjs
+ok 6 - tests/simulation.mjs
+  ---
+  duration_ms: 45961.273771
+  type: 'test'
+  ...
+# PASS: 3000 proportional-fit cases; viewport module integration; original save key
+# Subtest: tests/start-screen.mjs
+ok 7 - tests/start-screen.mjs
+  ---
+  duration_ms: 52.943011
+  type: 'test'
+  ...
+# Subtest: presentation formats add only the technical base costs; valid combinations retain exact budget
+ok 8 - presentation formats add only the technical base costs; valid combinations retain exact budget
+  ---
+  duration_ms: 70.650016
+  type: 'test'
+  ...
+# Subtest: genre-matched formats improve quality more and malformed formats fail without mutation
+ok 9 - genre-matched formats improve quality more and malformed formats fail without mutation
+  ---
+  duration_ms: 137.883586
+  type: 'test'
+  ...
+# Subtest: same-time cast is rejected in offers, preflight and final contract, including stale approvals
+ok 10 - same-time cast is rejected in offers, preflight and final contract, including stale approvals
+  ---
+  duration_ms: 110.400495
+  type: 'test'
+  ...
+# Subtest: seven critic viewpoints are deterministic, varied, moderated and independent of audience
+ok 11 - seven critic viewpoints are deterministic, varied, moderated and independent of audience
+  ---
+  duration_ms: 14.615088
+  type: 'test'
+  ...
+# Subtest: audience reactions appear only after screening, have a separate score and remain stable
+ok 12 - audience reactions appear only after screening, have a separate score and remain stable
+  ---
+  duration_ms: 12.181607
+  type: 'test'
+  ...
+# Subtest: run graphs, cumulative admissions and trends use exact stored week/month records
+ok 13 - run graphs, cumulative admissions and trends use exact stored week/month records
+  ---
+  duration_ms: 0.387204
+  type: 'test'
+  ...
+# Subtest: finance history captures real loans, repayments, spending and weekly balances
+ok 14 - finance history captures real loans, repayments, spending and weekly balances
+  ---
+  duration_ms: 6.141435
+  type: 'test'
+  ...
+# Subtest: legacy finance reconstructs only retained actual transactions and never fabricates earlier points
+ok 15 - legacy finance reconstructs only retained actual transactions and never fabricates earlier points
+  ---
+  duration_ms: 5.819939
+  type: 'test'
+  ...
+# Subtest: five OTT services give distinct stable genre-sensitive offers without mutating game state
+ok 16 - five OTT services give distinct stable genre-sensitive offers without mutating game state
+  ---
+  duration_ms: 14.722981
+  type: 'test'
+  ...
+# Subtest: OTT contract posts cash once, pays original royalty, prevents all double distribution
+ok 17 - OTT contract posts cash once, pays original royalty, prevents all double distribution
+  ---
+  duration_ms: 26.486389
+  type: 'test'
+  ...
+# Subtest: OTT viewer reviews arrive after one week, never enter the theatrical boxoffice
+ok 18 - OTT viewer reviews arrive after one week, never enter the theatrical boxoffice
+  ---
+  duration_ms: 7.74925
+  type: 'test'
+  ...
+# Subtest: OTT rejects premature, competing, active-promotion and nonexistent offers atomically
+ok 19 - OTT rejects premature, competing, active-promotion and nonexistent offers atomically
+  ---
+  duration_ms: 35.794851
+  type: 'test'
+  ...
+# Subtest: completed plots are persistent expanded narratives rather than only the source pitch
+ok 20 - completed plots are persistent expanded narratives rather than only the source pitch
+  ---
+  duration_ms: 6.704485
+  type: 'test'
+  ...
+# Subtest: saved released legacy scores/runs/cash survive migration while unshown films gain new reviews
+ok 21 - saved released legacy scores/runs/cash survive migration while unshown films gain new reviews
+  ---
+  duration_ms: 24.695106
+  type: 'test'
+  ...
+# Subtest: life and historic boxoffice alerts carry clickable IDs and are de-duplicated
+ok 22 - life and historic boxoffice alerts carry clickable IDs and are de-duplicated
+  ---
+  duration_ms: 6.162918
+  type: 'test'
+  ...
+# Subtest: retirement at the end of an existing production raises one profile-linked notification
+ok 23 - retirement at the end of an existing production raises one profile-linked notification
+  ---
+  duration_ms: 8.203636
+  type: 'test'
+  ...
+# Subtest: eight licensed works have distinct dossiers, characters, contracts and persistent full plots
+ok 24 - eight licensed works have distinct dossiers, characters, contracts and persistent full plots
+  ---
+  duration_ms: 429.051419
+  type: 'test'
+  ...
+# Subtest: runtime choices map to transparent capacity and influence production budget, not contracts
+ok 25 - runtime choices map to transparent capacity and influence production budget, not contracts
+  ---
+  duration_ms: 79.252341
+  type: 'test'
+  ...
+# Subtest: matching narrative length helps quality; short films are not always superior
+ok 26 - matching narrative length helps quality; short films are not always superior
+  ---
+  duration_ms: 0.279642
+  type: 'test'
+  ...
+# Subtest: only post-production accepts an edit proposal and proposing spends nothing
+ok 27 - only post-production accepts an edit proposal and proposing spends nothing
+  ---
+  duration_ms: 52.944553
+  type: 'test'
+  ...
+# Subtest: cancel is atomic and free even when the company has negative cash
+ok 28 - cancel is atomic and free even when the company has negative cash
+  ---
+  duration_ms: 7.689201
+  type: 'test'
+  ...
+# Subtest: director conflict is repeatable; collaboration and forced cuts carry distinct tradeoffs
+ok 29 - director conflict is repeatable; collaboration and forced cuts carry distinct tradeoffs
+  ---
+  duration_ms: 9.859065
+  type: 'test'
+  ...
+# Subtest: confirmed edit charges once, modifies quality and relation, survives saves, prevents repeat farming
+ok 30 - confirmed edit charges once, modifies quality and relation, survives saves, prevents repeat farming
+  ---
+  duration_ms: 31.55468
+  type: 'test'
+  ...
+# Subtest: pending edits persist across reload; insufficient cash cannot apply a half edit
+ok 31 - pending edits persist across reload; insufficient cash cannot apply a half edit
+  ---
+  duration_ms: 24.268456
+  type: 'test'
+  ...
+# Subtest: editing completed/released/foreign films is rejected without mutation
+ok 32 - editing completed/released/foreign films is rejected without mutation
+  ---
+  duration_ms: 97.986343
+  type: 'test'
+  ...
+# Subtest: post-production availability notification is unique and links to editing
+ok 33 - post-production availability notification is unique and links to editing
+  ---
+  duration_ms: 9.289336
+  type: 'test'
+  ...
+# Subtest: new screening records carry runtime/capacity and shorter runtime affects actual receipts
+ok 34 - new screening records carry runtime/capacity and shorter runtime affects actual receipts
+  ---
+  duration_ms: 148.116208
+  type: 'test'
+  ...
+# Subtest: 2026 marginal national and standard local brackets are exact at boundaries
+ok 35 - 2026 marginal national and standard local brackets are exact at boundaries
+  ---
+  duration_ms: 0.259381
+  type: 'test'
+  ...
+# Subtest: taxable business income excludes capital, loan principal and repayments
+ok 36 - taxable business income excludes capital, loan principal and repayments
+  ---
+  duration_ms: 5.453158
+  type: 'test'
+  ...
+# Subtest: monthly overhead includes only the change in annual tax, with no weekly or duplicate debit
+ok 37 - monthly overhead includes only the change in annual tax, with no weekly or duplicate debit
+  ---
+  duration_ms: 163.296062
+  type: 'test'
+  ...
+# Subtest: losses cause a reserve refund instead of a negative tax and loans stay neutral
+ok 38 - losses cause a reserve refund instead of a negative tax and loans stay neutral
+  ---
+  duration_ms: 154.472659
+  type: 'test'
+  ...
+# Subtest: year closure keeps national/local reserves separate and carries eligible losses for 15 years
+ok 39 - year closure keeps national/local reserves separate and carries eligible losses for 15 years
+  ---
+  duration_ms: 14.133505
+  type: 'test'
+  ...
+# Subtest: monthly reserve function is idempotent, annual thresholds never restart each month
+ok 40 - monthly reserve function is idempotent, annual thresholds never restart each month
+  ---
+  duration_ms: 4.199887
+  type: 'test'
+  ...
+# Subtest: legacy runtime defaults and new taxes preserve prior cash, revenue and reviews without back charges
+ok 41 - legacy runtime defaults and new taxes preserve prior cash, revenue and reviews without back charges
+  ---
+  duration_ms: 21.601292
+  type: 'test'
+  ...
+# Subtest: retired index keeps former retirees and excludes active, pending and never-retired deceased people
+ok 42 - retired index keeps former retirees and excludes active, pending and never-retired deceased people
+  ---
+  duration_ms: 8.035784
+  type: 'test'
+  ...
+# Subtest: studio metrics filter only own relevant films and retain per-award entries
+ok 43 - studio metrics filter only own relevant films and retain per-award entries
+  ---
+  duration_ms: 9.701508
+  type: 'test'
+  ...
+# Subtest: script news contains durable pitch links and writer identities
+ok 44 - script news contains durable pitch links and writer identities
+  ---
+  duration_ms: 11.560823
+  type: 'test'
+  ...
+# Subtest: calendar advances one week; costs and interest settle only every fourth week
+ok 45 - calendar advances one week; costs and interest settle only every fourth week
+  ---
+  duration_ms: 442.606786
+  type: 'test'
+  ...
+# Subtest: paid script refresh works repeatedly without time advancing and is atomic without funds
+ok 46 - paid script refresh works repeatedly without time advancing and is atomic without funds
+  ---
+  duration_ms: 328.424708
+  type: 'test'
+  ...
+# Subtest: the original genre is optional; at least one valid genre is still mandatory
+ok 47 - the original genre is optional; at least one valid genre is still mandatory
+  ---
+  duration_ms: 681.67482
+  type: 'test'
+  ...
+# Subtest: casting replies are repeatable, have refusals/counters, and never debit before signing
+ok 48 - casting replies are repeatable, have refusals/counters, and never debit before signing
+  ---
+  duration_ms: 638.965615
+  type: 'test'
+  ...
+# Subtest: changed participants invalidate accepted casting conditions
+ok 49 - changed participants invalidate accepted casting conditions
+  ---
+  duration_ms: 279.448081
+  type: 'test'
+  ...
+# Subtest: 24 production weeks contain four blocking decisions and one completion notification
+ok 50 - 24 production weeks contain four blocking decisions and one completion notification
+  ---
+  duration_ms: 880.165782
+  type: 'test'
+  ...
+# Subtest: promotion unlocks at 75%, uses one agency and completes after one week with one debit
+ok 51 - promotion unlocks at 75%, uses one agency and completes after one week with one debit
+  ---
+  duration_ms: 742.787492
+  type: 'test'
+  ...
+# Subtest: poster selection persists and release is blocked until active promotion is completed
+ok 52 - poster selection persists and release is blocked until active promotion is completed
+  ---
+  duration_ms: 802.2536
+  type: 'test'
+  ...
+# Subtest: eight weeks of opening reports include weekly receipts, posters and ranking with no ninth alert
+ok 53 - eight weeks of opening reports include weekly receipts, posters and ranking with no ninth alert
+  ---
+  duration_ms: 954.704015
+  type: 'test'
+  ...
+# Subtest: release cadence is exactly eight weeks, not two rounded-up calendar months
+ok 54 - release cadence is exactly eight weeks, not two rounded-up calendar months
+  ---
+  duration_ms: 919.011474
+  type: 'test'
+  ...
+# Subtest: additional production lasts 48 weeks and preserves the first completed cycle
+ok 55 - additional production lasts 48 weeks and preserves the first completed cycle
+  ---
+  duration_ms: 3991.84358
+  type: 'test'
+  ...
+# Subtest: v1.0.3 month saves migrate to week schema without changing cash, IDs or prior dates
+ok 56 - v1.0.3 month saves migrate to week schema without changing cash, IDs or prior dates
+  ---
+  duration_ms: 957.81626
+  type: 'test'
+  ...
+# Subtest: all 1600 identities have distinct reproducible portrait recipes and generations change faces
+ok 57 - all 1600 identities have distinct reproducible portrait recipes and generations change faces
+  ---
+  duration_ms: 352.015279
+  type: 'test'
+  ...
+# Subtest: 192-week simulations preserve ledger, save validity and company financials
+ok 58 - 192-week simulations preserve ledger, save validity and company financials
+  ---
+  duration_ms: 28808.615534
+  type: 'test'
+  ...
+1..58
+# tests 58
+# suites 0
+# pass 58
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 48441.077841

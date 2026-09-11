@@ -1,0 +1,14 @@
+{
+  "version": "1.3.0",
+  "node_tests": 58,
+  "new_browser_checks": 85,
+  "v12_browser_checks": 94,
+  "weekly_browser_checks": 25,
+  "viewport_checks": 78,
+  "JavaScript_errors": 0,
+  "all_passed": true,
+  "transport": "offline Chromium with shipped modules and CSS",
+  "remote_push": "not_performed",
+  "deployment": "not_performed",
+  "real_mobile_hardware_tested": false
+}

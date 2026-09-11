@@ -5,18 +5,24 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#111416">
   <meta name="description" content="라스트 테이크. 작가의 시나리오를 고르고, 감독과 배우를 캐스팅하세요. 열 개의 제작사가 경쟁하는 카드형 영화 경영 게임.">
-  <title>라스트 테이크 1.0 — 영화 제작사</title>
-  <link rel="stylesheet" href="./style.css?v=1.0.2">
-  <link rel="stylesheet" href="./portrait.css?v=1.0.2">
-  <link rel="preload" as="image" href="./assets/portraits-M.png?v=1.0.2">
-  <link rel="preload" as="image" href="./assets/portraits-F.png?v=1.0.2">
-  <script type="module" src="./app.js"></script>
+  <title>라스트 테이크 1.3.0 — 영화 제작사</title>
+  <link rel="stylesheet" href="./style.css?v=1.3.0">
+  <link rel="stylesheet" href="./portrait.css?v=1.3.0">
+  <link rel="stylesheet" href="./start-screen.css?v=1.3.0">
+  <link rel="preload" as="image" href="./assets/portraits-M.png?v=1.3.0">
+  <link rel="preload" as="image" href="./assets/portraits-F.png?v=1.3.0">
+  <link rel="stylesheet" href="./experience.css?v=1.3.0">
+  <link rel="stylesheet" href="./studio-v12.css?v=1.3.0">
+  <script type="module" src="./app.js?v=1.3.0"></script>
+  <link rel="stylesheet" href="./studio-v13.css?v=1.3.0">
 </head>
 <body>
   <a class="skip-link" href="#main">본문으로 이동</a>
   <div id="app"></div>
   <dialog id="dialog" aria-label="게임 안내 및 선택"></dialog>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <aside id="notification-popups" class="notification-popups" aria-label="새 알림" aria-live="polite" hidden></aside>
+  <div id="week-transition" class="week-transition" role="status" aria-live="polite" hidden></div>
   <noscript>이 게임을 실행하려면 브라우저에서 JavaScript를 사용할 수 있어야 합니다.</noscript>
 </body>
 </html>

@@ -1,3 +1,4 @@
+import {notify} from './clock.js';
 import {relationshipFactor} from './relationships.js';
 import {PEOPLE,PERSON,GENRES} from './data.js';
 const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
@@ -25,7 +26,7 @@ const emptyCareer=()=>({films:[],success:0,failure:0,hits:0,audience:0,best:0,re
 function historyIndex(s){
   const key=`${s.month}/${s.films.length}/${s.careerEpoch??0}`;let cache=histories.get(s);if(cache?.key===key)return cache;
   cache={key,persons:new Map(),pairs:new Map()};
-  for(const f of s.films){const ids=credits(f);for(const id of ids){const h=cache.persons.get(id)??emptyCareer();h.films.push(f);if(f.status==='closed'){if(f.receipts>=f.spent)h.success++;else h.failure++;}if(f.audience>=10000000)h.hits++;h.audience+=f.audience;h.best=Math.max(h.best,f.audience);if(f.releaseMonth!=null)h.released++;cache.persons.set(id,h);}
+  for(const f of s.films){const ids=credits(f);for(const id of ids){const h=cache.persons.get(id)??emptyCareer();h.films.push(f);if(['closed','streaming'].includes(f.status)){if(f.receipts>=f.spent)h.success++;else h.failure++;}if(f.audience>=10000000)h.hits++;h.audience+=f.audience;h.best=Math.max(h.best,f.audience);if(f.releaseMonth!=null||f.status==='streaming')h.released++;cache.persons.set(id,h);}
     if(f.status==='closed')for(let i=0;i<ids.length;i++)for(let j=i+1;j<ids.length;j++){const k=[ids[i],ids[j]].sort().join('|');cache.pairs.set(k,(cache.pairs.get(k)??0)+(f.receipts>=f.spent?3:-2));}
   }
   histories.set(s,cache);return cache;
@@ -74,4 +75,4 @@ export function cycleYear(s,rnd){
   }
   s.rosterRevision=(s.rosterRevision??0)+1;s.lifeEvents=[...changes,...s.lifeEvents].slice(0,300);return changes;
 }
-export function finishRetirements(s){for(const p of s.roster)if(p.retirementPending&&!s.films.some(f=>['production','reshoot'].includes(f.status)&&[f.script.writer,f.director,...f.leads,...f.supports,...(f.cameos??[])].includes(p.id))){p.status='retired';p.retiredMonth=s.month;p.retirementPending=false;}}
+export function finishRetirements(s){for(const p of s.roster)if(p.retirementPending&&!s.films.some(f=>['production','reshoot'].includes(f.status)&&[f.script.writer,f.director,...f.leads,...f.supports,...(f.cameos??[])].includes(p.id))){p.status='retired';p.retiredMonth=s.month;p.retirementPending=false;notify(s,{key:'life-retired-'+p.id,type:'career',personId:p.id,action:'person',title:'영화인의 은퇴',text:p.name+' 님이 촬영 일정을 마치고 은퇴했습니다.'});}}
