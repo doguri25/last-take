@@ -4,25 +4,50 @@ import {sourceInfo} from './source-rights.js';
  */
 import {STORY_DEVELOPMENTS} from './plot-seeds.js';
 import {hash} from './career.js';
-import {GENRE} from './data.js';
+import {GENRE,SCALE} from './data.js';
+import {runtimeOf} from './runtime.js';
 const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 const round=n=>Math.round((n+Number.EPSILON)*100)/100;
 const average=a=>a.reduce((n,v)=>n+v,0)/Math.max(1,a.length);
 const unit=(f,key)=>{let n=hash(`${f.id}:${f.title}:${f.script?.id}:${key}`);n^=n>>>16;n=Math.imul(n,0x7feb352d);n^=n>>>15;n=Math.imul(n,0x846ca68b);n^=n>>>16;return (n>>>0)/4294967296;};
 const pick=(f,key,list)=>list[Math.floor(unit(f,key)*list.length)];
+/** Rates below are documented gameplay coefficients, not vendor quotes. */
+export const FORMAT_COST_MODEL='workload-v142';
 export const FORMATS=[
- {id:'3d',name:'3D',rate:.10,quality:2,genres:['sf','fantasy','animation','adventure'],description:'입체 촬영·변환 / 공간감 중심'},
- {id:'4d',name:'4D',rate:.08,quality:1.5,genres:['action','adventure','sf'],description:'좌석·환경 효과 설계 / 동작 중심'},
- {id:'imax',name:'IMAX',rate:.16,quality:2.5,genres:['sf','action','adventure','history','fantasy'],description:'대형 화면용 촬영·마스터링'},
- {id:'sound',name:'사운드 특화',rate:.06,quality:2,genres:['music','thriller','animation','mystery'],description:'공간 음향·믹싱 / 소리 중심'}
+ {id:'3d',name:'3D',rate:.22,setup:1.5,quality:2,genres:['sf','fantasy','animation','adventure'],description:'입체 영상 설계·변환·장면별 검수'},
+ {id:'4d',name:'4D',rate:.015,setup:.25,quality:1.5,genres:['action','adventure','sf'],description:'모션·환경 효과 코딩과 동기화 검수'},
+ {id:'imax',name:'IMAX',rate:.12,setup:1.2,quality:2.5,genres:['sf','action','adventure','history','fantasy'],description:'대형 화면 대응 촬영·리마스터링'},
+ {id:'sound',name:'사운드 특화',rate:.02,setup:.2,quality:2,genres:['music','thriller','animation','mystery'],description:'공간 음향 설계·믹싱·납품 검수'}
 ];
 export function normalizeFormats(d) {return FORMATS.filter(x=>(d.formats??[]).includes(x.id)).map(x=>x.id);}
-export function formatEffect(d,productionBase=0) {
-  const selected=FORMATS.filter(x=>normalizeFormats(d).includes(x.id));
-  const raw=selected.reduce((n,x)=>n+(d.genres.some(g=>x.genres.includes(g))?x.quality:.4),0);
-  return {selected,cost:round(productionBase*selected.reduce((n,x)=>n+x.rate,0)),quality:round(Math.min(6,raw)),
-    // Only a share of cinema seats charge a premium, not every admission.
-    ticketFactor:round(1+Math.min(.12,selected.length*.025))};
+export function formatProductionBase(d) {
+ const genres=d.genres??[];
+ return (SCALE[d.scale]?.base??0)*Math.max(1,...genres.map(g=>GENRE[g]?.cost??1))*(1+Math.max(0,genres.length-1)*.1);
+}
+export function formatWorkload(d,id) {
+ const gs=d.genres??[],has=ids=>gs.some(g=>ids.includes(g));
+ if(id==='3d')return has(['sf','fantasy','disaster'])?1.25:has(['action','adventure','war'])?1.15:1;
+ if(id==='4d')return has(['action','adventure','sf','disaster','war','sports'])?1.3:1;
+ if(id==='imax')return has(['sf','fantasy','action','adventure','history','disaster','war'])?1.15:1;
+ if(id==='sound')return has(['music','musical'])?1.4:has(['thriller','horror','mystery','war'])?1.2:1;
+ return 1;
+}
+/** The runtime is applied once, to variable technical work only. Fees/rights are excluded. */
+export function formatCostBreakdown(d,productionBase=formatProductionBase(d),ids=normalizeFormats(d)) {
+ const base=Number.isFinite(productionBase)?Math.max(0,productionBase):0;
+ return FORMATS.filter(f=>ids.includes(f.id)).map(f=>{
+  const duration=runtimeOf(d)/120,workload=formatWorkload(d,f.id);
+  const variable=round(base*f.rate*duration*workload);
+  return {id:f.id,name:f.name,setup:f.setup,rate:f.rate,productionBase:base,duration,workload,variable,cost:round(f.setup+variable)};
+ });
+}
+export function formatEffect(d,productionBase=formatProductionBase(d)) {
+ const selected=FORMATS.filter(x=>normalizeFormats(d).includes(x.id));
+ const raw=selected.reduce((n,x)=>n+((d.genres??[]).some(g=>x.genres.includes(g))?x.quality:.4),0);
+ const breakdown=formatCostBreakdown(d,productionBase);
+ return {selected,breakdown,cost:round(breakdown.reduce((n,x)=>n+x.cost,0)),quality:round(Math.min(6,raw)),
+   // Preserve the existing limited premium-seat share and past reception rules.
+   ticketFactor:round(1+Math.min(.12,selected.length*.025))};
 }
 export const CRITICS=[
  {name:'스크린노트 · 한서경',focus:'서사',taste:['drama','history','mystery']},

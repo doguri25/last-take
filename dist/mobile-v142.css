@@ -1,0 +1,44 @@
+/* v1.4.2: compact three-way genre selection, readable technical quotes. */
+.format-cost{font-size:13px;color:var(--accent);font-style:normal;white-space:nowrap;font-variant-numeric:tabular-nums}
+.format-option>span{min-width:0}.format-option strong{display:flex;justify-content:space-between;flex-wrap:wrap;gap:5px 10px}
+.format-cost-details{margin:12px 0;border:1px solid var(--line);border-radius:9px;padding:10px 12px;font-size:12px;color:var(--muted)}
+.format-cost-details summary{cursor:pointer;color:var(--text);min-height:30px;display:flex;align-items:center}
+.format-cost-details summary::before{content:'＋';margin-right:8px}.format-cost-details[open] summary::before{content:'−'}
+.format-cost-details p{line-height:1.7;margin:10px 0 0}
+@media(max-width:900px),(max-height:500px) and (orientation:landscape){
+ .subgenre-picker .subgenre-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;align-items:start}
+ .subgenre-picker .subgenre-grid>label{min-width:0;padding:9px 6px;font-size:12px;line-height:1.5;overflow-wrap:anywhere}
+ .subgenre-picker .subgenre-grid select{display:block;box-sizing:border-box;width:100%;min-width:0;max-width:100%;min-height:44px;font-size:16px;padding:8px 18px 8px 5px;margin:8px 0;text-overflow:ellipsis}
+ .subgenre-picker .subgenre-grid small{display:block;font-size:10px;line-height:1.5;overflow-wrap:anywhere;white-space:normal}
+ /* Only mobile scripts use normal document flow; character pagination is unchanged. */
+ html.scripts-mobile-scroll:not(.modal-open),html.scripts-mobile-scroll:not(.modal-open) body{height:auto;min-height:100%;overflow-y:auto;overscroll-behavior-y:auto}
+ html.scripts-mobile-scroll #app,html.scripts-mobile-scroll .shell{height:auto;max-height:none;min-height:100dvh;overflow:visible}
+ html.scripts-mobile-scroll .workspace{height:auto;max-height:none;overflow:visible;padding-bottom:calc(var(--mobile-dock-height,114px) + 16px)}
+ html.scripts-mobile-scroll #main.content{height:auto;max-height:none;overflow:visible;padding:16px 14px 24px;display:block}
+ #main .scripts-screen.scripts-scroll{display:flex;flex-direction:column;gap:12px;flex:none;min-height:0}
+ #main .scripts-scroll .page-head{gap:10px;align-items:center;flex-wrap:wrap}
+ #main .scripts-scroll .page-head>div:first-child{flex:1 1 120px}
+ #main .scripts-scroll .page-head>.catalog-actions{flex:0 1 auto;gap:6px;flex-wrap:wrap}
+ #main .scripts-scroll .catalog-actions .btn{min-height:40px;font-size:11px;padding:7px 8px}
+ #main .scripts-scroll .script-filters{display:flex;flex-wrap:nowrap;gap:7px;min-width:0}
+ #main .scripts-scroll .script-filters .search-wrap{flex:1 1 100px;min-width:65px;max-width:none}
+ #main .scripts-scroll .script-filters .search-wrap input{font-size:16px;min-height:44px;height:44px;min-width:0}
+ #main .scripts-scroll .script-filters select{flex:0 0 100px;width:100px;min-width:0;min-height:44px;height:44px;font-size:16px;padding-inline:7px}
+ #main .scripts-scroll .script-filters>.btn{min-width:0;min-height:44px;height:auto;flex:0 0 72px;font-size:11px;white-space:normal;line-height:1.35}
+ #main .scripts-scroll .catalog-caption{font-size:11px;line-height:1.6}
+ #main .scripts-scroll .catalog-results{flex:none;height:auto;overflow:visible;min-height:0}
+ #main .scripts-scroll .script-grid{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:none;grid-auto-rows:auto;height:auto;gap:14px;margin:0;overflow:visible}
+ #main .scripts-scroll .script-card{height:auto;min-height:0;overflow:hidden;display:flex;flex-direction:column}
+ #main .scripts-scroll .script-head{display:block;padding:16px;min-height:0}
+ #main .scripts-scroll .script-head>.row{display:flex}
+ #main .scripts-scroll .script-head h3{font-size:23px;line-height:1.4;display:block;overflow:visible;-webkit-line-clamp:unset;margin:10px 0 0;overflow-wrap:anywhere}
+ #main .scripts-scroll .script-body{display:flex;flex-direction:column;padding:16px;gap:12px;flex:none;height:auto;min-height:0}
+ #main .scripts-scroll .writer-line{display:flex;margin:0;flex:none;min-height:40px}
+ #main .scripts-scroll .writer-line .avatar{width:40px;height:40px}
+ #main .scripts-scroll .writer-line strong{font-size:14px}
+ #main .scripts-scroll .script-body .script-preview{display:block;flex:none;min-height:0;height:auto;margin:0;overflow:visible;-webkit-line-clamp:unset;font-size:14px;line-height:1.8;white-space:normal}
+ #main .scripts-scroll .card-info{font-size:12px;flex:none;display:flex;gap:8px;flex-wrap:wrap}
+ #main .scripts-scroll .script-buttons{margin:0;gap:8px}
+ #main .scripts-scroll .script-buttons .btn{min-height:44px;font-size:13px;padding:9px 7px;white-space:normal}
+ html.scripts-mobile-scroll .page-footer{display:none}
+}

@@ -1,4 +1,4 @@
-"""v1.4.1: actual application modules/CSS and real Chromium History API, offline transport.
+"""v1.4.1 navigation regression, updated for intentional v1.4.2 mobile script scrolling: actual application modules/CSS and real Chromium History API, offline transport.
 No simulation or UI implementation is replaced. Only saved-fixture localStorage and module delivery
 use the pre-existing browser_support harness, because network navigation is unavailable here.
 """
@@ -93,10 +93,16 @@ try:
    page.set_viewport_size({'width':w,'height':h});wait(page)
    for v in ['talents','scripts']:
     nav(page,v);r=layout(page);layouts.append({'view':v,**r});label=f'{v} {w}x{h}'
-    check(label+' has no page/catalog vertical or horizontal scrolling',max(r['rootX'],r['rootY'],r['mainY'])<=1,r)
+    scrolling=v=='scripts' and r['mobile']
+    if scrolling:check(label+' lists all mobile scripts with natural vertical scrolling',r['rootX']<=1 and r['rootY']>0 and len(r['cards'])==len(fresh['pitches']),r)
+    else:check(label+' has no page/catalog vertical or horizontal scrolling',max(r['rootX'],r['rootY'],r['mainY'])<=1,r)
     check(label+' has exactly one visible progress button',len(r['advance'])==1,r['advance'])
     edge=r['dock']['y'] if r['mobile'] else h
-    check(label+' catalog actions are above the bottom controls',all(x['y']>=0 and x['bottom']<=edge+1 and x['right']<=w+1 for x in r['buttons']),r)
+    if scrolling:
+     page.evaluate('window.scrollTo(0,document.scrollingElement.scrollHeight)');wait(page);bottom=layout(page)
+     check(label+' last script actions can be scrolled above the bottom controls',all(x['y']>=0 and x['bottom']<=edge+1 and x['right']<=w+1 for x in bottom['buttons'][-2:]),bottom)
+     page.evaluate('window.scrollTo(0,0)');wait(page)
+    else:check(label+' catalog actions are above the bottom controls',all(x['y']>=0 and x['bottom']<=edge+1 and x['right']<=w+1 for x in r['buttons']),r)
     check(label+' card text is not vertically clipped',all(c['overflow']<=1 for c in r['cards']),r['cards'])
     if r['mobile']:
      check(label+' progress button is within the bottom dock',r['advance'][0]['y']>=r['dock']['y']-1 and r['advance'][0]['bottom']<=h+1,r)
@@ -132,6 +138,6 @@ except Exception:
   except Exception:pass
  traceback.print_exc();raise
 finally:
- report={'version':'1.4.1','transport':'Offline genuine dist resources; actual Chromium History API and go_back/go_forward','checks':checks,'layouts':layouts,'pageErrors':errors}
+ report={'version':'1.4.2','transport':'Offline genuine dist resources; actual Chromium History API and go_back/go_forward','checks':checks,'layouts':layouts,'pageErrors':errors}
  (out/'mobile-navigation-report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
  print(f'Completed {sum(c["passed"] for c in checks)}/{len(checks)} checks; JS errors: {len(errors)}',flush=True)

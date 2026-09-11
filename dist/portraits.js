@@ -1,6 +1,6 @@
 import {hash} from './career.js';
 export const portraitStage = p => p.age < 18 ? 0 : p.age < 40 ? 1 : p.age < 65 ? 2 : 3;
-export const portraitKey = p => `${p.id}|${p.gender}|${portraitStage(p)}|face-v2`;
+export const portraitKey = p => `${p.id}|${p.gender}|${portraitStage(p)}|face-v2|glasses-v3`;
 /** Stable per-person facial proportions, feature donors and wardrobe palette.
  * The source photographs remain local. This is deterministic compositing, not an API.
  * A new generation uses its new ID, never the previous person's slot or imageKey.
@@ -35,6 +35,62 @@ function sample(a,x,y,c){
   const ix=Math.floor(x),iy=Math.floor(y),fx=x-ix,fy=y-iy,i=(iy*S+ix)*4+c;
   return (a[i]*(1-fx)+a[i+4]*fx)*(1-fy)+(a[i+S*4]*(1-fx)+a[i+S*4+4]*fx)*fy;
 }
+/** Eye landmarks authored for the local 4x4 photo sheets, in normalized tile coordinates.
+ * Adults only: stage -> row -> [left pupil x/y, right pupil x/y]. These are rendering
+ * anchors, not face identification. The inverse warp also follows mirror and head tilt.
+ */
+export const EYE_LANDMARKS={
+ M:{
+  1:[[[.375,.415],[.585,.373]],[[.382,.379],[.576,.349]],[[.386,.396],[.591,.354]],[[.417,.401],[.600,.363]]],
+  2:[[[.403,.417],[.576,.372]],[[.454,.375],[.643,.367]],[[.397,.406],[.577,.371]],[[.435,.397],[.613,.372]]],
+  3:[[[.378,.415],[.568,.373]],[[.464,.380],[.649,.419]],[[.435,.369],[.625,.385]],[[.428,.410],[.603,.379]]]
+ },
+ F:{
+  1:[[[.402,.406],[.585,.405]],[[.404,.380],[.576,.346]],[[.403,.431],[.588,.393]],[[.402,.385],[.572,.361]]],
+  2:[[[.411,.404],[.601,.402]],[[.403,.381],[.592,.347]],[[.406,.423],[.596,.399]],[[.403,.396],[.572,.366]]],
+  3:[[[.420,.406],[.598,.415]],[[.418,.385],[.600,.374]],[[.430,.418],[.605,.398]],[[.434,.415],[.605,.372]]]
+ }
+};
+// Same mapping as the photograph sampler below, normalized to the source tile.
+export function portraitSourcePoint(r,u,v){
+ const eye=gaussian(u,v,.5,.39,.32,.065),nose=gaussian(u,v,.5,.50,.10,.10),mouth=gaussian(u,v,.5,.60,.17,.07),face=gaussian(u,v,.5,.50,.35,.40),jaw=gaussian(u,v,.5,.67,.24,.10);
+ const k=1+(r.face-1)*face+(r.eyes-1)*eye+(r.nose-1)*nose+(r.mouth-1)*mouth+(r.chin-1)*jaw;
+ const sx=.5+(u-.5)/k+r.tilt*(v-.48)*face,sy=.5+(v-.5)/r.length+r.eyeY*eye;
+ return [r.flip?1-sx:sx,sy];
+}
+export function projectPortraitPoint(r,point){
+ let u=r.flip?1-point[0]:point[0],v=point[1];const e=.00001;
+ for(let i=0;i<12;i++){
+  const [x,y]=portraitSourcePoint(r,u,v),dx=x-point[0],dy=y-point[1];if(Math.hypot(dx,dy)<.000001)break;
+  const a=portraitSourcePoint(r,u+e,v),b=portraitSourcePoint(r,u,v+e),xu=(a[0]-x)/e,yu=(a[1]-y)/e,xv=(b[0]-x)/e,yv=(b[1]-y)/e,det=xu*yv-xv*yu;
+  if(Math.abs(det)<.000001)break;
+  u-=(yv*dx-xv*dy)/det;v-=(-yu*dx+xu*dy)/det;
+ }
+ return [u,v];
+}
+export function glassesGeometry(p){
+ const r=portraitRecipe(p);if(!r.glasses||p.age<18)return null;
+ const anchors=EYE_LANDMARKS[p.gender==='F'?'F':'M'][portraitStage(p)][r.base];
+ const eyes=anchors.map(a=>projectPortraitPoint(r,a)).sort((a,b)=>a[0]-b[0]);
+ const [left,right]=eyes,distance=Math.hypot(right[0]-left[0],right[1]-left[1]);
+ const radiusX=distance*.42,radiusY=Math.min(.048,radiusX*(r.frame<.5?.62:.75));
+ return {eyes,center:[(left[0]+right[0])/2,(left[1]+right[1])/2+radiusY*.08],angle:Math.atan2(right[1]-left[1],right[0]-left[0]),distance,radiusX,radiusY,bridge:distance-2*radiusX,round:r.frame>=.5};
+}
+function drawGlasses(ctx,p,r){
+ const g=glassesGeometry(p);if(!g)return;
+ ctx.save();ctx.translate(g.center[0]*(S-1),g.center[1]*(S-1));ctx.rotate(g.angle);
+ ctx.strokeStyle=r.frame<.5?'rgba(40,32,28,.87)':'rgba(109,91,62,.86)';ctx.lineWidth=r.frame<.5?1.15:.88;ctx.lineCap='round';ctx.lineJoin='round';
+ const gap=g.distance*(S-1)/2,rx=g.radiusX*(S-1),ry=g.radiusY*(S-1);
+ for(const sign of [-1,1]){
+  const cx=sign*gap;ctx.beginPath();
+  if(g.round)ctx.ellipse(cx,0,rx,ry,0,0,Math.PI*2);
+  else{const q=Math.min(rx,ry)*.42;ctx.moveTo(cx-rx+q,-ry);ctx.lineTo(cx+rx-q,-ry);ctx.quadraticCurveTo(cx+rx,-ry,cx+rx,-ry+q);ctx.lineTo(cx+rx,ry-q);ctx.quadraticCurveTo(cx+rx,ry,cx+rx-q,ry);ctx.lineTo(cx-rx+q,ry);ctx.quadraticCurveTo(cx-rx,ry,cx-rx,ry-q);ctx.lineTo(cx-rx,-ry+q);ctx.quadraticCurveTo(cx-rx,-ry,cx-rx+q,-ry);}
+  ctx.closePath();ctx.stroke();
+  // Side arms connect to the outer rim, never across an eye or the bridge.
+  ctx.beginPath();ctx.moveTo(cx+sign*rx,-ry*.15);ctx.lineTo(cx+sign*(rx+S*.023),-ry*.38);ctx.stroke();
+ }
+ ctx.beginPath();ctx.moveTo(-gap+rx,-ry*.15);ctx.quadraticCurveTo(0,-ry*.62,gap-rx,-ry*.15);ctx.stroke();ctx.restore();
+}
 export async function renderPortrait(p) {
   const key=portraitKey(p);if(cache.has(key))return cache.get(key);
   const r=portraitRecipe(p),stage=portraitStage(p),gender=p.gender==='F'?'F':'M';
@@ -60,13 +116,7 @@ export async function renderPortrait(p) {
     }out[(y*S+x)*4+3]=255;
   }
   ctx.putImageData(im,0,0);
-  if(r.glasses&&p.age>=18){
-    ctx.save();ctx.translate(S*.5,S*(.395-r.eyeY));ctx.rotate(-r.tilt*.6);
-    ctx.strokeStyle=r.frame<.5?'rgba(35,28,24,.73)':'rgba(146,125,82,.86)';ctx.lineWidth=S*.008;
-    const width=S*.144*r.eyes,height=S*(r.frame<.5?.055:.047);
-    for(const sign of [-1,1]){ctx.beginPath();ctx.ellipse(sign*S*.11*r.eyes,0,width,height,0,0,Math.PI*2);ctx.stroke();}
-    ctx.beginPath();ctx.moveTo(-S*.035*r.eyes,0);ctx.lineTo(S*.035*r.eyes,0);ctx.stroke();ctx.restore();
-  }
+  drawGlasses(ctx,p,r);
   const url=canvas.toDataURL('image/webp',.90);cache.set(key,url);
   if(cache.size>500)cache.delete(cache.keys().next().value);
   return url;

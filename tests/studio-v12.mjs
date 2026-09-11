@@ -19,7 +19,7 @@ function ready(){const s=copy(completed.s);return {s,f:s.films.find(f=>f.id===co
 
 test('presentation formats add only the technical base costs; valid combinations retain exact budget',()=>{
  const s=fresh(),d=draft(s),plain=E.estimate(d,s);d.formats=['3d','4d','imax','sound'];const enhanced=E.estimate(d,s);
- assert.equal(C.formatEffect(d,100).cost,40);assert.equal(enhanced.writer,plain.writer);assert.equal(enhanced.cast,plain.cast);assert.equal(E.round(enhanced.total-plain.total),enhanced.formats);assert.ok(enhanced.formatQuality<=6&&enhanced.formatQuality>0);assert.ok(enhanced.quality>=plain.quality);
+ assert.equal(C.formatEffect(d,100).cost,E.round(C.formatCostBreakdown(d,100).reduce((sum,row)=>sum+row.cost,0)));assert.equal(enhanced.writer,plain.writer);assert.equal(enhanced.cast,plain.cast);assert.equal(E.round(enhanced.total-plain.total),enhanced.formats);assert.ok(enhanced.formatQuality<=6&&enhanced.formatQuality>0);assert.ok(enhanced.quality>=plain.quality);
  const f=E.greenlight(s,d);assert.deepEqual(f.formats,d.formats);assert.equal(f.presentationBudget,enhanced.formats);assert.equal(f.spent,enhanced.total);
 });
 test('genre-matched formats improve quality more and malformed formats fail without mutation',()=>{

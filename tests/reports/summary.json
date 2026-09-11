@@ -1,12 +1,29 @@
 {
-  "version": "1.4.1",
-  "nodeTests": 88,
-  "nodePassed": 88,
-  "browserChecks": 181,
-  "browserPassed": 181,
+  "version": "1.4.2",
+  "nodeTests": 95,
+  "nodePassed": 95,
+  "nodeFailed": 0,
+  "browserChecks": 265,
+  "browserPassed": 265,
+  "browserGroups": {
+    "mobileV142Focused": 84,
+    "mobileNavigationRegression": 181
+  },
   "viewportSizes": 12,
   "pageErrors": [],
-  "browserTransport": "Actual dist JavaScript/CSS loaded through offline blob URLs; Chromium History API used without stubbing",
+  "browserTransport": "Actual dist JavaScript/CSS/images loaded through existing offline blob harness; real Chromium History API. Fixture storage is simulated; game logic is not replaced.",
+  "changedRuntimeFiles": [
+    "dist/app.js",
+    "dist/cinema.js",
+    "dist/engine.js",
+    "dist/index.html",
+    "dist/portraits.js",
+    "dist/release.js",
+    "dist/studio-v12.js"
+  ],
+  "addedRuntimeFiles": [
+    "dist/mobile-v142.css"
+  ],
   "unchangedRuntimeFiles": [
     "dist/abilities.js",
     "dist/assets/media.png",
@@ -15,19 +32,18 @@
     "dist/assets/posters.png",
     "dist/career.js",
     "dist/casting.js",
-    "dist/cinema.js",
     "dist/clock.js",
     "dist/content-v14.js",
     "dist/data.js",
     "dist/dialog-state.js",
-    "dist/engine.js",
     "dist/expansion.js",
     "dist/experience.css",
     "dist/finance-history.js",
     "dist/license-offers.js",
+    "dist/mobile-v141.css",
+    "dist/navigation.js",
     "dist/plot-seeds.js",
     "dist/portrait.css",
-    "dist/portraits.js",
     "dist/relationships.js",
     "dist/runtime.js",
     "dist/sound.js",
@@ -35,7 +51,6 @@
     "dist/start-screen.css",
     "dist/start-screen.js",
     "dist/studio-v12.css",
-    "dist/studio-v12.js",
     "dist/studio-v13.css",
     "dist/studio-v13.js",
     "dist/studio-v14.css",
@@ -43,7 +58,11 @@
     "dist/taxes.js",
     "dist/weekly-experience.js"
   ],
+  "portraitAssetsUnchanged": true,
+  "saveKeyAndSchemaChanged": false,
   "realDeviceTested": false,
+  "liveDeploymentTested": false,
   "remotePushed": false,
-  "deployed": false
+  "deployed": false,
+  "specialScreeningCostModel": "Game estimates informed by production workflows, not actual vendor quotes or a verified industry-wide price list."
 }
