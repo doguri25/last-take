@@ -38,6 +38,14 @@ export function notify(s, { key, title, text, type = 'info', filmId = null, acti
   s.notifications = s.notifications.slice(0, 500);
   return item;
 }
+/** Read a single saved message without deleting it or changing simulation data. */
+export function markNotificationRead(s, id) {
+  const item = (s?.notifications ?? []).find(n => String(n.id) === String(id));
+  if (!item) return null;
+  item.unread = false;
+  item.popup = false;
+  return item;
+}
 export const releaseWaitWeeks = (s, company = 'c0') => {
   const c = s.companies.find(x => x.id === company);
   return Math.max(0, 8 - (weekOf(s) - (c.lastReleaseWeek ?? c.lastRelease * 4)));

@@ -100,7 +100,7 @@ export function createStudioUpdates(ctx) {
   if(a==='runtime-resolve'){mutate(()=>{const result=E.resolveRuntimeEdit(state(),id,button.dataset.mode);ui.editTarget??={};ui.editTarget[id]=RT.runtimeOf(film(id));toast(`${result.label} · ${RT.runtimeOf(film(id))}분 · 품질 ${sign(result.quality)}`);});return true;}
   if(a==='news-plan'){ui.peekStack=[];ctx.startPlanning(id);return true;}
   if(a==='license'){ui.peekStack=[];return false;}
-  if(a==='notification-open'){const n=state().notifications.find(n=>n.id===Number(id));if(n?.action==='runtime-edit'){n.unread=false;n.popup=false;persist();features.deepOpen('runtime-edit',n.filmId);return true;}}
+  if(a==='notification-open'){const n=state().notifications.find(n=>n.id===Number(id));if(n?.action==='runtime-edit'){features.deepOpen('runtime-edit',n.filmId);return true;}}
   return false;
  }
  function handleField(event) {const target=event.target,key=target.dataset.retired;if(!key)return false;ui.retired[key]=target.value;ui.retired.page=0;render();return true;}

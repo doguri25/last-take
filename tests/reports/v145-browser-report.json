@@ -1,0 +1,1750 @@
+{
+  "version": "1.4.5",
+  "transport": "Offline actual dist modules, Chromium touch and History API",
+  "checks": [
+    {
+      "check": "critic names remain horizontal and scores do not overlap at 320x568",
+      "passed": true,
+      "detail": [
+        {
+          "name": "스크린노트 · 한서경",
+          "card": {
+            "x": 12,
+            "right": 308,
+            "width": 296,
+            "height": 152.78125
+          },
+          "header": {
+            "x": 25,
+            "right": 295,
+            "width": 270,
+            "height": 50
+          },
+          "identity": {
+            "x": 25,
+            "right": 238.765625,
+            "width": 213.765625,
+            "height": 39
+          },
+          "score": {
+            "x": 250.765625,
+            "right": 295,
+            "width": 44.234375,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "시네마 페이퍼 · 오유담",
+          "card": {
+            "x": 12,
+            "right": 308,
+            "width": 296,
+            "height": 174.375
+          },
+          "header": {
+            "x": 25,
+            "right": 295,
+            "width": 270,
+            "height": 50
+          },
+          "identity": {
+            "x": 25,
+            "right": 241.515625,
+            "width": 216.515625,
+            "height": 39
+          },
+          "score": {
+            "x": 253.515625,
+            "right": 295,
+            "width": 41.484375,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "필름뷰 · 정해솔",
+          "card": {
+            "x": 12,
+            "right": 308,
+            "width": 296,
+            "height": 152.78125
+          },
+          "header": {
+            "x": 25,
+            "right": 295,
+            "width": 270,
+            "height": 50
+          },
+          "identity": {
+            "x": 25,
+            "right": 241.796875,
+            "width": 216.796875,
+            "height": 39
+          },
+          "score": {
+            "x": 253.796875,
+            "right": 295,
+            "width": 41.203125,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "프레임저널 · 신도겸",
+          "card": {
+            "x": 12,
+            "right": 308,
+            "width": 296,
+            "height": 174.375
+          },
+          "header": {
+            "x": 25,
+            "right": 295,
+            "width": 270,
+            "height": 50
+          },
+          "identity": {
+            "x": 25,
+            "right": 241.9375,
+            "width": 216.9375,
+            "height": 39
+          },
+          "score": {
+            "x": 253.9375,
+            "right": 295,
+            "width": 41.0625,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        }
+      ]
+    },
+    {
+      "check": "critic dialog has no horizontal overflow at 320x568",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "critic names remain horizontal and scores do not overlap at 360x640",
+      "passed": true,
+      "detail": [
+        {
+          "name": "스크린노트 · 한서경",
+          "card": {
+            "x": 12,
+            "right": 348,
+            "width": 336,
+            "height": 152.78125
+          },
+          "header": {
+            "x": 25,
+            "right": 335,
+            "width": 310,
+            "height": 50
+          },
+          "identity": {
+            "x": 25,
+            "right": 278.765625,
+            "width": 253.765625,
+            "height": 39
+          },
+          "score": {
+            "x": 290.765625,
+            "right": 335,
+            "width": 44.234375,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "시네마 페이퍼 · 오유담",
+          "card": {
+            "x": 12,
+            "right": 348,
+            "width": 336,
+            "height": 152.78125
+          },
+          "header": {
+            "x": 25,
+            "right": 335,
+            "width": 310,
+            "height": 50
+          },
+          "identity": {
+            "x": 25,
+            "right": 281.515625,
+            "width": 256.515625,
+            "height": 39
+          },
+          "score": {
+            "x": 293.515625,
+            "right": 335,
+            "width": 41.484375,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "필름뷰 · 정해솔",
+          "card": {
+            "x": 12,
+            "right": 348,
+            "width": 336,
+            "height": 152.78125
+          },
+          "header": {
+            "x": 25,
+            "right": 335,
+            "width": 310,
+            "height": 50
+          },
+          "identity": {
+            "x": 25,
+            "right": 281.796875,
+            "width": 256.796875,
+            "height": 39
+          },
+          "score": {
+            "x": 293.796875,
+            "right": 335,
+            "width": 41.203125,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "프레임저널 · 신도겸",
+          "card": {
+            "x": 12,
+            "right": 348,
+            "width": 336,
+            "height": 152.78125
+          },
+          "header": {
+            "x": 25,
+            "right": 335,
+            "width": 310,
+            "height": 50
+          },
+          "identity": {
+            "x": 25,
+            "right": 281.9375,
+            "width": 256.9375,
+            "height": 39
+          },
+          "score": {
+            "x": 293.9375,
+            "right": 335,
+            "width": 41.0625,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        }
+      ]
+    },
+    {
+      "check": "critic dialog has no horizontal overflow at 360x640",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "critic names remain horizontal and scores do not overlap at 390x844",
+      "passed": true,
+      "detail": [
+        {
+          "name": "스크린노트 · 한서경",
+          "card": {
+            "x": 14,
+            "right": 376,
+            "width": 362,
+            "height": 152.78125
+          },
+          "header": {
+            "x": 27,
+            "right": 363,
+            "width": 336,
+            "height": 50
+          },
+          "identity": {
+            "x": 27,
+            "right": 306.765625,
+            "width": 279.765625,
+            "height": 39
+          },
+          "score": {
+            "x": 318.765625,
+            "right": 363,
+            "width": 44.234375,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "시네마 페이퍼 · 오유담",
+          "card": {
+            "x": 14,
+            "right": 376,
+            "width": 362,
+            "height": 152.78125
+          },
+          "header": {
+            "x": 27,
+            "right": 363,
+            "width": 336,
+            "height": 50
+          },
+          "identity": {
+            "x": 27,
+            "right": 309.515625,
+            "width": 282.515625,
+            "height": 39
+          },
+          "score": {
+            "x": 321.515625,
+            "right": 363,
+            "width": 41.484375,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "필름뷰 · 정해솔",
+          "card": {
+            "x": 14,
+            "right": 376,
+            "width": 362,
+            "height": 152.78125
+          },
+          "header": {
+            "x": 27,
+            "right": 363,
+            "width": 336,
+            "height": 50
+          },
+          "identity": {
+            "x": 27,
+            "right": 309.796875,
+            "width": 282.796875,
+            "height": 39
+          },
+          "score": {
+            "x": 321.796875,
+            "right": 363,
+            "width": 41.203125,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "프레임저널 · 신도겸",
+          "card": {
+            "x": 14,
+            "right": 376,
+            "width": 362,
+            "height": 152.78125
+          },
+          "header": {
+            "x": 27,
+            "right": 363,
+            "width": 336,
+            "height": 50
+          },
+          "identity": {
+            "x": 27,
+            "right": 309.9375,
+            "width": 282.9375,
+            "height": 39
+          },
+          "score": {
+            "x": 321.9375,
+            "right": 363,
+            "width": 41.0625,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        }
+      ]
+    },
+    {
+      "check": "critic dialog has no horizontal overflow at 390x844",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "critic names remain horizontal and scores do not overlap at 568x320",
+      "passed": true,
+      "detail": [
+        {
+          "name": "스크린노트 · 한서경",
+          "card": {
+            "x": 14,
+            "right": 279.5,
+            "width": 265.5,
+            "height": 174.375
+          },
+          "header": {
+            "x": 27,
+            "right": 266.5,
+            "width": 239.5,
+            "height": 50
+          },
+          "identity": {
+            "x": 27,
+            "right": 210.265625,
+            "width": 183.265625,
+            "height": 39
+          },
+          "score": {
+            "x": 222.265625,
+            "right": 266.5,
+            "width": 44.234375,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "시네마 페이퍼 · 오유담",
+          "card": {
+            "x": 288.5,
+            "right": 554,
+            "width": 265.5,
+            "height": 174.375
+          },
+          "header": {
+            "x": 301.5,
+            "right": 541,
+            "width": 239.5,
+            "height": 50
+          },
+          "identity": {
+            "x": 301.5,
+            "right": 487.515625,
+            "width": 186.015625,
+            "height": 39
+          },
+          "score": {
+            "x": 499.515625,
+            "right": 541,
+            "width": 41.484375,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "필름뷰 · 정해솔",
+          "card": {
+            "x": 14,
+            "right": 279.5,
+            "width": 265.5,
+            "height": 174.375
+          },
+          "header": {
+            "x": 27,
+            "right": 266.5,
+            "width": 239.5,
+            "height": 50
+          },
+          "identity": {
+            "x": 27,
+            "right": 213.296875,
+            "width": 186.296875,
+            "height": 39
+          },
+          "score": {
+            "x": 225.296875,
+            "right": 266.5,
+            "width": 41.203125,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "프레임저널 · 신도겸",
+          "card": {
+            "x": 288.5,
+            "right": 554,
+            "width": 265.5,
+            "height": 174.375
+          },
+          "header": {
+            "x": 301.5,
+            "right": 541,
+            "width": 239.5,
+            "height": 50
+          },
+          "identity": {
+            "x": 301.5,
+            "right": 487.9375,
+            "width": 186.4375,
+            "height": 39
+          },
+          "score": {
+            "x": 499.9375,
+            "right": 541,
+            "width": 41.0625,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        }
+      ]
+    },
+    {
+      "check": "critic dialog has no horizontal overflow at 568x320",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "critic names remain horizontal and scores do not overlap at 844x390",
+      "passed": true,
+      "detail": [
+        {
+          "name": "스크린노트 · 한서경",
+          "card": {
+            "x": 15,
+            "right": 416,
+            "width": 401,
+            "height": 168.140625
+          },
+          "header": {
+            "x": 32,
+            "right": 399,
+            "width": 367,
+            "height": 50
+          },
+          "identity": {
+            "x": 32,
+            "right": 342.765625,
+            "width": 310.765625,
+            "height": 39
+          },
+          "score": {
+            "x": 354.765625,
+            "right": 399,
+            "width": 44.234375,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "시네마 페이퍼 · 오유담",
+          "card": {
+            "x": 428,
+            "right": 829,
+            "width": 401,
+            "height": 168.140625
+          },
+          "header": {
+            "x": 445,
+            "right": 812,
+            "width": 367,
+            "height": 50
+          },
+          "identity": {
+            "x": 445,
+            "right": 758.515625,
+            "width": 313.515625,
+            "height": 39
+          },
+          "score": {
+            "x": 770.515625,
+            "right": 812,
+            "width": 41.484375,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "필름뷰 · 정해솔",
+          "card": {
+            "x": 15,
+            "right": 416,
+            "width": 401,
+            "height": 168.140625
+          },
+          "header": {
+            "x": 32,
+            "right": 399,
+            "width": 367,
+            "height": 50
+          },
+          "identity": {
+            "x": 32,
+            "right": 345.796875,
+            "width": 313.796875,
+            "height": 39
+          },
+          "score": {
+            "x": 357.796875,
+            "right": 399,
+            "width": 41.203125,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "프레임저널 · 신도겸",
+          "card": {
+            "x": 428,
+            "right": 829,
+            "width": 401,
+            "height": 168.140625
+          },
+          "header": {
+            "x": 445,
+            "right": 812,
+            "width": 367,
+            "height": 50
+          },
+          "identity": {
+            "x": 445,
+            "right": 758.9375,
+            "width": 313.9375,
+            "height": 39
+          },
+          "score": {
+            "x": 770.9375,
+            "right": 812,
+            "width": 41.0625,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        }
+      ]
+    },
+    {
+      "check": "critic dialog has no horizontal overflow at 844x390",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "critic names remain horizontal and scores do not overlap at 1366x768",
+      "passed": true,
+      "detail": [
+        {
+          "name": "스크린노트 · 한서경",
+          "card": {
+            "x": 166,
+            "right": 677,
+            "width": 511,
+            "height": 144.09375
+          },
+          "header": {
+            "x": 183,
+            "right": 660,
+            "width": 477,
+            "height": 50
+          },
+          "identity": {
+            "x": 183,
+            "right": 603.765625,
+            "width": 420.765625,
+            "height": 39
+          },
+          "score": {
+            "x": 615.765625,
+            "right": 660,
+            "width": 44.234375,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "시네마 페이퍼 · 오유담",
+          "card": {
+            "x": 689,
+            "right": 1200,
+            "width": 511,
+            "height": 144.09375
+          },
+          "header": {
+            "x": 706,
+            "right": 1183,
+            "width": 477,
+            "height": 50
+          },
+          "identity": {
+            "x": 706,
+            "right": 1129.515625,
+            "width": 423.515625,
+            "height": 39
+          },
+          "score": {
+            "x": 1141.515625,
+            "right": 1183,
+            "width": 41.484375,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "필름뷰 · 정해솔",
+          "card": {
+            "x": 166,
+            "right": 677,
+            "width": 511,
+            "height": 144.09375
+          },
+          "header": {
+            "x": 183,
+            "right": 660,
+            "width": 477,
+            "height": 50
+          },
+          "identity": {
+            "x": 183,
+            "right": 606.796875,
+            "width": 423.796875,
+            "height": 39
+          },
+          "score": {
+            "x": 618.796875,
+            "right": 660,
+            "width": 41.203125,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "프레임저널 · 신도겸",
+          "card": {
+            "x": 689,
+            "right": 1200,
+            "width": 511,
+            "height": 144.09375
+          },
+          "header": {
+            "x": 706,
+            "right": 1183,
+            "width": 477,
+            "height": 50
+          },
+          "identity": {
+            "x": 706,
+            "right": 1129.9375,
+            "width": 423.9375,
+            "height": 39
+          },
+          "score": {
+            "x": 1141.9375,
+            "right": 1183,
+            "width": 41.0625,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        }
+      ]
+    },
+    {
+      "check": "critic dialog has no horizontal overflow at 1366x768",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "remaining critic names remain horizontal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "closing critic details returns to boxoffice",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "audience names and scores fit at 320x568",
+      "passed": true,
+      "detail": [
+        {
+          "name": "주말한장면",
+          "card": {
+            "x": 12,
+            "right": 308,
+            "width": 296,
+            "height": 131.1875
+          },
+          "header": {
+            "x": 25,
+            "right": 295,
+            "width": 270,
+            "height": 50
+          },
+          "identity": {
+            "x": 25,
+            "right": 239.421875,
+            "width": 214.421875,
+            "height": 39
+          },
+          "score": {
+            "x": 251.421875,
+            "right": 295,
+            "width": 43.578125,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "조용한엔딩",
+          "card": {
+            "x": 12,
+            "right": 308,
+            "width": 296,
+            "height": 131.1875
+          },
+          "header": {
+            "x": 25,
+            "right": 295,
+            "width": 270,
+            "height": 50
+          },
+          "identity": {
+            "x": 25,
+            "right": 240.078125,
+            "width": 215.078125,
+            "height": 39
+          },
+          "score": {
+            "x": 252.078125,
+            "right": 295,
+            "width": 42.921875,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "오후의필름",
+          "card": {
+            "x": 12,
+            "right": 308,
+            "width": 296,
+            "height": 131.1875
+          },
+          "header": {
+            "x": 25,
+            "right": 295,
+            "width": 270,
+            "height": 50
+          },
+          "identity": {
+            "x": 25,
+            "right": 241.046875,
+            "width": 216.046875,
+            "height": 39
+          },
+          "score": {
+            "x": 253.046875,
+            "right": 295,
+            "width": 41.953125,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "목요일극장",
+          "card": {
+            "x": 12,
+            "right": 308,
+            "width": 296,
+            "height": 131.1875
+          },
+          "header": {
+            "x": 25,
+            "right": 295,
+            "width": 270,
+            "height": 50
+          },
+          "identity": {
+            "x": 25,
+            "right": 240.171875,
+            "width": 215.171875,
+            "height": 39
+          },
+          "score": {
+            "x": 252.171875,
+            "right": 295,
+            "width": 42.828125,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "크레딧끝까지",
+          "card": {
+            "x": 12,
+            "right": 308,
+            "width": 296,
+            "height": 131.1875
+          },
+          "header": {
+            "x": 25,
+            "right": 295,
+            "width": 270,
+            "height": 50
+          },
+          "identity": {
+            "x": 25,
+            "right": 239.421875,
+            "width": 214.421875,
+            "height": 39
+          },
+          "score": {
+            "x": 251.421875,
+            "right": 295,
+            "width": 43.578125,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "별빛상영관",
+          "card": {
+            "x": 12,
+            "right": 308,
+            "width": 296,
+            "height": 152.78125
+          },
+          "header": {
+            "x": 25,
+            "right": 295,
+            "width": 270,
+            "height": 50
+          },
+          "identity": {
+            "x": 25,
+            "right": 241.703125,
+            "width": 216.703125,
+            "height": 39
+          },
+          "score": {
+            "x": 253.703125,
+            "right": 295,
+            "width": 41.296875,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        }
+      ]
+    },
+    {
+      "check": "audience names and scores fit at 390x844",
+      "passed": true,
+      "detail": [
+        {
+          "name": "주말한장면",
+          "card": {
+            "x": 14,
+            "right": 376,
+            "width": 362,
+            "height": 131.1875
+          },
+          "header": {
+            "x": 27,
+            "right": 363,
+            "width": 336,
+            "height": 50
+          },
+          "identity": {
+            "x": 27,
+            "right": 307.421875,
+            "width": 280.421875,
+            "height": 39
+          },
+          "score": {
+            "x": 319.421875,
+            "right": 363,
+            "width": 43.578125,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "조용한엔딩",
+          "card": {
+            "x": 14,
+            "right": 376,
+            "width": 362,
+            "height": 131.1875
+          },
+          "header": {
+            "x": 27,
+            "right": 363,
+            "width": 336,
+            "height": 50
+          },
+          "identity": {
+            "x": 27,
+            "right": 308.078125,
+            "width": 281.078125,
+            "height": 39
+          },
+          "score": {
+            "x": 320.078125,
+            "right": 363,
+            "width": 42.921875,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "오후의필름",
+          "card": {
+            "x": 14,
+            "right": 376,
+            "width": 362,
+            "height": 131.1875
+          },
+          "header": {
+            "x": 27,
+            "right": 363,
+            "width": 336,
+            "height": 50
+          },
+          "identity": {
+            "x": 27,
+            "right": 309.046875,
+            "width": 282.046875,
+            "height": 39
+          },
+          "score": {
+            "x": 321.046875,
+            "right": 363,
+            "width": 41.953125,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "목요일극장",
+          "card": {
+            "x": 14,
+            "right": 376,
+            "width": 362,
+            "height": 131.1875
+          },
+          "header": {
+            "x": 27,
+            "right": 363,
+            "width": 336,
+            "height": 50
+          },
+          "identity": {
+            "x": 27,
+            "right": 308.171875,
+            "width": 281.171875,
+            "height": 39
+          },
+          "score": {
+            "x": 320.171875,
+            "right": 363,
+            "width": 42.828125,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "크레딧끝까지",
+          "card": {
+            "x": 14,
+            "right": 376,
+            "width": 362,
+            "height": 131.1875
+          },
+          "header": {
+            "x": 27,
+            "right": 363,
+            "width": 336,
+            "height": 50
+          },
+          "identity": {
+            "x": 27,
+            "right": 307.421875,
+            "width": 280.421875,
+            "height": 39
+          },
+          "score": {
+            "x": 319.421875,
+            "right": 363,
+            "width": 43.578125,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "별빛상영관",
+          "card": {
+            "x": 14,
+            "right": 376,
+            "width": 362,
+            "height": 131.1875
+          },
+          "header": {
+            "x": 27,
+            "right": 363,
+            "width": 336,
+            "height": 50
+          },
+          "identity": {
+            "x": 27,
+            "right": 309.703125,
+            "width": 282.703125,
+            "height": 39
+          },
+          "score": {
+            "x": 321.703125,
+            "right": 363,
+            "width": 41.296875,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        }
+      ]
+    },
+    {
+      "check": "audience names and scores fit at 568x320",
+      "passed": true,
+      "detail": [
+        {
+          "name": "주말한장면",
+          "card": {
+            "x": 14,
+            "right": 279.5,
+            "width": 265.5,
+            "height": 152.78125
+          },
+          "header": {
+            "x": 27,
+            "right": 266.5,
+            "width": 239.5,
+            "height": 50
+          },
+          "identity": {
+            "x": 27,
+            "right": 210.921875,
+            "width": 183.921875,
+            "height": 39
+          },
+          "score": {
+            "x": 222.921875,
+            "right": 266.5,
+            "width": 43.578125,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "조용한엔딩",
+          "card": {
+            "x": 288.5,
+            "right": 554,
+            "width": 265.5,
+            "height": 152.78125
+          },
+          "header": {
+            "x": 301.5,
+            "right": 541,
+            "width": 239.5,
+            "height": 50
+          },
+          "identity": {
+            "x": 301.5,
+            "right": 486.078125,
+            "width": 184.578125,
+            "height": 39
+          },
+          "score": {
+            "x": 498.078125,
+            "right": 541,
+            "width": 42.921875,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "오후의필름",
+          "card": {
+            "x": 14,
+            "right": 279.5,
+            "width": 265.5,
+            "height": 152.78125
+          },
+          "header": {
+            "x": 27,
+            "right": 266.5,
+            "width": 239.5,
+            "height": 50
+          },
+          "identity": {
+            "x": 27,
+            "right": 212.546875,
+            "width": 185.546875,
+            "height": 39
+          },
+          "score": {
+            "x": 224.546875,
+            "right": 266.5,
+            "width": 41.953125,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "목요일극장",
+          "card": {
+            "x": 288.5,
+            "right": 554,
+            "width": 265.5,
+            "height": 152.78125
+          },
+          "header": {
+            "x": 301.5,
+            "right": 541,
+            "width": 239.5,
+            "height": 50
+          },
+          "identity": {
+            "x": 301.5,
+            "right": 486.171875,
+            "width": 184.671875,
+            "height": 39
+          },
+          "score": {
+            "x": 498.171875,
+            "right": 541,
+            "width": 42.828125,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "크레딧끝까지",
+          "card": {
+            "x": 14,
+            "right": 279.5,
+            "width": 265.5,
+            "height": 152.78125
+          },
+          "header": {
+            "x": 27,
+            "right": 266.5,
+            "width": 239.5,
+            "height": 50
+          },
+          "identity": {
+            "x": 27,
+            "right": 210.921875,
+            "width": 183.921875,
+            "height": 39
+          },
+          "score": {
+            "x": 222.921875,
+            "right": 266.5,
+            "width": 43.578125,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "별빛상영관",
+          "card": {
+            "x": 288.5,
+            "right": 554,
+            "width": 265.5,
+            "height": 152.78125
+          },
+          "header": {
+            "x": 301.5,
+            "right": 541,
+            "width": 239.5,
+            "height": 50
+          },
+          "identity": {
+            "x": 301.5,
+            "right": 487.703125,
+            "width": 186.203125,
+            "height": 39
+          },
+          "score": {
+            "x": 499.703125,
+            "right": 541,
+            "width": 41.296875,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        }
+      ]
+    },
+    {
+      "check": "audience names and scores fit at 1366x768",
+      "passed": true,
+      "detail": [
+        {
+          "name": "주말한장면",
+          "card": {
+            "x": 166,
+            "right": 677,
+            "width": 511,
+            "height": 144.09375
+          },
+          "header": {
+            "x": 183,
+            "right": 660,
+            "width": 477,
+            "height": 50
+          },
+          "identity": {
+            "x": 183,
+            "right": 604.421875,
+            "width": 421.421875,
+            "height": 39
+          },
+          "score": {
+            "x": 616.421875,
+            "right": 660,
+            "width": 43.578125,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "조용한엔딩",
+          "card": {
+            "x": 689,
+            "right": 1200,
+            "width": 511,
+            "height": 144.09375
+          },
+          "header": {
+            "x": 706,
+            "right": 1183,
+            "width": 477,
+            "height": 50
+          },
+          "identity": {
+            "x": 706,
+            "right": 1128.078125,
+            "width": 422.078125,
+            "height": 39
+          },
+          "score": {
+            "x": 1140.078125,
+            "right": 1183,
+            "width": 42.921875,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "오후의필름",
+          "card": {
+            "x": 166,
+            "right": 677,
+            "width": 511,
+            "height": 144.09375
+          },
+          "header": {
+            "x": 183,
+            "right": 660,
+            "width": 477,
+            "height": 50
+          },
+          "identity": {
+            "x": 183,
+            "right": 606.046875,
+            "width": 423.046875,
+            "height": 39
+          },
+          "score": {
+            "x": 618.046875,
+            "right": 660,
+            "width": 41.953125,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "목요일극장",
+          "card": {
+            "x": 689,
+            "right": 1200,
+            "width": 511,
+            "height": 144.09375
+          },
+          "header": {
+            "x": 706,
+            "right": 1183,
+            "width": 477,
+            "height": 50
+          },
+          "identity": {
+            "x": 706,
+            "right": 1128.171875,
+            "width": 422.171875,
+            "height": 39
+          },
+          "score": {
+            "x": 1140.171875,
+            "right": 1183,
+            "width": 42.828125,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "크레딧끝까지",
+          "card": {
+            "x": 166,
+            "right": 677,
+            "width": 511,
+            "height": 144.09375
+          },
+          "header": {
+            "x": 183,
+            "right": 660,
+            "width": 477,
+            "height": 50
+          },
+          "identity": {
+            "x": 183,
+            "right": 604.421875,
+            "width": 421.421875,
+            "height": 39
+          },
+          "score": {
+            "x": 616.421875,
+            "right": 660,
+            "width": 43.578125,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        },
+        {
+          "name": "별빛상영관",
+          "card": {
+            "x": 689,
+            "right": 1200,
+            "width": 511,
+            "height": 144.09375
+          },
+          "header": {
+            "x": 706,
+            "right": 1183,
+            "width": 477,
+            "height": 50
+          },
+          "identity": {
+            "x": 706,
+            "right": 1129.703125,
+            "width": 423.703125,
+            "height": 39
+          },
+          "score": {
+            "x": 1141.703125,
+            "right": 1183,
+            "width": 41.296875,
+            "height": 37.1875
+          },
+          "nameLines": 1,
+          "clipped": false,
+          "display": "block"
+        }
+      ]
+    },
+    {
+      "check": "remaining audience page names fit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "remaining audience page names fit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "OTT viewer names remain horizontal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "opening the inbox does not mark unseen messages as read",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "tapping message text marks only that message read and remains in inbox",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "row read label and header badge update immediately",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "read message and destination data are retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "repeated taps never remove or recount a message",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "reading mid-inbox preserves scroll",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Enter reads a focused notification",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Space reads a notification without advancing a week",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "opening the related film also marks its message read",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "film close returns to the inbox with read state preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "opening a person routes correctly and reads the same message",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "person close returns to the inbox",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "read-all clears every unread badge without leaving inbox",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "read-all also preserves inbox scroll",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "reading does not change money, time, contracts or films",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "read flags survive closing and reopening inbox",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "read flags survive serialized save reload",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "save-and-home keeps the saved company",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "resume with a draft always opens dashboard without a modal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "unfinished draft remains reachable from dashboard",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "draft opens only after explicit action",
+      "passed": true,
+      "detail": {
+        "modal": "wizard",
+        "view": "studio"
+      }
+    },
+    {
+      "check": "the unfinished draft title was preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "closing reopened draft returns to dashboard, never home",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "resume from market always lands on dashboard",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "resume from scripts always lands on dashboard",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "resume from talents always lands on dashboard",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "browser back from resumed dashboard goes to home",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "browser forward restores dashboard without reopening the draft",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "guide close still returns to more menu",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "more closes back to resumed dashboard",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "resume does not alter saved simulation data",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "resume with no draft also lands on dashboard",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pending completion fixture opens its required task initially",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "resume with a pending completion still shows dashboard only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pending completion was not silently acknowledged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "next-week action still prompts the required completion without advancing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "no JavaScript runtime errors",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "pageErrors": []
+}

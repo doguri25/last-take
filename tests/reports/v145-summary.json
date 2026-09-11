@@ -1,0 +1,14 @@
+{
+  "version": "1.4.5",
+  "nodeTests": 113,
+  "nodePassed": 113,
+  "nodeFailed": 0,
+  "newBrowserChecks": 58,
+  "weeklyRegressionChecks": 25,
+  "browserChecks": 83,
+  "browserFailed": 0,
+  "pageErrors": [],
+  "realMobileDevicesTested": false,
+  "remotePush": "not_performed",
+  "deployment": "not_performed"
+}

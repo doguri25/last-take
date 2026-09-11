@@ -1,0 +1,35 @@
+TAP version 13
+# PASS: 3000 proportional-fit cases; viewport module integration; original save key
+# Subtest: tests/start-screen.mjs
+ok 1 - tests/start-screen.mjs
+  ---
+  duration_ms: 47.595608
+  type: 'test'
+  ...
+# Subtest: weekly popup has no progress bar or fill animation
+ok 2 - weekly popup has no progress bar or fill animation
+  ---
+  duration_ms: 3.966077
+  type: 'test'
+  ...
+# Subtest: weekly popup retains old and new date, notice and single advance lock
+ok 3 - weekly popup retains old and new date, notice and single advance lock
+  ---
+  duration_ms: 0.134671
+  type: 'test'
+  ...
+# Subtest: weekly popup timing and completion cleanup are unchanged
+ok 4 - weekly popup timing and completion cleanup are unchanged
+  ---
+  duration_ms: 0.099767
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 72.848783

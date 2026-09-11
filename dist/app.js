@@ -1,4 +1,5 @@
 import {createNavigation} from './navigation.js';
+import {markNotificationRead} from './clock.js';
 import {abilityChanges} from './abilities.js';
 import {createStudioUpdates} from './studio-v13.js';
 import * as RT from './runtime.js';
@@ -89,7 +90,7 @@ function filmCard(f){
 
 function studioPage(){
  const films=E.myFilms(game),active=films.filter(f=>['production','reshoot'].includes(f.status)),ready=films.filter(f=>f.status==='ready'),pending=E.pendingEvents(game),c=E.player(game);
- return `${pageHead('제작 스튜디오',`${esc(c.name)}의 이번 주를 시작하세요.`,btn(`${icon('plus')} 새 영화 기획`,'nav','data-view="scripts"','primary'))}${pending.length?`<div class="event-alert"><strong>${icon('bell')} 현장 결정 ${pending.length}건</strong>${btn('결정하기','event',`data-id="${pending[0].id}"`,'primary small-btn')}</div>`:''}<div class="stats">${stat('동시 제작',`${active.length}<small>/ 3편</small>`,'제작 슬롯','studio')}${stat('개봉 대기',`${ready.length}<small>편</small>`,E.releaseWaitWeeks(game)?`${E.releaseWaitWeeks(game)}주 후 개봉 가능`:'지금 개봉 가능','calendar')}${stat('누적 관객',E.viewers(c.totalAudience)+'<small>명</small>','우리 영화의 관객','people')}${stat('트로피',`${c.trophies}<small>개</small>`,'12월 4주 결산','award')}</div><section><div class="section-head"><h2>제작 라인업 <span class="count">${active.length} / 3</span></h2><span class="small muted">일주일씩, 한 장면씩</span></div><div class="production-grid">${active.map(filmCard).join('')}${active.length<3?`<div class="empty-slot compact-slot"><span class="slot-number">${3-active.length}개 슬롯 여유</span>${icon('plus')}<strong>${active.length?'다음 작품을 함께 준비하세요':'첫 영화를 만들어 보세요'}</strong>${btn('시나리오 살펴보기','nav','data-view="scripts"','ghost small-btn')}</div>`:''}</div></section>${ready.length?`<section class="ready-section"><div class="section-head"><h2>개봉 준비 <span class="count">${ready.length}편</span></h2></div><div class="ready-list">${ready.map(f=>`<div class="ready-row"><div class="ready-title">${posterArt(f,f.poster??0)}<div><h3>${esc(f.title)}</h3><p>평론 ${E.reviewScore(game,f)}점 · 제작 완료</p></div></div>${btn(f.completionAcknowledged?'평론 · 개봉':'포스터 선택',f.completionAcknowledged?'film':'completion',`data-id="${f.id}"`,'primary small-btn')}</div>`).join('')}</div></section>`:''}${warehouseNotice()}<div class="dashboard-bottom compact-dashboard"><section><div class="section-head"><h2>최근 수신함</h2>${btn('알림함','notifications','','ghost small-btn')}</div><details class="fold-section studio-inbox"><summary>${esc(game.messages[0]?.title??'첫 소식을 기다립니다')} · 펼쳐 보기</summary><div class="message-list">${game.messages.slice(0,10).map(messageCard).join('')}</div></details></section><aside><details class="fold-section"><summary>지금 극장에 부는 바람 · ${game.trends.map(g=>GENRE[g].name).join(' / ')}</summary>${marketEventCards()}<p class="small muted">분기 주목 장르의 신규 관객 유입에 12% 보너스.</p></details><details class="fold-section"><summary>경쟁사 제작 소식</summary>${game.films.filter(f=>f.company!=='c0'&&['production','ready'].includes(f.status)).slice(0,5).map(f=>`<p class="small mt-sm">${esc(f.title)} · ${statusLabel(f)}</p>`).join('')}${btn('개봉 전망 보기','market-forecast','','ghost small-btn mt-sm')}</details><div class="notice compact-tip">${icon('clock')}<p><strong>1주 진행</strong>을 누르면 제작·홍보·흥행이 한 주씩 진행됩니다. 세금 적립을 포함한 운영비와 이자는 4주마다 한 번만 결산합니다.</p></div></aside></div>`;
+ return `${pageHead('제작 스튜디오',`${esc(c.name)}의 이번 주를 시작하세요.`,ui.draft?btn('기획 이어서 편집','resume-draft','','primary'):btn(`${icon('plus')} 새 영화 기획`,'nav','data-view="scripts"','primary'))}${pending.length?`<div class="event-alert"><strong>${icon('bell')} 현장 결정 ${pending.length}건</strong>${btn('결정하기','event',`data-id="${pending[0].id}"`,'primary small-btn')}</div>`:''}<div class="stats">${stat('동시 제작',`${active.length}<small>/ 3편</small>`,'제작 슬롯','studio')}${stat('개봉 대기',`${ready.length}<small>편</small>`,E.releaseWaitWeeks(game)?`${E.releaseWaitWeeks(game)}주 후 개봉 가능`:'지금 개봉 가능','calendar')}${stat('누적 관객',E.viewers(c.totalAudience)+'<small>명</small>','우리 영화의 관객','people')}${stat('트로피',`${c.trophies}<small>개</small>`,'12월 4주 결산','award')}</div><section><div class="section-head"><h2>제작 라인업 <span class="count">${active.length} / 3</span></h2><span class="small muted">일주일씩, 한 장면씩</span></div><div class="production-grid">${active.map(filmCard).join('')}${active.length<3?`<div class="empty-slot compact-slot"><span class="slot-number">${3-active.length}개 슬롯 여유</span>${icon('plus')}<strong>${active.length?'다음 작품을 함께 준비하세요':'첫 영화를 만들어 보세요'}</strong>${btn('시나리오 살펴보기','nav','data-view="scripts"','ghost small-btn')}</div>`:''}</div></section>${ready.length?`<section class="ready-section"><div class="section-head"><h2>개봉 준비 <span class="count">${ready.length}편</span></h2></div><div class="ready-list">${ready.map(f=>`<div class="ready-row"><div class="ready-title">${posterArt(f,f.poster??0)}<div><h3>${esc(f.title)}</h3><p>평론 ${E.reviewScore(game,f)}점 · 제작 완료</p></div></div>${btn(f.completionAcknowledged?'평론 · 개봉':'포스터 선택',f.completionAcknowledged?'film':'completion',`data-id="${f.id}"`,'primary small-btn')}</div>`).join('')}</div></section>`:''}${warehouseNotice()}<div class="dashboard-bottom compact-dashboard"><section><div class="section-head"><h2>최근 수신함</h2>${btn('알림함','notifications','','ghost small-btn')}</div><details class="fold-section studio-inbox"><summary>${esc(game.messages[0]?.title??'첫 소식을 기다립니다')} · 펼쳐 보기</summary><div class="message-list">${game.messages.slice(0,10).map(messageCard).join('')}</div></details></section><aside><details class="fold-section"><summary>지금 극장에 부는 바람 · ${game.trends.map(g=>GENRE[g].name).join(' / ')}</summary>${marketEventCards()}<p class="small muted">분기 주목 장르의 신규 관객 유입에 12% 보너스.</p></details><details class="fold-section"><summary>경쟁사 제작 소식</summary>${game.films.filter(f=>f.company!=='c0'&&['production','ready'].includes(f.status)).slice(0,5).map(f=>`<p class="small mt-sm">${esc(f.title)} · ${statusLabel(f)}</p>`).join('')}${btn('개봉 전망 보기','market-forecast','','ghost small-btn mt-sm')}</details><div class="notice compact-tip">${icon('clock')}<p><strong>1주 진행</strong>을 누르면 제작·홍보·흥행이 한 주씩 진행됩니다. 세금 적립을 포함한 운영비와 이자는 4주마다 한 번만 결산합니다.</p></div></aside></div>`;
 }
 
 function messageCard(m){const iconsByKind={welcome:'studio',script:'script',production:'studio',review:'script',release:'chart',close:'chart',event:'bell',decision:'check',trend:'chart',award:'award',awards:'award',industry:'globe',finance:'bank'};return `<article class="message"><span class="message-icon ${m.kind}">${icon(iconsByKind[m.kind]??'mail')}</span><div style="flex:1;min-width:0"><div class="row between" style="align-items:start"><h3><button class="news-title-link" data-action="news-detail" data-id="${m.id}">${esc(m.title)} ${icon('chevron')}</button></h3><time>${Number.isInteger(m.week)?`${Math.floor(m.week%48/4)+1}월 ${m.week%4+1}주`:`${m.month%12+1}월`}</time></div><p>${esc(m.text)}</p>${btn('소식 자세히 보기','news-detail',`data-id="${m.id}"`,'text-btn')}${m.filmId?`<button class="text-btn" data-action="film" data-id="${m.filmId}">작품 보기 ${icon('chevron')}</button>`:''}</div></article>`;}
@@ -275,7 +276,7 @@ async function nextWeek(){
  const task=nextRequiredTask();if(task){ui.modal=task;renderDialog();return;}
  ui.advancing=true;document.querySelectorAll('[data-action="advance"]').forEach(b=>b.disabled=true);sound.play('week');
  const overlay=$('week-transition'),from=E.weekOf(game);
- overlay.innerHTML=`<div class="week-change-card"><span class="eyebrow">A WEEK IN MOTION</span><span class="week-calendar">${icon('calendar')}</span><p>${E.weekDate(from)}</p><strong>${E.weekDate(from+1)}</strong><span class="week-progress"></span><small>제작 · 홍보 · 흥행을 한 주씩 기록합니다.</small></div>`;
+ overlay.innerHTML=`<div class="week-change-card"><span class="eyebrow">A WEEK IN MOTION</span><span class="week-calendar">${icon('calendar')}</span><p>${E.weekDate(from)}</p><strong>${E.weekDate(from+1)}</strong><small>제작 · 홍보 · 흥행을 한 주씩 기록합니다.</small></div>`;
  overlay.hidden=false;document.documentElement.setAttribute('aria-busy','true');
  try{
   await new Promise(r=>setTimeout(r,matchMedia('(prefers-reduced-motion: reduce)').matches?300:480));
@@ -304,6 +305,8 @@ document.addEventListener('click',event=>{
     if(a==='ability-history'){open('ability-history',id);return;}
     if(a==='ability-back'){open('person',id);return;}
     if(a==='script-info'){open('script-info',id);return;}
+    if(a==='notification-read'){readNotification(id);return;}
+    if(a==='notification-open'&&!readNotification(id))return;
     if(updates.handleAction(a,id,button))return;
     if(features.handleAction(a,id,button))return;
     if(handleNewAction(a,id,button))return;
@@ -391,7 +394,7 @@ function utilityButtons(start=false){
  const unread=(game?.notifications??[]).filter(n=>n.unread).length;
  return `<div class="utility-buttons">${game&&!start?`<button class="icon-btn" data-action="home" aria-label="저장하고 첫 화면" title="저장하고 첫 화면">${icon('home')}</button><button class="icon-btn notification-control" data-action="notifications" aria-label="알림함 ${unread}개" title="알림함">${icon('bell')}${unread?`<span class="notification-count">${unread>99?'99+':unread}</span>`:''}</button>`:''}<button class="icon-btn" data-action="sound" aria-label="효과음 ${sound.enabled?'끄기':'켜기'}" aria-pressed="${sound.enabled}" title="효과음 ${sound.enabled?'켜짐':'꺼짐'}">${icon(sound.enabled?'volume':'mute')}</button><button class="icon-btn" data-action="fullscreen" aria-label="${document.fullscreenElement||document.webkitFullscreenElement?'전체화면 나가기':document.documentElement.classList.contains('focus-mode')?'집중화면 나가기':'전체화면'}" title="전체화면">${icon('fullscreen')}</button></div>`;
 }
-function resumeCard(){const c=E.player(game);return `<section class="setup-card resume-card"><div class="setup-step"><span>▶</span> YOUR NEXT SCENE</div><h2>다시, 라스트 테이크.</h2><p>지금까지의 제작사와 영화 기록이 저장되어 있습니다.</p><div class="resume-company"><span class="avatar">${X.LOGOS[c.logo??0]}</span><strong>${esc(c.name)}</strong></div><div class="setup-summary"><div><span>저장 시점</span><strong>${E.weekDate(E.weekOf(game))}</strong></div><div><span>보유 현금</span><strong>${E.money(c.cash)}</strong></div><div><span>우리 영화</span><strong>${E.myFilms(game).length}편</strong></div></div>${btn(`이어서 플레이 ${icon('arrow')}`,'resume','','primary full')}${ui.draft?'<p class="small muted mt-sm">기획 중인 작품도 이 창에서 이어서 편집할 수 있습니다.</p>':''}${btn('새 제작사 설립','reset-confirm','','ghost full mt-sm')}<p class="save-note">첫 화면으로 돌아와도 게임은 지워지지 않습니다.<br>제작자: 도구리</p></section>`;}
+function resumeCard(){const c=E.player(game);return `<section class="setup-card resume-card"><div class="setup-step"><span>▶</span> YOUR NEXT SCENE</div><h2>다시, 라스트 테이크.</h2><p>지금까지의 제작사와 영화 기록이 저장되어 있습니다.</p><div class="resume-company"><span class="avatar">${X.LOGOS[c.logo??0]}</span><strong>${esc(c.name)}</strong></div><div class="setup-summary"><div><span>저장 시점</span><strong>${E.weekDate(E.weekOf(game))}</strong></div><div><span>보유 현금</span><strong>${E.money(c.cash)}</strong></div><div><span>우리 영화</span><strong>${E.myFilms(game).length}편</strong></div></div>${btn(`이어서 플레이 ${icon('arrow')}`,'resume','','primary full')}${ui.draft?'<p class="small muted mt-sm">대시보드의 ‘기획 이어서 편집’에서 작성 중인 작품을 다시 열 수 있습니다.</p>':''}${btn('새 제작사 설립','reset-confirm','','ghost full mt-sm')}<p class="save-note">첫 화면으로 돌아와도 게임은 지워지지 않습니다.<br>제작자: 도구리</p></section>`;}
 function peopleLayout(prefix){
  if(prefix==='people')return catalogLayout('talents');
  const width=Math.max(260,Math.min(innerWidth-50,1000)),columns=Math.max(2,Math.min(5,Math.floor(width/176))),rows=Math.max(1,Math.min(3,Math.floor((innerHeight-320)/165)));
@@ -481,7 +484,35 @@ function confirmGreenlight(){
  if(unresolved){ui.pendingSelection=null;open('negotiation');sound.play('notify');return;}
  mutate(()=>{const f=E.greenlight(game,ui.draft);ui.modal=null;ui.draft=null;ui.view='studio';window.scrollTo({top:0,behavior:'instant'});return f;},'제작을 시작했습니다. 1주 진행 버튼으로 제작을 이어가세요.');
 }
-function notificationsDialog(){const notifications=game?.notifications??[];return dialogFrame('제작사 알림함','홍보·주간 성과·OTT·인물 소식·흥행 이정표를 보존합니다.',`<div class="notification-history">${notifications.map(n=>`<article class="notification-record ${n.unread?'unread':''}"><small>${E.weekDate(n.week)}${n.rank?` · 박스오피스 ${n.rank}위`:''}</small><h3>${esc(n.title)}</h3><p>${esc(n.text)}</p>${n.filmId||n.personId||n.action==='licenses'?btn(n.personId?'인물정보':'작품 확인','notification-open',`data-id="${n.id}"`,'ghost small-btn'):''}</article>`).join('')||'<div class="empty">아직 도착한 알림이 없습니다.</div>'}</div>`,`${btn('모두 읽음','notifications-read','','ghost')}${btn('닫기','close','','primary')}`);}
+function notificationReadLabel(n){return `${n.title} · ${n.unread?'읽지 않은 알림, 눌러서 읽음 처리':'읽은 알림'}`;}
+function notificationsDialog(){
+ const notifications=game?.notifications??[];
+ return dialogFrame('제작사 알림함','메시지를 누르면 읽음으로 표시됩니다. 관련 정보는 아래 확인 버튼으로 열 수 있습니다.',`<div class="notification-history">${notifications.map(n=>`<article class="notification-record ${n.unread?'unread':''}" data-notification-id="${n.id}"><button type="button" class="notification-message" data-action="notification-read" data-id="${n.id}" aria-label="${esc(notificationReadLabel(n))}"><span class="notification-meta"><span>${E.weekDate(n.week)}${n.rank?` · 박스오피스 ${n.rank}위`:''}</span><span class="notification-read-state">${n.unread?'새 알림':'읽음'}</span></span><strong class="notification-title">${esc(n.title)}</strong><span class="notification-text">${esc(n.text)}</span></button>${n.filmId||n.personId||n.action==='licenses'?btn(n.personId?'인물정보':n.action==='licenses'?'원작 확인':'작품 확인','notification-open',`data-id="${n.id}"`,'ghost small-btn'):''}</article>`).join('')||'<div class="empty">아직 도착한 알림이 없습니다.</div>'}</div>`,`${btn('모두 읽음','notifications-read','','ghost')}${btn('닫기','close','','primary')}`);
+}
+function syncNotificationReadState(){
+ const items=new Map((game?.notifications??[]).map(n=>[String(n.id),n]));
+ const unread=[...items.values()].filter(n=>n.unread).length;
+ // Update in place so reading a long inbox never resets scroll or keyboard focus.
+ document.querySelectorAll('[data-notification-id]').forEach(row=>{
+  const n=items.get(row.dataset.notificationId);if(!n)return;
+  row.classList.toggle('unread',!!n.unread);
+  row.querySelector('.notification-message')?.setAttribute('aria-label',notificationReadLabel(n));
+  const status=row.querySelector('.notification-read-state');if(status)status.textContent=n.unread?'새 알림':'읽음';
+ });
+ document.querySelectorAll('.notification-control').forEach(button=>{
+  button.setAttribute('aria-label',`알림함 ${unread}개`);
+  let badge=button.querySelector('.notification-count');
+  if(!unread){badge?.remove();return;}
+  if(!badge){badge=document.createElement('span');badge.className='notification-count';button.append(badge);}
+  badge.textContent=unread>99?'99+':String(unread);
+ });
+ renderPopups();
+}
+function readNotification(id){
+ const n=markNotificationRead(game,id);if(!n)return null;
+ clearTimeout(ui.popupTimers.get(n.id));ui.popupTimers.delete(n.id);
+ persist();syncNotificationReadState();return n;
+}
 function renderPopups(){
  const host=$('notification-popups');if(!host)return;
  if(!game||ui.home||$('dialog').open||ui.advancing){host.hidden=true;return;}
@@ -514,14 +545,19 @@ async function toggleFullscreen(){
 }
 function handleNewAction(a,id,button){
  if(a==='home'){if(game)persist();ui.home=true;ui.modal=null;render();window.scrollTo(0,0);return true;}
- if(a==='resume'){ui.home=false;ui.modal=null;render();ui.modal=ui.draft?{type:'wizard'}:nextRequiredTask();renderDialog();return true;}
+ if(a==='resume'){
+   // Always create the dashboard screen first; drafts/tasks are opened only on request.
+   ui.pendingSelection=null;ui.offerPerson=null;ui.replacement=null;ui.picker=null;
+   dialogScroll.clear();go('studio');return true;
+ }
+ if(a==='resume-draft'){if(game&&ui.draft){ui.peekStack=[];open('wizard');}return true;}
  if(a==='sound'){sound.toggle();render();return true;}
  if(a==='fullscreen'){toggleFullscreen();return true;}
  if(a==='notifications'){open('notifications');return true;}
- if(a==='notifications-read'){for(const n of game.notifications??[]){n.unread=false;n.popup=false;}persist();render();return true;}
+ if(a==='notifications-read'){for(const n of game.notifications??[]){markNotificationRead(game,n.id);clearTimeout(ui.popupTimers.get(n.id));ui.popupTimers.delete(n.id);}persist();syncNotificationReadState();return true;}
  if(a==='dismiss-notification'){const n=game.notifications.find(n=>n.id===Number(id));if(n)n.popup=false;clearTimeout(ui.popupTimers.get(Number(id)));ui.popupTimers.delete(Number(id));persist();renderPopups();return true;}
  if(a==='notification-open'){
-   const n=game.notifications.find(n=>n.id===Number(id));if(!n)return true;n.unread=false;n.popup=false;persist();
+   const n=game.notifications.find(n=>n.id===Number(id));if(!n)return true;
    if(n.action==='licenses'){open('licenses');return true;}
    const f=game.films.find(f=>f.id===n.filmId);if(!f)return true;
    open(n.action==='completion'&&!f.completionAcknowledged?'completion':n.action==='business'?'business':'film',f.id);return true;

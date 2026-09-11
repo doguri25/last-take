@@ -1,58 +1,27 @@
 {
-  "version": "1.4.3",
-  "nodeTests": 105,
-  "nodePassed": 105,
-  "nodeFailed": 0,
-  "browserChecks": 241,
-  "browserPassed": 241,
-  "browserFailed": 0,
-  "browserGroups": {
-    "mobileV143Focused": 157,
-    "mobileV142Regression": 84
+  "version": "1.4.4",
+  "nodeInitialFullRun": {
+    "total": 108,
+    "passed": 107,
+    "failed": 1,
+    "failure": "start-screen.mjs expected old CSS cache tag v1.4.3"
   },
-  "viewportSizes": 8,
-  "focusedViewportSizes": 4,
-  "viewports": [
-    [
-      320,
-      568
-    ],
-    [
-      360,
-      640
-    ],
-    [
-      390,
-      844
-    ],
-    [
-      412,
-      915
-    ],
-    [
-      568,
-      320
-    ],
-    [
-      844,
-      390
-    ],
-    [
-      768,
-      1024
-    ],
-    [
-      1366,
-      768
+  "correctedFocusedRun": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "files": [
+      "tests/start-screen.mjs",
+      "tests/weekly-v144.mjs"
     ]
-  ],
+  },
+  "remainingKnownFailures": 0,
+  "browserChecks": 25,
+  "browserPassed": 25,
+  "browserFailed": 0,
   "pageErrors": [],
-  "browserTransport": "Actual dist JavaScript/CSS/images loaded through existing offline blob harness; native Chromium DOM and History API. Fixture storage is simulated; game logic is not replaced.",
+  "browser": "Chromium via existing offline harness",
   "realMobileDevicesTested": false,
-  "deployedAddressTested": false,
-  "nativeMobileOSPickerTested": false,
-  "scopeNote": "Verified retained native select DOM nodes, zero added select nodes, no synthetic select refocus, coarse-pointer blur and live descriptions. Real iPhone Safari/Android native picker UI was not available.",
   "remotePush": "not_performed",
-  "deployment": "not_performed",
-  "archivedReportsNote": "Other versioned files in this folder are historical results, not added to the 1.4.3 totals."
+  "deployment": "not_performed"
 }
