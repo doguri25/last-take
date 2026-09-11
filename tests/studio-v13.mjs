@@ -17,9 +17,9 @@ function editing(){const s=structuredClone(production.s);return {s,f:s.films.fin
 // Fixture-only ledger observations, using the same synchronization entry point.
 function ledger(s,amount,kind='boxoffice'){E.player(s).cash=E.round(E.player(s).cash+amount);s.ledger.unshift({id:++s.ledgerCounter,month:s.month,week:s.week,amount,kind,description:'테스트 사업 거래'});H.recordFinance(s);}
 
-test('eight licensed works have distinct dossiers, characters, contracts and persistent full plots',()=>{
- assert.equal(X.IPS.length,8);assert.equal(new Set(X.IPS.map(ip=>ip.author)).size,8);
- for(const ip of X.IPS){assert.ok(ip.synopsis.length>70&&ip.world.length>30&&ip.risk.length>30);assert.ok(ip.characters.length>=3);assert.ok(RT.RUNTIMES.includes(ip.runtime));const s=fresh(),cash=E.player(s).cash,p=X.licensePitch(s,ip.id);assert.equal(p.synopsis,ip.synopsis);assert.equal(p.license.author,ip.author);assert.equal(E.player(s).cash,cash);const f=E.greenlight(s,E.recommend(s,{script:p,title:p.title,genres:[p.genre],scale:'small',leads:[],supports:[]}));f.status='ready';assert.equal(C.ensurePlot(f),ip.plot);}
+test('original eight licensed works retain dossiers; rotating offers gate new planning',()=>{
+ assert.equal(X.IPS.length,40);assert.equal(new Set(X.IPS.slice(0,8).map(ip=>ip.author)).size,8);
+ for(const ip of X.IPS.slice(0,8)){assert.ok(ip.synopsis.length>70&&ip.world.length>30&&ip.risk.length>30);assert.ok(ip.characters.length>=3);assert.ok(RT.RUNTIMES.includes(ip.runtime));const s=fresh();for(let w=0;w<80;w+=4){s.week=w;s.month=w/4;if(X.currentLicenses(s).some(x=>x.id===ip.id))break;}const cash=E.player(s).cash,p=X.licensePitch(s,ip.id);assert.equal(p.synopsis,ip.synopsis);assert.equal(p.license.author,ip.author);assert.equal(E.player(s).cash,cash);const f=E.greenlight(s,E.recommend(s,{script:p,title:p.title,genres:[p.genre],scale:'small',leads:[],supports:[]}));f.status='ready';assert.equal(C.ensurePlot(f),ip.plot);}
 });
 test('runtime choices map to transparent capacity and influence production budget, not contracts',()=>{
  assert.deepEqual(RT.RUNTIMES.map(RT.dailyShows),[6,5,4,3]);assert.deepEqual(RT.RUNTIMES.map(n=>RT.capacityFactor({runtime:n})),[1.2,1,.8,.6]);

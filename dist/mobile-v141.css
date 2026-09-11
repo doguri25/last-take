@@ -1,0 +1,57 @@
+/* v1.4.1: a single measured mobile dock. Desktop progress stays in the header. */
+.mobile-dock{display:none}
+dialog[data-modal="more"] .nav-modal{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+dialog[data-modal="more"] .nav-modal .btn{min-width:0;min-height:50px;justify-content:flex-start;white-space:normal;text-align:left;padding:12px;gap:9px;line-height:1.45}
+dialog[data-modal="more"] .nav-modal svg{width:19px;height:19px;flex:none}
+dialog[data-modal="more"] .dialog-footer{display:block;flex:none}
+dialog[data-modal="more"] .dialog-footer .btn{width:100%;min-height:44px}
+@media(max-width:900px),(max-height:500px) and (orientation:landscape){
+ .shell{display:block}.sidebar{display:none}
+ .workspace{padding-bottom:var(--mobile-dock-height,114px)}
+ .mobile-dock{display:flex;flex-direction:column;position:fixed;left:0;right:0;bottom:0;z-index:50;background:#171c1ef8;border-top:1px solid var(--line);backdrop-filter:blur(12px);padding:0 max(8px,env(safe-area-inset-right)) env(safe-area-inset-bottom) max(8px,env(safe-area-inset-left));}
+ .mobile-progress{display:grid;grid-template-columns:minmax(0,1fr) minmax(132px,.85fr);align-items:center;gap:12px;padding:8px 5px 6px}
+ .mobile-progress-date{min-width:0;display:flex;flex-direction:column;gap:3px;line-height:1.3}
+ .mobile-progress-date small{font-size:10px;color:var(--muted)}
+ .mobile-progress-date strong{font-size:13px;color:var(--text);white-space:nowrap}
+ .mobile-progress .mobile-advance{grid-area:auto;width:100%;min-width:0;min-height:44px;height:auto;margin:0;padding:9px 10px;font-size:14px;white-space:nowrap}
+ .mobile-dock .mobile-nav{position:static;inset:auto;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:stretch;gap:2px;padding:0 0 4px;margin:0;background:none;border:0;backdrop-filter:none;min-height:0;width:100%}
+ .mobile-dock .mobile-nav button{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;min-height:48px;gap:4px;padding:4px 1px;border-radius:8px;line-height:1.2;font-size:11px;white-space:nowrap}
+ .mobile-dock .mobile-nav button.active{background:#d3ec8910;color:var(--accent)}
+ .mobile-dock .mobile-nav button svg{width:19px;height:19px;flex:none}
+ .topbar{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;gap:3px 8px;height:auto;min-height:0;padding:calc(8px + env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) 8px max(12px,env(safe-area-inset-left));align-items:center}
+ .topbar .topbar-right{display:contents}
+ .topbar .topbar-date{grid-column:1;grid-row:1;min-width:0;gap:0}
+ .topbar .calendar-box,.topbar .topbar-date small{display:none}
+ .topbar .topbar-date strong{font-size:14px;white-space:nowrap;line-height:1.4}
+ .topbar .cash-button{grid-column:1;grid-row:2;justify-self:start;display:flex;align-items:center;gap:6px;min-width:0;max-width:100%;padding:0;border:0;text-align:left}
+ .topbar .cash-button small{display:inline;font-size:10px;white-space:nowrap}
+ .topbar .cash-button strong{font-size:14px;line-height:1.4;overflow-wrap:anywhere}
+ .topbar .utility-buttons{grid-column:2;grid-row:1/3;justify-content:flex-end;gap:4px;--utility:32px}
+ .topbar .utility-buttons .icon-btn{padding:6px}
+ .topbar .advance-button{display:none!important}
+ .notification-popups{bottom:calc(var(--mobile-dock-height,114px) + 12px)}
+ .catalog-fit .workspace{padding-bottom:var(--mobile-dock-height,114px)!important}
+ .catalog-fit .topbar{height:auto;min-height:0}
+}
+@media(max-width:360px){
+ .topbar .topbar-date strong{font-size:12px}
+ .topbar .utility-buttons{--utility:30px;gap:3px}
+ .mobile-progress{grid-template-columns:minmax(0,1fr) 132px;gap:7px;padding-inline:2px}
+ .mobile-progress-date strong{font-size:11px}
+ dialog[data-modal="more"] .nav-modal .btn{padding:10px 8px;font-size:12px;gap:6px}
+}
+/* A short landscape display needs one row, not another tall bottom strip. */
+@media(max-height:500px) and (orientation:landscape){
+ .mobile-dock{display:grid;grid-template-columns:minmax(0,1fr) minmax(96px,120px);align-items:center;gap:8px;padding-top:4px;padding-bottom:calc(4px + env(safe-area-inset-bottom))}
+ .mobile-dock .mobile-nav{order:1;padding:0;min-height:0}
+ .mobile-dock .mobile-nav button{min-height:40px;gap:2px;font-size:10px}
+ .mobile-dock .mobile-nav button svg{width:17px;height:17px}
+ .mobile-progress{order:2;display:block;padding:0}
+ .mobile-progress-date{display:none}
+ .mobile-progress .mobile-advance{min-height:40px;padding:8px 6px;font-size:12px}
+ .topbar,.catalog-fit .topbar{grid-template-columns:auto minmax(0,1fr) auto;grid-template-rows:auto;gap:12px;height:48px;min-height:48px;padding-block:5px}
+ .topbar .topbar-date{grid-column:1;grid-row:1}
+ .topbar .cash-button{grid-column:2;grid-row:1;justify-self:end}
+ .topbar .utility-buttons{grid-column:3;grid-row:1;--utility:30px}
+ .topbar .cash-button small{display:none}
+}

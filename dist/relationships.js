@@ -1,3 +1,4 @@
+import {EXTRA_SUBGENRES} from './content-v14.js';
 // Social affinity is independent of professional compatibility. Reads never mutate saves.
 const hash=text=>{let n=2166136261;for(const c of String(text)){n^=c.charCodeAt(0);n=Math.imul(n,16777619);}return n>>>0;};
 const clamp=n=>Math.max(0,Math.min(100,n));
@@ -17,3 +18,5 @@ export const SUBGENRES={drama:[['growth','성장 드라마',['family','adventure
 export function normalizeSubgenres(d){return Object.fromEntries(d.genres.map(g=>[g,SUBGENRES[g].some(x=>x[0]===d.subgenres?.[g])?d.subgenres[g]:SUBGENRES[g][0][0]]));}
 export function subgenreEffect(d){if(!d.subgenres)return 0;let score=0;for(const g of d.genres){const sub=SUBGENRES[g]?.find(x=>x[0]===d.subgenres[g]);if(!sub)continue;score+=1;for(const other of d.genres.filter(x=>x!==g))score+=sub[2].includes(other)?2:sub[3].includes(other)?-3:0;}return Math.max(-8,Math.min(8,score));}
 export const subgenreNames=d=>d.genres.map(g=>SUBGENRES[g]?.find(x=>x[0]===d.subgenres?.[g])?.[1]).filter(Boolean);
+
+Object.assign(SUBGENRES,EXTRA_SUBGENRES);

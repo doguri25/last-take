@@ -1,3 +1,5 @@
+import {initAbilities,advanceAbilities} from './abilities.js';
+import {weeklyExperience} from './weekly-experience.js';
 import * as RT from './runtime.js';
 import * as T from './taxes.js';
 import {adjust,affinity} from './relationships.js';
@@ -225,7 +227,7 @@ export function migrateSave(s){
   }
   initializeRoster(s,s.version===1);initRelations(s);s.marketEvents??=[];if(!s.marketEvents.length)startMarketEvent(s);s.version=VERSION;initClock(s);
   for(const f of s.films){initFilm(s,f);initTimeline(s,f,true);f.castSnapshot??=Object.fromEntries(crewIds(f).map(id=>[id,{...person(s,id)}]));f.pastCrew??=[];f.chemistry??=teamCompatibility(s,crewIds(f));f.historyInfluence??=0;f.seriesRoot??=f.id;f.episode??=1;if(f.reviews.length)f.creativeOutcome??={surprise:false,chemistryTurn:0,variation:0,change:0};}
-  C.initCinema(s);for(const f of s.films)RT.initRuntime(f);T.initTax(s);initFinanceHistory(s);
+  C.initCinema(s);for(const f of s.films)RT.initRuntime(f);T.initTax(s);initFinanceHistory(s);initAbilities(s);
   return s;
 }
 export const loanLimit=s=>round(150+Math.min(150,player(s).totalReceipts*.2));
@@ -334,7 +336,7 @@ export function advanceMonth(s){
 export function createGame(name,seed=Date.now()>>>0,logo=0){
   if(typeof name!=='string'||!name.trim()||name.trim().length>24)throw Error('회사 이름을 1~24자로 적어 주세요.');
   const s={version:VERSION,seed:seed>>>0,month:0,filmCounter:0,pitchCounter:0,messageCounter:0,ledgerCounter:0,companies:STUDIOS.map((c,i)=>({...c,id:`c${i}`,name:i===0?name.trim():c.name,logo:i===0?logo:i%8,cash:150,debt:0,lastRelease:-2,totalGross:0,totalReceipts:0,totalAudience:0,trophies:0,reputation:30})),films:[],pitches:[],lastPitchRefresh:-2,messages:[],ledger:[],marketHistory:[],awards:[],trends:['drama','comedy']};
-  initializeRoster(s);initRelations(s);startMarketEvent(s);
+  initializeRoster(s);initRelations(s);startMarketEvent(s);initAbilities(s);
   s.ledger=[{id:++s.ledgerCounter,month:0,week:0,amount:150,description:'회사 설립 자본금',kind:'capital'}];
   initClock(s);C.initCinema(s);T.initTax(s,{fresh:true});initFinanceHistory(s);refreshPitches(s,{initial:true});
   for(const c of s.companies.slice(1))startAi(s,c);
@@ -398,7 +400,7 @@ function settleWeeklyBoxOffice(s) {
 export function advanceWeek(s) {
   if (pendingEdits(s).length) throw Error('감독과의 편집 협의를 먼저 결정해 주세요.');
   if (pendingEvents(s).length) throw Error('제작 중 도착한 사건 카드를 먼저 결정해 주세요.');
-  initClock(s);
+  initClock(s);initAbilities(s);
   settleWeeklyBoxOffice(s);
   const monthEnd = (weekOf(s) + 1) % 4 === 0;
   if (monthEnd) {
@@ -452,7 +454,7 @@ export function advanceWeek(s) {
   if (random(s) < .25) socialNews(s);
   aiOperations(s, s.week % 4 === 0);
   resolvePromotions(s);
-  scanPromotionAvailability(s);settleStreaming(s);recordFinance(s,'주간 잔액');
+  scanPromotionAvailability(s);settleStreaming(s);advanceAbilities(s);weeklyExperience(s);recordFinance(s,'주간 잔액');
   if (player(s).cash < 0) log(s, '운영 자금 확인', '운영 자금이 부족합니다. 재무·은행 메뉴에서 확인해 주세요.', 'finance');
   return s;
 }

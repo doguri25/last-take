@@ -4,7 +4,7 @@ import {PEOPLE,EVENTS,GENRES} from '../dist/data.js';
 const count=(role,gender)=>PEOPLE.filter(p=>p.role===role&&(!gender||p.gender===gender)).length;
 assert.equal(PEOPLE.length,1600);assert.equal(new Set(PEOPLE.map(p=>p.name)).size,1600);
 assert.deepEqual([count('director'),count('writer'),count('lead','M'),count('lead','F'),count('support','M'),count('support','F')],[200,200,200,200,400,400]);
-assert.equal(EVENTS.length,40);
+assert.equal(EVENTS.length,56);
 assert.ok(E.genreBonus(['family','drama'])>E.genreBonus(['family','thriller']));
 function draft(s,scale='small'){
   let p=s.pitches.find(p=>E.available(s,E.person(s,p.writer))&&!E.busyFilm(s,p.writer));

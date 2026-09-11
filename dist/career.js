@@ -60,7 +60,7 @@ function reincarnate(s,p,rnd){
 export function cycleYear(s,rnd){
   const changes=[];for(let i=0;i<s.roster.length;i++){
     const p=s.roster[i];p.age++;
-    if(p.age<=24&&p.status==='active')p.skill=clamp(p.skill+1+Math.floor(rnd(s)*3),20,96);
+    // Weekly ability development now handles growth (no duplicate annual bonus).
     const oldChance=p.age>=98?1:p.age>=85?.12+(p.age-85)*.04:p.age>=70?.008+(p.age-70)*.003:0;
     const diedOld=rnd(s)<oldChance,diedSuddenly=!diedOld&&p.age>=18&&rnd(s)<.0015;
     if(diedOld||diedSuddenly){
