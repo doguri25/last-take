@@ -15,6 +15,7 @@ for(let seed=1;seed<100;seed++){
  if(reports.some(r=>r.status==='counter')&&!reports.some(r=>r.status==='refused')){console.log(JSON.stringify({s,d,reports}));break;}
 }
 '''],cwd=ROOT,text=True))
+APP_VERSION=json.loads((ROOT/'package.json').read_text())['version']
 payload=fixture_payload();checks=[];errors=[];p=None
 
 def check(label,passed,detail=None):
@@ -62,7 +63,7 @@ def assert_full(expected,label):
 try:
  with sync_playwright() as pw:
   b=launch_browser(pw)
-  p=page(b);check('initial page loads with version 1.4.3',p.locator('[data-action="versions"]').inner_text().startswith('v1.4.3'));p.screenshot(path=str(out/'start-mobile.png'));p.close()
+  p=page(b);check('initial page loads with current version '+APP_VERSION,p.locator('[data-action="versions"]').inner_text().startswith('v'+APP_VERSION));p.screenshot(path=str(out/'start-mobile.png'));p.close()
   for size in ([] if args.casting_only else [(320,568),(390,844),(568,320),(1366,768)]):
    touch=size[0]<900;p=page(b,meta['s'],size,touch);planning()
    while p.locator('[data-action="genre-toggle"].selected').count():click('genre-toggle','.selected')

@@ -1,0 +1,74 @@
+{
+  "steps": [
+    {
+      "selector": "[data-action=\"more\"]",
+      "modal": "more",
+      "dialogOpen": true,
+      "errors": []
+    },
+    {
+      "selector": "[data-action=\"nav\"][data-view=\"finance\"]",
+      "modal": "more",
+      "dialogOpen": false,
+      "errors": []
+    },
+    {
+      "selector": "[data-action=\"finance-chart\"][data-id=\"cash\"]",
+      "modal": "finance-chart",
+      "dialogOpen": true,
+      "errors": []
+    },
+    {
+      "selector": "[data-action=\"feature-back\"]",
+      "modal": "finance-chart",
+      "dialogOpen": false,
+      "errors": []
+    },
+    {
+      "selector": "[data-action=\"nav\"][data-view=\"market\"]",
+      "modal": "finance-chart",
+      "dialogOpen": false,
+      "errors": []
+    },
+    {
+      "selector": "[data-action=\"company-info\"]",
+      "modal": "company-info",
+      "dialogOpen": true,
+      "errors": [
+        "Failed to execute 'structuredClone' on 'Window': i=>series.length===1?(w+left-right)/2:left+i*(w-left-right)/(series.length-1) could not be cloned."
+      ]
+    },
+    {
+      "selector": "[data-action=\"film-peek\"]",
+      "modal": "film",
+      "dialogOpen": true,
+      "errors": [
+        "Failed to execute 'structuredClone' on 'Window': i=>series.length===1?(w+left-right)/2:left+i*(w-left-right)/(series.length-1) could not be cloned.",
+        "Failed to execute 'structuredClone' on 'Window': i=>series.length===1?(w+left-right)/2:left+i*(w-left-right)/(series.length-1) could not be cloned.",
+        "Failed to execute 'structuredClone' on 'Window': i=>series.length===1?(w+left-right)/2:left+i*(w-left-right)/(series.length-1) could not be cloned."
+      ]
+    },
+    {
+      "selector": "[data-action=\"feature-back\"]",
+      "modal": "company-info",
+      "dialogOpen": true,
+      "errors": [
+        "Failed to execute 'structuredClone' on 'Window': i=>series.length===1?(w+left-right)/2:left+i*(w-left-right)/(series.length-1) could not be cloned.",
+        "Failed to execute 'structuredClone' on 'Window': i=>series.length===1?(w+left-right)/2:left+i*(w-left-right)/(series.length-1) could not be cloned.",
+        "Failed to execute 'structuredClone' on 'Window': i=>series.length===1?(w+left-right)/2:left+i*(w-left-right)/(series.length-1) could not be cloned.",
+        "Failed to execute 'structuredClone' on 'Window': i=>series.length===1?(w+left-right)/2:left+i*(w-left-right)/(series.length-1) could not be cloned.",
+        "Failed to execute 'structuredClone' on 'Window': i=>series.length===1?(w+left-right)/2:left+i*(w-left-right)/(series.length-1) could not be cloned."
+      ]
+    }
+  ],
+  "errors": [
+    "Failed to execute 'structuredClone' on 'Window': i=>series.length===1?(w+left-right)/2:left+i*(w-left-right)/(series.length-1) could not be cloned.",
+    "Failed to execute 'structuredClone' on 'Window': i=>series.length===1?(w+left-right)/2:left+i*(w-left-right)/(series.length-1) could not be cloned.",
+    "Failed to execute 'structuredClone' on 'Window': i=>series.length===1?(w+left-right)/2:left+i*(w-left-right)/(series.length-1) could not be cloned.",
+    "Failed to execute 'structuredClone' on 'Window': i=>series.length===1?(w+left-right)/2:left+i*(w-left-right)/(series.length-1) could not be cloned.",
+    "Failed to execute 'structuredClone' on 'Window': i=>series.length===1?(w+left-right)/2:left+i*(w-left-right)/(series.length-1) could not be cloned."
+  ],
+  "toast": "",
+  "modal": "company-info",
+  "dialogOpen": true
+}

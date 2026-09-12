@@ -1,0 +1,70 @@
+{
+  "scope": "One seed, one recommended small film per difficulty, free event choices. Not a guarantee of profit.",
+  "rows": [
+    {
+      "difficulty": "very-easy",
+      "capital": 220,
+      "initialBudget": 10.93,
+      "finalCost": 11.27,
+      "quality": 80.2,
+      "critic": 67,
+      "audience": 103670,
+      "gross": 10.15,
+      "producerReceipts": 4.17,
+      "cashAfterEightReleaseWeeks": 211.3,
+      "week": 32
+    },
+    {
+      "difficulty": "easy",
+      "capital": 180,
+      "initialBudget": 10.93,
+      "finalCost": 11.27,
+      "quality": 80.2,
+      "critic": 67,
+      "audience": 95763,
+      "gross": 9.38,
+      "producerReceipts": 3.85,
+      "cashAfterEightReleaseWeeks": 170.74,
+      "week": 32
+    },
+    {
+      "difficulty": "normal",
+      "capital": 150,
+      "initialBudget": 10.93,
+      "finalCost": 11.27,
+      "quality": 80.2,
+      "critic": 67,
+      "audience": 87858,
+      "gross": 8.6,
+      "producerReceipts": 3.54,
+      "cashAfterEightReleaseWeeks": 140.27,
+      "week": 32
+    },
+    {
+      "difficulty": "hard",
+      "capital": 125,
+      "initialBudget": 10.93,
+      "finalCost": 11.27,
+      "quality": 80.2,
+      "critic": 67,
+      "audience": 82583,
+      "gross": 8.09,
+      "producerReceipts": 3.32,
+      "cashAfterEightReleaseWeeks": 114.81,
+      "week": 32
+    },
+    {
+      "difficulty": "very-hard",
+      "capital": 100,
+      "initialBudget": 10.93,
+      "finalCost": 11.27,
+      "quality": 80.2,
+      "critic": 67,
+      "audience": 77314,
+      "gross": 7.57,
+      "producerReceipts": 3.13,
+      "cashAfterEightReleaseWeeks": 89.46,
+      "week": 32
+    }
+  ]
+}

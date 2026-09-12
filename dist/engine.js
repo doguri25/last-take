@@ -1,3 +1,6 @@
+import * as K from './economy.js';
+import * as B from './studio-growth.js';
+export {filmProfit} from './studio-growth.js';
 import {initAbilities,advanceAbilities} from './abilities.js';
 import {weeklyExperience} from './weekly-experience.js';
 import * as RT from './runtime.js';
@@ -24,10 +27,11 @@ function pick(s,a){return a[Math.floor(random(s)*a.length)];}
 const mean=a=>a.reduce((n,x)=>n+x,0)/a.length;
 export const player=s=>s.companies[0];
 export const active=s=>s.films.filter(f=>['production','reshoot'].includes(f.status));
+export const productionSlots=(s,company='c0')=>s.films.filter(f=>f.company===company&&(['production','reshoot'].includes(f.status)||(f.screening?.status==='editing'&&f.screening.decision?.id==='reshoot')));
 export const myFilms=s=>s.films.filter(f=>f.company==='c0');
 export const pendingEvents=s=>s.films.filter(f=>f.company==='c0'&&f.pending!=null);
 export const crewIds=f=>[f.script.writer,f.director,...f.leads,...f.supports];
-export const busyFilm=(s,id,except)=>active(s).find(f=>f.id!==except&&[...crewIds(f),...(f.cameos??[])].includes(id));
+export const busyFilm=(s,id,except)=>active(s).find(f=>f.id!==except&&[...crewIds(f),...(f.cameos??[])].includes(id))??B.screeningCrewBusy(s,id,except);
 export function genreFit(p,genres){if(!genres.length)return 0;return Math.round(mean(genres.map(g=>p.genres.includes(g)?94:48)));}
 export function genreBonus(genres){if(genres.length===1)return 2;let n=0;for(let i=0;i<genres.length;i++)for(let j=i+1;j<genres.length;j++)n+=SYNERGIES[[genres[i],genres[j]].sort().join('|')]??-1;return clamp(n,-10,10);}
 export function qualityEstimate(d,s){
@@ -44,7 +48,7 @@ export function estimate(d,s){
   const ids=crewIds(d).filter(Boolean);const set=round((d.script.license?.fee??0)+scale.base*mult*RT.runtimeCostFactor(d)+(d.script.sequelOf?scale.base*.06:0)),writer=round(d.script.fee*(s?(contractQuote(s,person(s,d.script.writer),ids,d.company??'c0').chemistryFactor*contractQuote(s,person(s,d.script.writer),ids,d.company??'c0').relationshipFactor):1)),cast=round(crew.reduce((n,p)=>n+(s?contractQuote(s,p,ids,d.company??'c0').fee:p.fee),0)*sizeFactor);
   const presentation=C.formatEffect(d,scale.base*mult);
   const negotiation=d.requireNegotiation&&s?round(negotiationReport(s,d).filter(r=>r.status==='counter').reduce((n,r)=>n+r.extra,0)):0;
-  return{set,writer,runtime:RT.runtimeOf(d),runtimeQuality:RT.runtimeQuality(d),runtimeAdjustment:round(scale.base*mult*(RT.runtimeCostFactor(d)-1)),cast:round(cast+negotiation),negotiation,formats:presentation.cost,formatBreakdown:presentation.breakdown,formatQuality:presentation.quality,total:round(set+writer+cast+negotiation+presentation.cost),reserve:round((set+writer+cast+negotiation+presentation.cost)*.16),months:scale.months,quality:qualityEstimate(d,s)};
+  return B.adjustEstimate(s,d,{set,writer,runtime:RT.runtimeOf(d),runtimeQuality:RT.runtimeQuality(d),runtimeAdjustment:round(scale.base*mult*(RT.runtimeCostFactor(d)-1)),cast:round(cast+negotiation),negotiation,formats:presentation.cost,formatBreakdown:presentation.breakdown,formatQuality:presentation.quality,total:round(set+writer+cast+negotiation+presentation.cost),reserve:round((set+writer+cast+negotiation+presentation.cost)*.16),months:scale.months,quality:qualityEstimate(d,s)});
 }
 function log(s,title,text,kind='news',filmId){s.messages.unshift({id:++s.messageCounter,month:s.month,week:weekOf(s),title,text,kind,filmId});s.messages=s.messages.slice(0,100);}
 function transaction(s,c,amount,description,kind='expense',filmId,metadata={}){
@@ -100,7 +104,7 @@ export function recommend(s,d){
   return{...d,subgenres:normalizeSubgenres(d),director:choose('director'),leads:[choose('lead','M'),choose('lead','F')],supports:[choose('support','M'),choose('support','F'),choose('support','M'),choose('support','F')]};
 }
 function validateDraft(s,d,c){
-  if(active(s).filter(f=>f.company===c.id).length>=3)throw Error('동시에 제작할 수 있는 영화는 3편입니다.');
+  if(productionSlots(s,c.id).length>=3)throw Error('동시에 제작할 수 있는 영화는 3편입니다.');
   if(!d.script||person(s,d.script.writer)?.role!=='writer')throw Error('작가의 시나리오를 먼저 선택해 주세요.');
   if(!Array.isArray(d.genres)||d.genres.length<1||d.genres.length>3||new Set(d.genres).size!==d.genres.length||d.genres.some(g=>!GENRE[g]))throw Error('장르를 1~3개 선택해 주세요.');
   if(d.runtime!=null&&!RT.RUNTIMES.includes(d.runtime))throw Error('러닝타임은 90·120·150·180분 중 선택해 주세요.');
@@ -114,7 +118,7 @@ function validateDraft(s,d,c){
   if(c.id==='c0'&&!s.pitches.some(p=>p.id===d.script.id))throw Error('현재 받은 시나리오를 선택해 주세요.');
   if(d.subgenres&&(Object.keys(d.subgenres).some(g=>!d.genres.includes(g))||d.genres.some(g=>!SUBGENRES[g].some(x=>x[0]===d.subgenres[g]))))throw Error('선택한 장르별 세부장르를 확인해 주세요.');
   validateNegotiations(s,d);
-  const e=estimate({...d,company:c.id},s);if(c.cash<e.total)throw Error(`제작비가 ${money(e.total-c.cash)} 부족합니다. 은행에서 자금을 확보해 주세요.`);
+  const e=estimate({...d,company:c.id},s);B.validateFunding(s,d,e);if(c.cash<e.cashNeeded)throw Error(`제작비가 ${money(e.cashNeeded-c.cash)} 부족합니다. 은행에서 자금을 확보해 주세요.`);
   return e;
 }
 export function greenlight(s,d,company='c0'){
@@ -127,7 +131,9 @@ export function greenlight(s,d,company='c0'){
   f.subgenres=d.subgenres?{...d.subgenres}:{};f.subgenreBonus=subgenreEffect(d);f.socialAffinity=teamAffinity(s,crewIds(f));initFilm(s,f);initTimeline(s,f);f.startWeek=weekOf(s);f.elapsedWeeks=0;f.reshootElapsedWeeks=0;f.productionCycles[0].startWeek=weekOf(s);f.productionCycles[0].crankInWeek=weekOf(s);f.completionAcknowledged=false;
   if(d.requireNegotiation){f.negotiations=negotiationReport(s,d);for(const r of f.negotiations)f.contracts[r.person].paid=r.total;}
   productionBonds(s,f,1,'새 작품 계약');
-  transaction(s,c,-e.total,`「${f.title}」 제작 계약`,'production',f.id);s.films.push(f);
+  K.initFilmEconomy(s,f);
+  if(company==='c0')B.attachProduction(s,d,f,e);
+  transaction(s,c,-e.total,`「${f.title}」 제작 계약`,'production',f.id,{externalFunding:K.modernFilm(f)?f.investment?.amount??0:0});s.films.push(f);
   if(company==='c0'){s.pitches=s.pitches.filter(p=>p.id!==d.script.id);log(s,'새 영화가 시작됩니다',`「${f.title}」 · ${e.months*4}주 제작 · ${money(e.total)} 집행`,'production',f.id);}
   return f;
 }
@@ -143,7 +149,7 @@ export function resolveEvent(s,id,index){
   if(f.company==='c0')log(s,event[0],`${choice[0]} · 품질 ${choice[2]>=0?'+':''}${choice[2]} · ${money(round(f.spent-beforeSpent))} 비용 변동`,'decision',f.id);
   return f;
 }
-export function expectedRelease(f){if(f.status==='streaming'||f.status==='shelved')return Infinity;return f.releaseMonth??(f.status==='ready'?f.readyMonth+1:f.status==='reshoot'?f.reshootStart+12:f.start+f.months);}
+export function expectedRelease(f){if(f.status==='streaming'||f.status==='shelved')return Infinity;return f.releaseMonth??(f.status==='ready'?f.readyMonth+1:f.status==='reshoot'?f.reshootStart+12+(f.screeningDelayWeeks??0)/4:f.start+f.months+(f.screeningDelayWeeks??0)/4);}
 export function competitors(s,f,month=s.month,planned=false){
   return s.films.filter(o=>o.id!==f.id&&o.genres.some(g=>f.genres.includes(g))&&(planned?Math.abs(expectedRelease(o)-month)<=1:o.releaseMonth!=null&&Math.abs(o.releaseMonth-month)<=1));
 }
@@ -164,6 +170,7 @@ export function reviewScore(s,f,planned=true){
 export const releaseWait=(s,company='c0')=>Math.ceil(releaseWaitWeeks(s,company)/4);
 export function releaseFilm(s,id){
   const f=s.films.find(f=>f.id===id);if(!f||!['ready','shelved'].includes(f.status))throw Error('제작과 평론이 완료된 영화만 개봉할 수 있습니다.');
+  if(f.company==='c0')B.assertDistribution(s,f);
   if(f.activePromotion)throw Error('진행 중인 홍보가 다음 주에 완료됩니다. 결과를 확인한 뒤 개봉해 주세요.');
   const c=s.companies.find(c=>c.id===f.company),wait=releaseWait(s,c.id);if(wait)throw Error(`다음 개봉은 ${weekDate(weekOf(s)+releaseWaitWeeks(s,c.id))}부터 가능합니다.`);
   if(f.status==='shelved'){f.storageHistory??=[];f.storageHistory.push({action:'release',month:s.month,week:weekOf(s)});}f.distribution='theatrical';f.poster??=GENRES.findIndex(g=>g.id===f.genres[0])%12;f.status='showing';f.releaseMonth=s.month;f.releaseWeek=weekOf(s);c.lastRelease=s.month;c.lastReleaseWeek=weekOf(s);invalidateCareer(s);
@@ -175,6 +182,7 @@ export function shelveFilm(s,id){const f=s.films.find(f=>f.id===id);if(!f||f.com
 export function unshelveFilm(s,id){const f=s.films.find(f=>f.id===id);if(!f||f.company!=='c0'||f.status!=='shelved')throw Error('창고에 보관한 우리 영화를 선택해 주세요.');f.status='ready';f.storageHistory??=[];f.storageHistory.push({action:'restore',month:s.month,week:weekOf(s)});log(s,'개봉 준비를 다시 시작합니다',`「${f.title}」 창고에서 꺼냈습니다. 홍보와 개봉 시기를 결정해 주세요.`,'production',f.id);return f;}
 export function extendFilm(s,id){
   const f=s.films.find(f=>f.id===id);if(!f||f.company!=='c0'||f.status!=='ready'||f.extended)throw Error('개봉 전 완성작을 한 번만 추가 제작할 수 있습니다.');
+  B.assertDistribution(s,f);
   if(active(s).filter(o=>o.company===f.company).length>=3)throw Error('추가 제작도 제작 슬롯 1개가 필요합니다.');
   for(const pid of [...crewIds(f),...(f.cameos??[])]){if(!available(s,person(s,pid)))throw Error(`${person(s,pid).name} 님의 은퇴·별세로 기존 제작진의 추가 제작이 어렵습니다. 새 제작진으로 속편을 기획할 수 있습니다.`);if(busyFilm(s,pid,f.id))throw Error(`${person(s,pid).name} 님의 제작 일정이 겹칩니다. 일정이 비면 추가 제작할 수 있습니다.`);}
   const cost=round(f.budget*.4);if(player(s).cash<cost)throw Error('추가 제작비가 부족합니다.');
@@ -227,8 +235,8 @@ export function migrateSave(s){
   }
   initializeRoster(s,s.version===1);initRelations(s);s.marketEvents??=[];if(!s.marketEvents.length)startMarketEvent(s);s.version=VERSION;initClock(s);
   for(const f of s.films){initFilm(s,f);initTimeline(s,f,true);f.castSnapshot??=Object.fromEntries(crewIds(f).map(id=>[id,{...person(s,id)}]));f.pastCrew??=[];f.chemistry??=teamCompatibility(s,crewIds(f));f.historyInfluence??=0;f.seriesRoot??=f.id;f.episode??=1;if(f.reviews.length)f.creativeOutcome??={surprise:false,chemistryTurn:0,variation:0,change:0};}
-  C.initCinema(s);for(const f of s.films)RT.initRuntime(f);T.initTax(s);initFinanceHistory(s);initAbilities(s);
-  return s;
+  C.initCinema(s);B.initGrowth(s);for(const f of s.films)RT.initRuntime(f);T.initTax(s);initFinanceHistory(s);initAbilities(s);
+  K.initEconomy(s);return s;
 }
 export const loanLimit=s=>round(150+Math.min(150,player(s).totalReceipts*.2));
 export function borrow(s,amount){
@@ -241,7 +249,7 @@ export function repay(s,amount){
   c.debt=round(c.debt-amount);transaction(s,c,-amount,'대출 원금 상환','repayment');return c;
 }
 function startAi(s,c){
-  if(active(s).filter(f=>f.company===c.id).length>=3)return;
+  if(productionSlots(s,c.id).length>=3)return;
   const writers=people(s).filter(p=>p.role==='writer'&&available(s,p)&&!busyFilm(s,p.id));if(!writers.length)return;
   const pool=writers.filter(p=>p.genres.includes(c.genre));let script=createPitch(s,pick(s,pool.length?pool:writers).id,c.genre);const sequels=s.films.filter(f=>f.company===c.id&&f.status==='closed'&&!s.films.some(o=>o.sequelOf===f.id));if(sequels.length&&random(s)<.22)script=createSequelPitch(s,pick(s,sequels).id,c.id);
   let scale=c.cash>125&&random(s)>.48?'large':c.cash>55?'medium':'small';
@@ -273,9 +281,9 @@ function settleBoxOffice(s){
     const rivals=films.filter(o=>o.id!==f.id&&o.genres.some(g=>f.genres.includes(g))&&s.month-o.releaseMonth<3).length;
     const competition=clamp(1-rivals*.085,.48,1);
     const eventBoost=marketBoost(s,f),trend=(f.genres.some(g=>s.trends.includes(g))?1.12:1)*(1+eventBoost/100);
-    const base=opening?C.openingDemand(f,{competition,trend,stars,reach:SCALE[f.scale].reach,franchise})*RT.capacityFactor(f)*2.35:f.lastAudience*Math.pow(C.weeklyRetention(f),4)*(1+eventBoost/100);
-    const audience=Math.max(0,Math.round(base*(1+(f.publicity??0)/100)));const gross=round(audience/10000*C.formatEffect(f).ticketFactor),royalty=round(gross*.5*(f.script.license?.share??0)),receipts=round(gross*.5-royalty);f.royalties=round((f.royalties??0)+royalty);
-    f.runs.push({month:s.month,audience,gross,receipts,eventBoost,competition:Math.round((1-competition)*100)});f.audience+=audience;f.gross=round(f.gross+gross);f.receipts=round(f.receipts+receipts);f.lastAudience=audience;if(opening)f.openingAudience=audience;
+    const base=opening?C.openingDemand(f,{competition,trend,stars,reach:SCALE[f.scale].reach,franchise:franchise*(f.seriesBoost??1)})*RT.capacityFactor(f)*K.demandFactor(f)*2.35:f.lastAudience*Math.pow(C.weeklyRetention(f),4)*(1+eventBoost/100);
+    const audience=Math.max(0,Math.round(base*(1+(f.publicity??0)/100)));const settlement=K.theatricalSettlement(f,audience,C.formatEffect(f).ticketFactor),{gross,royalty}=settlement,receipts=B.splitReceipt(s,f,settlement.pool);K.recordTheatrical(f,settlement);f.royalties=round((f.royalties??0)+royalty);
+    f.runs.push({settlement:structuredClone(settlement),month:s.month,audience,gross,receipts,eventBoost,competition:Math.round((1-competition)*100)});f.audience+=audience;f.gross=round(f.gross+gross);f.receipts=round(f.receipts+receipts);f.lastAudience=audience;if(opening)f.openingAudience=audience;
     const c=s.companies.find(c=>c.id===f.company);c.totalAudience+=audience;c.totalGross=round(c.totalGross+gross);c.totalReceipts=round(c.totalReceipts+receipts);transaction(s,c,receipts,`「${f.title}」 배급 정산`,'boxoffice',f.id);
     C.ensureViewerReviews(f);announceBoxOfficeMilestones(s,f);totalAudience+=audience;totalGross=round(totalGross+gross);
     // End only after a full opening month, when demand falls below 12% of opening or 10,000 admissions.
@@ -314,7 +322,7 @@ export function advanceMonth(s){
   replaceUnavailableCrew(s);
   if(s.month%3===0){const event=startMarketEvent(s);if(event)log(s,event.title,`${GENRE[event.genre].name} 장르 관객 +${event.boost}% · ${date(event.start)} ~ ${date(event.end-1)}. ${event.reason}`,'trend');s.trends=[pick(s,GENRES).id];let next;do{next=pick(s,GENRES).id;}while(s.trends.includes(next));s.trends.push(next);log(s,'관객의 관심이 바뀌었습니다',`${s.trends.map(g=>GENRE[g].name).join(' · ')} 장르가 이번 분기 주목받고 있습니다.`,'trend');}
   for(const f of active(s)){
-    if(f.staffVacancy?.length)continue;
+    if(f.staffVacancy?.length||B.screeningHold(f))continue;
     if(f.status==='reshoot'){f.reshootElapsed++;recordWrap(s,f);if(f.reshootElapsed>=12){f.quality=clamp(f.quality+8,20,99);prepareReviews(s,f);}continue;}
     f.elapsed++;
     if(f.decisions.length<4&&f.elapsed>=Math.ceil(f.months*(f.decisions.length+1)/5)){
@@ -333,21 +341,24 @@ export function advanceMonth(s){
   settleStreaming(s);recordFinance(s,'월 결산');
   return s;
 }
-export function createGame(name,seed=Date.now()>>>0,logo=0){
+export function createGame(name,seed=Date.now()>>>0,logo=0,difficulty='normal'){
+  if(!K.DIFFICULTY[difficulty])throw Error('난이도를 5단계 중 선택해 주세요.');
   if(typeof name!=='string'||!name.trim()||name.trim().length>24)throw Error('회사 이름을 1~24자로 적어 주세요.');
   const s={version:VERSION,seed:seed>>>0,month:0,filmCounter:0,pitchCounter:0,messageCounter:0,ledgerCounter:0,companies:STUDIOS.map((c,i)=>({...c,id:`c${i}`,name:i===0?name.trim():c.name,logo:i===0?logo:i%8,cash:150,debt:0,lastRelease:-2,totalGross:0,totalReceipts:0,totalAudience:0,trophies:0,reputation:30})),films:[],pitches:[],lastPitchRefresh:-2,messages:[],ledger:[],marketHistory:[],awards:[],trends:['drama','comedy']};
-  initializeRoster(s);initRelations(s);startMarketEvent(s);initAbilities(s);
-  s.ledger=[{id:++s.ledgerCounter,month:0,week:0,amount:150,description:'회사 설립 자본금',kind:'capital'}];
+  s.difficulty=difficulty;K.initEconomy(s);s.companies[0].cash=K.difficulty(s).capital;
+  initializeRoster(s);initRelations(s);startMarketEvent(s);initAbilities(s);B.initGrowth(s);
+  s.ledger=[{id:++s.ledgerCounter,month:0,week:0,amount:K.difficulty(s).capital,description:'회사 설립 자본금',kind:'capital'}];
   initClock(s);C.initCinema(s);T.initTax(s,{fresh:true});initFinanceHistory(s);refreshPitches(s,{initial:true});
   for(const c of s.companies.slice(1))startAi(s,c);
   log(s,'첫 번째 영화를 기다립니다','작가의 시놉시스를 읽고, 당신의 영화로 만들 이야기를 골라 주세요.','welcome');return s;
 }
 export function validateSave(s){
+  if(s?.difficulty!=null&&!K.DIFFICULTY[s.difficulty])return false;
   if(!s||![1,2,3,4,5,6,VERSION].includes(s.version)||!Number.isInteger(s.month)||s.month<0||!Array.isArray(s.companies)||s.companies.length!==10||!Array.isArray(s.films)||!Array.isArray(s.pitches)||!Array.isArray(s.messages)||!Array.isArray(s.ledger)||!Array.isArray(s.awards)||!Array.isArray(s.marketHistory)||!Array.isArray(s.trends))return false;
   if(s.version>=6&&s.week!=null&&(!Number.isInteger(s.week)||s.week<0||Math.floor(s.week/4)!==s.month))return false;
   if(s.version>=5&&(!Array.isArray(s.roster)||s.roster.length!==1600||new Set(s.roster.map(p=>p.id)).size!==1600||!s.alumni||!Array.isArray(s.lifeEvents)))return false;
   if(s.companies.some((c,i)=>c.id!==`c${i}`||typeof c.name!=='string'||!Number.isFinite(c.cash)||!Number.isFinite(c.debt)))return false;
-  return s.films.every(f=>typeof f.title==='string'&&Array.isArray(f.leads)&&Array.isArray(f.supports)&&crewIds(f).every(id=>person(s,id))&&Array.isArray(f.genres)&&f.genres.every(g=>GENRE[g])&&SCALE[f.scale]&&Array.isArray(f.decisions)&&Array.isArray(f.runs)&&Array.isArray(f.reviews)&&Array.isArray(f.awards)&&Number.isFinite(f.spent)&&Number.isFinite(f.quality));
+  return s.films.every(f=>K.validateFilmEconomy(f)&&typeof f.title==='string'&&Array.isArray(f.leads)&&Array.isArray(f.supports)&&crewIds(f).every(id=>person(s,id))&&Array.isArray(f.genres)&&f.genres.every(g=>GENRE[g])&&SCALE[f.scale]&&Array.isArray(f.decisions)&&Array.isArray(f.runs)&&Array.isArray(f.reviews)&&Array.isArray(f.awards)&&Number.isFinite(f.spent)&&Number.isFinite(f.quality));
 }
 
 /** One measured week of admissions, not four copies of a monthly settlement. */
@@ -365,11 +376,11 @@ function settleWeeklyBoxOffice(s) {
     const trend = (f.genres.some(g => s.trends.includes(g)) ? 1.12 : 1) * (1 + eventBoost / 100);
     // Separate the public response from criticism and avoid repeated blockbuster inflation.
     const base = opening
-      ? C.openingDemand(f,{competition,trend,stars,reach:SCALE[f.scale].reach,franchise})*RT.capacityFactor(f)
+      ? C.openingDemand(f,{competition,trend,stars,reach:SCALE[f.scale].reach,franchise:franchise*(f.seriesBoost??1)})*RT.capacityFactor(f)*K.demandFactor(f)
       : (f.lastWeekAudience ?? f.lastAudience / 4) * C.weeklyRetention(f) * (.96 + random(s) * .08) * (.97 + competition * .03);
     const audience = Math.max(0, Math.round(base * (opening ? 1 + (f.publicity ?? 0) / 100 : 1 + (f.publicity ?? 0) / 800)));
-    const gross = round(audience / 10000 * C.formatEffect(f).ticketFactor), royalty = round(gross * .5 * (f.script.license?.share ?? 0)), receipts = round(gross * .5 - royalty);
-    const run = { runtime:RT.runtimeOf(f),dailyShows:RT.dailyShows(f),week: weekOf(s), month: s.month, audience, gross, receipts, eventBoost, competition: Math.round((1 - competition) * 100) };
+    const settlement=K.theatricalSettlement(f,audience,C.formatEffect(f).ticketFactor),{gross,royalty}=settlement,receipts=B.splitReceipt(s,f,settlement.pool);K.recordTheatrical(f,settlement);
+    const run = { settlement:structuredClone(settlement), runtime:RT.runtimeOf(f),dailyShows:RT.dailyShows(f),week: weekOf(s), month: s.month, audience, gross, receipts, eventBoost, competition: Math.round((1 - competition) * 100) };
     f.runs.push(run); f.audience += audience; f.gross = round(f.gross + gross); f.receipts = round(f.receipts + receipts);
     f.royalties = round((f.royalties ?? 0) + royalty); f.lastAudience = audience; f.lastWeekAudience = audience;
     if (opening) { f.openingAudience = audience; f.openingWeekAudience = audience; }
@@ -385,7 +396,7 @@ function settleWeeklyBoxOffice(s) {
       if (f.company === 'c0') log(s, '상영을 마쳤습니다', `「${f.title}」 누적 ${viewers(f.audience)}명 · 제작사 정산 ${money(f.receipts)}`, 'close', f.id);
     }
     if (f.company === 'c0' && runNo >= 1 && runNo <= 8) {
-      const profit = round(f.receipts - f.spent);
+      const profit = B.filmProfit(f);
       notify(s, { key: `${f.id}:boxoffice:${runNo}`, type: 'boxoffice', filmId: f.id, action: 'film',
         title: `${f.title} · 개봉 ${runNo}주차`,
         text: `이번 주 ${viewers(audience)}명 · 매출 ${money(gross)}. 누적 ${viewers(f.audience)}명 · 제작사 정산 ${money(f.receipts)} · ${profit >= 0 ? '순이익' : '손익분기까지'} ${money(Math.abs(profit))}`,
@@ -425,7 +436,7 @@ export function advanceWeek(s) {
     do { next = pick(s, GENRES).id; } while (s.trends.includes(next)); s.trends.push(next);
   }
   for (const f of active(s)) {
-    if (f.staffVacancy?.length) continue;
+    if (f.staffVacancy?.length||B.screeningHold(f)) continue;
     if (f.status === 'reshoot') {
       f.reshootElapsedWeeks = (f.reshootElapsedWeeks ?? Math.round(f.reshootElapsed * 4)) + 1;
       f.reshootElapsed = f.reshootElapsedWeeks / 4;
@@ -454,7 +465,7 @@ export function advanceWeek(s) {
   if (random(s) < .25) socialNews(s);
   aiOperations(s, s.week % 4 === 0);
   resolvePromotions(s);
-  scanPromotionAvailability(s);settleStreaming(s);advanceAbilities(s);weeklyExperience(s);recordFinance(s,'주간 잔액');
+  scanPromotionAvailability(s);settleStreaming(s);B.tickGrowth(s);advanceAbilities(s);weeklyExperience(s);recordFinance(s,'주간 잔액');
   if (player(s).cash < 0) log(s, '운영 자금 확인', '운영 자금이 부족합니다. 재무·은행 메뉴에서 확인해 주세요.', 'finance');
   return s;
 }
@@ -471,18 +482,21 @@ export function assertCrewAvailable(s,d) {
 export function sellToOTT(s,id,platformId) {
   const f=s.films.find(f=>f.id===id);
   if(!f||f.company!=='c0'||!['ready','shelved'].includes(f.status)||f.releaseMonth!=null||f.runs.length||f.ott)throw Error('극장에 개봉하지 않은 완성작만 OTT에 제공할 수 있습니다.');
+  if(f.foreignDeals?.length)throw Error('해외 판권을 판매한 작품은 글로벌 OTT 독점으로 중복 판매할 수 없습니다.');
+  B.assertDistribution(s,f);
   if(f.activePromotion)throw Error('진행 중인 홍보가 끝난 뒤 OTT 계약을 결정해 주세요.');
   const offer=C.ottOffers(f).find(x=>x.platform===platformId),platform=C.OTT_PLATFORMS.find(x=>x.id===platformId);
   if(!offer||!platform)throw Error('OTT사 한 곳을 선택해 주세요.');
+  const net=B.splitReceipt(s,f,offer.net);
   const c=player(s);f.distribution='ott';f.status='streaming';f.completionAcknowledged=true;
   f.poster??=GENRES.findIndex(g=>g.id===f.genres[0])%12;
   f.score=reviewScore(s,f);f.scoreLocked=true;C.ensurePlot(f);
-  f.ott={...offer,startWeek:weekOf(s),startMonth:s.month,exclusive:true,availableReviews:false};
-  f.receipts=round(f.receipts+offer.net);f.royalties=round((f.royalties??0)+offer.royalty);
-  c.totalReceipts=round(c.totalReceipts+offer.net);c.totalOttReceipts=round((c.totalOttReceipts??0)+offer.net);
-  transaction(s,c,offer.net,`「${f.title}」 ${platform.name} OTT 독점 계약`,'ott',f.id);
-  f.businessHistory.push({week:weekOf(s),month:s.month,text:`${platform.name} 독점 공개. 계약금 ${money(offer.amount)}, 원작료 ${money(offer.royalty)}, 실수령 ${money(offer.net)}. 극장 재개봉·중복 판매 불가.`});
-  notify(s,{key:`${f.id}:ott-contract`,type:'ott',filmId:f.id,action:'film',title:`${platform.name} 공개 · ${f.title}`,text:`계약금 ${money(offer.amount)}, 실수령 ${money(offer.net)}. 시청자 평은 1주 뒤 OTT 상영관에 도착합니다.`});
+  f.ott={...offer,producerNet:net,startWeek:weekOf(s),startMonth:s.month,exclusive:true,availableReviews:false};
+  f.receipts=round(f.receipts+net);f.royalties=round((f.royalties??0)+offer.royalty);
+  c.totalReceipts=round(c.totalReceipts+net);c.totalOttReceipts=round((c.totalOttReceipts??0)+net);
+  transaction(s,c,net,`「${f.title}」 ${platform.name} OTT 독점 계약`,'ott',f.id);
+  f.businessHistory.push({week:weekOf(s),month:s.month,text:`${platform.name} 독점 공개. 계약금 ${money(offer.amount)}, 원작료 ${money(offer.royalty)}, 실수령 ${money(net)}. 극장 재개봉·중복 판매 불가.`});
+  notify(s,{key:`${f.id}:ott-contract`,type:'ott',filmId:f.id,action:'film',title:`${platform.name} 공개 · ${f.title}`,text:`계약금 ${money(offer.amount)}, 실수령 ${money(net)}. 시청자 평은 1주 뒤 OTT 상영관에 도착합니다.`});
   invalidateCareer(s);return offer;
 }
 function settleStreaming(s) {
@@ -509,8 +523,8 @@ export function announceBoxOfficeMilestones(s,f) {
 function settleOperatingCosts(s,c) {
  if(c.id!=='c0'){transaction(s,c,-.25,'월 운영비','overhead');return;}
  const costs=T.reserveMonthlyTax(s);if(!costs)return;
- transaction(s,c,-costs.overhead,`월 운영비 · 세금 ${costs.tax<0?'적립 반환':'적립'} 포함 (4주 결산)`,'overhead',undefined,{operatingBase:.25,taxDelta:costs.tax,taxNational:costs.position.national,taxLocal:costs.position.local});
- if(costs.tax!==0)log(s,'월 운영비·세금 결산',`운영비 ${money(.25)} · 세금 적립 ${money(costs.tax)}. 연간 누적 소득 기준으로 계산하며 대출·자본금은 제외합니다.`,'finance');
+ transaction(s,c,-costs.overhead,`월 운영비 · 세금 ${costs.tax<0?'적립 반환':'적립'} 포함 (4주 결산)`,'overhead',undefined,{operatingBase:costs.base,taxDelta:costs.tax,taxNational:costs.position.national,taxLocal:costs.position.local});
+ if(costs.tax!==0)log(s,'월 운영비·세금 결산',`운영비 ${money(costs.base)} (시설 포함) · 세금 적립 ${money(costs.tax)}. 연간 누적 소득 기준으로 계산하며 대출·자본금은 제외합니다.`,'finance');
 }
 export const pendingEdits=s=>s.films.filter(f=>f.company==='c0'&&f.pendingEdit);
 function scanEditingWindows(s) {
@@ -518,6 +532,8 @@ function scanEditingWindows(s) {
 }
 export function proposeRuntimeEdit(s,id,minutes) {
  const f=s.films.find(f=>f.id===id);if(!f||f.company!=='c0')throw Error('우리 제작사의 영화만 편집할 수 있습니다.');
+ if(f.investment?.maxRuntime&&minutes>f.investment.maxRuntime)throw Error('투자 약정상 러닝타임 상한을 넘길 수 없습니다.');
+ if(f.screening&&f.screening.status!=='done')throw Error('시사회와 후속 편집 결정을 먼저 마쳐 주세요.');
  const quote=RT.editQuote(s,f,minutes,person(s,f.director),affinity(s,f.director,f.company));
  f.pendingEdit={...quote,week:weekOf(s)};
  notify(s,{key:`${f.id}:edit-proposal:${f.productionCycles.length}:${minutes}`,type:'editing',filmId:f.id,action:'runtime-edit',title:quote.conflict?'감독과 편집 방향을 협의해 주세요':'감독의 편집 동의가 도착했습니다',text:quote.message});

@@ -1,3 +1,4 @@
+import {marketFee} from './economy.js';
 import {notify} from './clock.js';
 import {relationshipFactor} from './relationships.js';
 import {PEOPLE,PERSON,GENRES} from './data.js';
@@ -26,8 +27,8 @@ const emptyCareer=()=>({films:[],success:0,failure:0,hits:0,audience:0,best:0,re
 function historyIndex(s){
   const key=`${s.month}/${s.films.length}/${s.careerEpoch??0}`;let cache=histories.get(s);if(cache?.key===key)return cache;
   cache={key,persons:new Map(),pairs:new Map()};
-  for(const f of s.films){const ids=credits(f);for(const id of ids){const h=cache.persons.get(id)??emptyCareer();h.films.push(f);if(['closed','streaming'].includes(f.status)){if(f.receipts>=f.spent)h.success++;else h.failure++;}if(f.audience>=10000000)h.hits++;h.audience+=f.audience;h.best=Math.max(h.best,f.audience);if(f.releaseMonth!=null||f.status==='streaming')h.released++;cache.persons.set(id,h);}
-    if(f.status==='closed')for(let i=0;i<ids.length;i++)for(let j=i+1;j<ids.length;j++){const k=[ids[i],ids[j]].sort().join('|');cache.pairs.set(k,(cache.pairs.get(k)??0)+(f.receipts>=f.spent?3:-2));}
+  for(const f of s.films){const ids=credits(f);for(const id of ids){const h=cache.persons.get(id)??emptyCareer();h.films.push(f);if(['closed','streaming'].includes(f.status)){if(f.receipts+(f.investment?.amount??0)>=f.spent)h.success++;else h.failure++;}if(f.audience>=10000000)h.hits++;h.audience+=f.audience;h.best=Math.max(h.best,f.audience);if(f.releaseMonth!=null||f.status==='streaming')h.released++;cache.persons.set(id,h);}
+    if(f.status==='closed')for(let i=0;i<ids.length;i++)for(let j=i+1;j<ids.length;j++){const k=[ids[i],ids[j]].sort().join('|');cache.pairs.set(k,(cache.pairs.get(k)??0)+(f.receipts+(f.investment?.amount??0)>=f.spent?3:-2));}
   }
   histories.set(s,cache);return cache;
 }
@@ -47,7 +48,7 @@ export function contractQuote(s,p,team=[],company='c0'){
   const partners=team.filter(id=>id&&id!==p.id),chem=partners.length?partners.reduce((n,id)=>n+pairCompatibility(s,p.id,id),0)/partners.length:50;
   const chemistry=clamp(1+(50-chem)*.002,.91,1.08);
   const relationship=relationshipFactor(s,p,team,company);
-  return{fee:round(p.fee*track*chemistry*relationship),relationshipFactor:relationship,historyFactor:round(track),chemistryFactor:round(chemistry),compatibility:Math.round(chem)};
+  return{fee:round(marketFee(s,p)*track*chemistry*relationship),relationshipFactor:relationship,historyFactor:round(track),chemistryFactor:round(chemistry),compatibility:Math.round(chem)};
 }
 export function historyEffect(s,ids){if(!ids.length)return 0;return round(clamp(ids.reduce((n,id)=>{const h=career(s,id);return n+h.success*.35-h.failure*.22+h.hits*1.4;},0)/ids.length,-3,4));}
 function reincarnate(s,p,rnd){

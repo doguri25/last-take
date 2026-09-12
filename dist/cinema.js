@@ -1,3 +1,4 @@
+import {dealFactor} from './economy.js';
 import {sourceInfo} from './source-rights.js';
 /** Last Take 1.2: fictional reception, presentation formats and OTT offer model.
  * These are game-design assumptions, not forecasts or real platform quotes.
@@ -152,7 +153,7 @@ export function ottOffers(f) {
  const appeal=audienceAppeal(f),base=(f.budget*.48+({small:3,medium:8,large:15}[f.scale]??3));
  return OTT_PLATFORMS.map(p=>{
   const match=f.genres.filter(g=>p.genres.includes(g)).length,variation=.85+unit(f,`ott:${p.id}`)*.26;
-  const amount=round(base*p.multiplier*(.68+f.quality/155)*(1+match*.10)*(1+(appeal-60)/240)*variation);
+  const amount=round(base*p.multiplier*(.68+f.quality/155)*(1+match*.10)*(1+(appeal-60)/240)*variation*dealFactor(f));
   const royalty=round(amount*(f.script.license?.share??0));
   return {platform:p.id,amount,royalty,net:round(amount-royalty),match,reason:match?`선호 장르 ${f.genres.filter(g=>p.genres.includes(g)).map(g=>GENRE[g].name).join('·')} 반영`:'일반 편성 제안'};
  });

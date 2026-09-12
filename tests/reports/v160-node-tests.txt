@@ -1,0 +1,1219 @@
+TAP version 13
+# {"result":"PASS","checks":["yearly aging and four age groups","retirement after current production","old-age and sudden death notices","fixed roster counts by role and gender","same avatar new child generation","archived credits preserved","production replacement","career-dependent fees","pair compatibility","ten-million milestone","sequel ownership and lineage","legacy save migration","isolated game rosters"]}
+# Subtest: /mnt/data/lasttake-v1.6.0-work/lasttake/tests/career.mjs
+ok 1 - /mnt/data/lasttake-v1.6.0-work/lasttake/tests/career.mjs
+  ---
+  duration_ms: 4307.142396
+  type: 'test'
+  ...
+# Subtest: exactly five ordered difficulties; absent setting defaults to normal
+ok 2 - exactly five ordered difficulties; absent setting defaults to normal
+  ---
+  duration_ms: 1.605215
+  type: 'test'
+  ...
+# Subtest: 매우 쉬움: founding cash, ledger, feature parity, save persistence
+ok 3 - 매우 쉬움: founding cash, ledger, feature parity, save persistence
+  ---
+  duration_ms: 411.960819
+  type: 'test'
+  ...
+# Subtest: 쉬움: founding cash, ledger, feature parity, save persistence
+ok 4 - 쉬움: founding cash, ledger, feature parity, save persistence
+  ---
+  duration_ms: 318.765309
+  type: 'test'
+  ...
+# Subtest: 보통: founding cash, ledger, feature parity, save persistence
+ok 5 - 보통: founding cash, ledger, feature parity, save persistence
+  ---
+  duration_ms: 317.537789
+  type: 'test'
+  ...
+# Subtest: 어려움: founding cash, ledger, feature parity, save persistence
+ok 6 - 어려움: founding cash, ledger, feature parity, save persistence
+  ---
+  duration_ms: 315.624354
+  type: 'test'
+  ...
+# Subtest: 매우 어려움: founding cash, ledger, feature parity, save persistence
+ok 7 - 매우 어려움: founding cash, ledger, feature parity, save persistence
+  ---
+  duration_ms: 352.208636
+  type: 'test'
+  ...
+# Subtest: invalid difficulty cannot found or load a game
+ok 8 - invalid difficulty cannot found or load a game
+  ---
+  duration_ms: 0.464902
+  type: 'test'
+  ...
+# Subtest: same seed has identical scripts, people and AI across difficulty
+ok 9 - same seed has identical scripts, people and AI across difficulty
+  ---
+  duration_ms: 673.298612
+  type: 'test'
+  ...
+# Subtest: legacy save defaults normal, preserves cash, dates, movies and transactions
+ok 10 - legacy save defaults normal, preserves cash, dates, movies and transactions
+  ---
+  duration_ms: 15.568607
+  type: 'test'
+  ...
+# Subtest: fixed fee differs by role and grows smoothly with fame, not episode count
+ok 11 - fixed fee differs by role and grows smoothly with fame, not episode count
+  ---
+  duration_ms: 0.705326
+  type: 'test'
+  ...
+# Subtest: all generated people yield finite positive contract quotes
+ok 12 - all generated people yield finite positive contract quotes
+  ---
+  duration_ms: 3.03889
+  type: 'test'
+  ...
+# Subtest: theatre waterfall conserves gross and separates VAT/exhibitor/distributor/royalty
+ok 13 - theatre waterfall conserves gross and separates VAT/exhibitor/distributor/royalty
+  ---
+  duration_ms: 0.339192
+  type: 'test'
+  ...
+# Subtest: legacy ticket and settlement still use old 10000-won and half-share rule
+ok 14 - legacy ticket and settlement still use old 10000-won and half-share rule
+  ---
+  duration_ms: 0.108524
+  type: 'test'
+  ...
+# Subtest: zero receipts do not create principal or profits; negative rejected
+ok 15 - zero receipts do not create principal or profits; negative rejected
+  ---
+  duration_ms: 0.268165
+  type: 'test'
+  ...
+# Subtest: before recoupment: recover 25% actual external cost, no investment profit
+ok 16 - before recoupment: recover 25% actual external cost, no investment profit
+  ---
+  duration_ms: 0.100532
+  type: 'test'
+  ...
+# Subtest: crossing break-even splits only remaining profit at 15%, not entire revenue
+ok 17 - crossing break-even splits only remaining profit at 15%, not entire revenue
+  ---
+  duration_ms: 0.086731
+  type: 'test'
+  ...
+# Subtest: investment principal cannot be recovered twice from OTT then foreign payouts
+ok 18 - investment principal cannot be recovered twice from OTT then foreign payouts
+  ---
+  duration_ms: 0.168444
+  type: 'test'
+  ...
+# Subtest: new production expenses after break-even are recovered by the self-funding producer
+ok 19 - new production expenses after break-even are recovered by the self-funding producer
+  ---
+  duration_ms: 0.097557
+  type: 'test'
+  ...
+# Subtest: additional costs before recoupment do not over-recover external principal
+ok 20 - additional costs before recoupment do not over-recover external principal
+  ---
+  duration_ms: 0.213803
+  type: 'test'
+  ...
+# Subtest: one-cent rounding conserves money across hundreds of settlements
+ok 21 - one-cent rounding conserves money across hundreds of settlements
+  ---
+  duration_ms: 0.649902
+  type: 'test'
+  ...
+# Subtest: self-financed films retain all eligible receipts
+ok 22 - self-financed films retain all eligible receipts
+  ---
+  duration_ms: 0.097617
+  type: 'test'
+  ...
+# Subtest: old signed investment keeps old share despite upgraded game
+ok 23 - old signed investment keeps old share despite upgraded game
+  ---
+  duration_ms: 0.172791
+  type: 'test'
+  ...
+# Subtest: new investor offers distinguish funding from profit rights
+ok 24 - new investor offers distinguish funding from profit rights
+  ---
+  duration_ms: 83.271615
+  type: 'test'
+  ...
+# Subtest: greenlight pays fees once, snapshots terms, deducts own-funded expense for tax
+ok 25 - greenlight pays fees once, snapshots terms, deducts own-funded expense for tax
+  ---
+  duration_ms: 84.514433
+  type: 'test'
+  ...
+# Subtest: appearance contracts are not repriced after ability changes or migration
+ok 26 - appearance contracts are not repriced after ability changes or migration
+  ---
+  duration_ms: 72.993791
+  type: 'test'
+  ...
+# Subtest: OTT payout equals cost-recovery preview and persists entire settlement
+ok 27 - OTT payout equals cost-recovery preview and persists entire settlement
+  ---
+  duration_ms: 114.73335
+  type: 'test'
+  ...
+# Subtest: foreign fixed deal uses same cumulative recovery as prior channels
+ok 28 - foreign fixed deal uses same cumulative recovery as prior channels
+  ---
+  duration_ms: 163.733827
+  type: 'test'
+  ...
+# Subtest: new difficult film changes demand/offer only, not scores or quality
+ok 29 - new difficult film changes demand/offer only, not scores or quality
+  ---
+  duration_ms: 59.840627
+  type: 'test'
+  ...
+# Subtest: weekly domestic settlement stores auditable breakdown without touching old cash
+ok 30 - weekly domestic settlement stores auditable breakdown without touching old cash
+  ---
+  duration_ms: 72.041792
+  type: 'test'
+  ...
+# Subtest: break-even estimate uses unrecovered cost and decreases with other channel recovery
+ok 31 - break-even estimate uses unrecovered cost and decreases with other channel recovery
+  ---
+  duration_ms: 0.260483
+  type: 'test'
+  ...
+# Subtest: native difficulty selection updates in place, does not rerender the picker
+ok 32 - native difficulty selection updates in place, does not rerender the picker
+  ---
+  duration_ms: 1.000521
+  type: 'test'
+  ...
+# Subtest: malformed imported economy rejected: negative cumulative receipts
+ok 33 - malformed imported economy rejected: negative cumulative receipts
+  ---
+  duration_ms: 67.335824
+  type: 'test'
+  ...
+# Subtest: malformed imported economy rejected: unknown snapshot version
+ok 34 - malformed imported economy rejected: unknown snapshot version
+  ---
+  duration_ms: 44.9571
+  type: 'test'
+  ...
+# Subtest: malformed imported economy rejected: missing settlement data
+ok 35 - malformed imported economy rejected: missing settlement data
+  ---
+  duration_ms: 55.401687
+  type: 'test'
+  ...
+# Subtest: malformed imported economy rejected: over-recovered principal
+ok 36 - malformed imported economy rejected: over-recovered principal
+  ---
+  duration_ms: 46.699371
+  type: 'test'
+  ...
+# Subtest: displayed person fees use the actual new quote, not the legacy growth reference
+ok 37 - displayed person fees use the actual new quote, not the legacy growth reference
+  ---
+  duration_ms: 0.814881
+  type: 'test'
+  ...
+# PASS: licenses, royalties, marketing, extra fees, departure settlements, booking exclusivity, free cameos, portraits, three romance reactions, migration, ledger
+# Subtest: /mnt/data/lasttake-v1.6.0-work/lasttake/tests/expansion.mjs
+ok 3 - /mnt/data/lasttake-v1.6.0-work/lasttake/tests/expansion.mjs
+  ---
+  duration_ms: 864.598793
+  type: 'test'
+  ...
+# Verified 1383 glasses geometries across 1600 people and 3 adult stages
+# Subtest: v142 heading contains a real space even if its line break is hidden
+ok 39 - v142 heading contains a real space even if its line break is hidden
+  ---
+  duration_ms: 2.066211
+  type: 'test'
+  ...
+# Subtest: every adult glasses recipe projects onto source eyes with separated lenses
+ok 40 - every adult glasses recipe projects onto source eyes with separated lenses
+  ---
+  duration_ms: 62.419397
+  type: 'test'
+  ...
+# Subtest: child-stage portraits have no artificial glasses and cache keys distinguish the new renderer
+ok 41 - child-stage portraits have no artificial glasses and cache keys distinguish the new renderer
+  ---
+  duration_ms: 0.705786
+  type: 'test'
+  ...
+# Subtest: presentation quotes include setup and workload once, with separate form totals
+ok 42 - presentation quotes include setup and workload once, with separate form totals
+  ---
+  duration_ms: 0.650202
+  type: 'test'
+  ...
+# Subtest: longer runtimes and higher workloads raise new quotes but never scale a fixed preparation fee
+ok 43 - longer runtimes and higher workloads raise new quotes but never scale a fixed preparation fee
+  ---
+  duration_ms: 0.434737
+  type: 'test'
+  ...
+# Subtest: greenlight charges the displayed amount once and retains its itemized contract
+ok 44 - greenlight charges the displayed amount once and retains its itemized contract
+  ---
+  duration_ms: 513.954244
+  type: 'test'
+  ...
+# Subtest: loading an older special-format contract does not reprice historical costs or funds
+ok 45 - loading an older special-format contract does not reprice historical costs or funds
+  ---
+  duration_ms: 478.862632
+  type: 'test'
+  ...
+# Subtest: all seven casting slots can be replaced without mutating the original draft or game
+ok 46 - all seven casting slots can be replaced without mutating the original draft or game
+  ---
+  duration_ms: 570.746351
+  type: 'test'
+  ...
+# Subtest: wrong role, duplicate, missing original, and unavailable replacements are rejected atomically
+ok 47 - wrong role, duplicate, missing original, and unavailable replacements are rejected atomically
+  ---
+  duration_ms: 444.059011
+  type: 'test'
+  ...
+# Subtest: a candidate filming another project is blocked by the replacement preview itself
+ok 48 - a candidate filming another project is blocked by the replacement preview itself
+  ---
+  duration_ms: 372.405709
+  type: 'test'
+  ...
+# Subtest: changing one director recomputes fees and relationship reasons of remaining team members
+ok 49 - changing one director recomputes fees and relationship reasons of remaining team members
+  ---
+  duration_ms: 319.173826
+  type: 'test'
+  ...
+# Subtest: replacing after accepting signatures requires confirmation of the new team counteroffers
+ok 50 - replacing after accepting signatures requires confirmation of the new team counteroffers
+  ---
+  duration_ms: 375.097005
+  type: 'test'
+  ...
+# Subtest: refusal cannot be accepted and no money is spent by reviewing new replies
+ok 51 - refusal cannot be accepted and no money is spent by reviewing new replies
+  ---
+  duration_ms: 344.951956
+  type: 'test'
+  ...
+# Subtest: replacement contract charges only the recalculated estimate once at greenlight
+ok 52 - replacement contract charges only the recalculated estimate once at greenlight
+  ---
+  duration_ms: 325.139239
+  type: 'test'
+  ...
+# Subtest: subgenre changes keep native selectors alive rather than render and focus them again
+ok 53 - subgenre changes keep native selectors alive rather than render and focus them again
+  ---
+  duration_ms: 2.373014
+  type: 'test'
+  ...
+# Subtest: reading a message clears only its unread/popup flags
+ok 54 - reading a message clears only its unread/popup flags
+  ---
+  duration_ms: 1.227895
+  type: 'test'
+  ...
+# Subtest: reading the same message twice is idempotent and does not remove it
+ok 55 - reading the same message twice is idempotent and does not remove it
+  ---
+  duration_ms: 0.234484
+  type: 'test'
+  ...
+# Subtest: linked messages are read without changing their destination
+ok 56 - linked messages are read without changing their destination
+  ---
+  duration_ms: 0.16591
+  type: 'test'
+  ...
+# Subtest: missing notification IDs or legacy saves are safe no-ops
+ok 57 - missing notification IDs or legacy saves are safe no-ops
+  ---
+  duration_ms: 0.157888
+  type: 'test'
+  ...
+# Subtest: read flags survive save serialization independently of navigation
+ok 58 - read flags survive save serialization independently of navigation
+  ---
+  duration_ms: 0.279643
+  type: 'test'
+  ...
+# Subtest: screen snapshots preserve data, filters, draft identifiers and scrolling
+ok 59 - screen snapshots preserve data, filters, draft identifiers and scrolling
+  ---
+  duration_ms: 1.433786
+  type: 'test'
+  ...
+# Subtest: legacy graph helpers cannot trigger DataCloneError in screen snapshots
+ok 60 - legacy graph helpers cannot trigger DataCloneError in screen snapshots
+  ---
+  duration_ms: 1.173603
+  type: 'test'
+  ...
+# Subtest: transient events, DOM-like instances, maps and callbacks are not history data
+ok 61 - transient events, DOM-like instances, maps and callbacks are not history data
+  ---
+  duration_ms: 0.190117
+  type: 'test'
+  ...
+# Subtest: circular helpers are omitted while shared plain objects and array positions survive
+ok 62 - circular helpers are omitted while shared plain objects and array positions survive
+  ---
+  duration_ms: 0.187353
+  type: 'test'
+  ...
+# Subtest: untrusted prototype keys cannot change the screen snapshot prototype
+ok 63 - untrusted prototype keys cannot change the screen snapshot prototype
+  ---
+  duration_ms: 0.21874
+  type: 'test'
+  ...
+# Subtest: old graph snapshots support capture, back and forward without touching the game
+ok 64 - old graph snapshots support capture, back and forward without touching the game
+  ---
+  duration_ms: 5.354388
+  type: 'test'
+  ...
+# Subtest: navigation initializes a home boundary before the saved studio
+ok 65 - navigation initializes a home boundary before the saved studio
+  ---
+  duration_ms: 1.453616
+  type: 'test'
+  ...
+# Subtest: browser back and forward restore screens, not simulation data
+ok 66 - browser back and forward restore screens, not simulation data
+  ---
+  duration_ms: 6.715224
+  type: 'test'
+  ...
+# Subtest: search and filter updates replace one entry rather than filling history
+ok 67 - search and filter updates replace one entry rather than filling history
+  ---
+  duration_ms: 0.696963
+  type: 'test'
+  ...
+# Subtest: more -> guide -> back -> more -> close returns to the underlying screen
+ok 68 - more -> guide -> back -> more -> close returns to the underlying screen
+  ---
+  duration_ms: 0.908393
+  type: 'test'
+  ...
+# Subtest: closing an action modal collapses the duplicate desk entry
+ok 69 - closing an action modal collapses the duplicate desk entry
+  ---
+  duration_ms: 0.588979
+  type: 'test'
+  ...
+# Subtest: back restores the scroll and filter snapshot captured before a modal
+ok 70 - back restores the scroll and filter snapshot captured before a modal
+  ---
+  duration_ms: 0.785236
+  type: 'test'
+  ...
+# Subtest: rapid duplicate close requests do not skip the more screen
+ok 71 - rapid duplicate close requests do not skip the more screen
+  ---
+  duration_ms: 0.547968
+  type: 'test'
+  ...
+# Subtest: reload can restore the saved history entry
+ok 72 - reload can restore the saved history entry
+  ---
+  duration_ms: 9.934025
+  type: 'test'
+  ...
+# Subtest: sandboxed previews retain in-app close behavior when pushState is prohibited
+ok 73 - sandboxed previews retain in-app close behavior when pushState is prohibited
+  ---
+  duration_ms: 0.805717
+  type: 'test'
+  ...
+# Subtest: the real root is not an endless back-button trap
+ok 74 - the real root is not an endless back-button trap
+  ---
+  duration_ms: 0.757184
+  type: 'test'
+  ...
+# Subtest: multiple renders in one click create only the final modal entry
+ok 75 - multiple renders in one click create only the final modal entry
+  ---
+  duration_ms: 0.52283
+  type: 'test'
+  ...
+# Subtest: market tabs and wizard steps are distinct screens
+ok 76 - market tabs and wizard steps are distinct screens
+  ---
+  duration_ms: 0.160122
+  type: 'test'
+  ...
+# Subtest: a new company invalidates historical screens instead of reviving the old game
+ok 77 - a new company invalidates historical screens instead of reviving the old game
+  ---
+  duration_ms: 0.622039
+  type: 'test'
+  ...
+# Subtest: Close skips internal film tabs and returns to the parent person
+ok 78 - Close skips internal film tabs and returns to the parent person
+  ---
+  duration_ms: 0.591794
+  type: 'test'
+  ...
+# Subtest: internal wizard back consumes the existing entry instead of pushing a reverse step
+ok 79 - internal wizard back consumes the existing entry instead of pushing a reverse step
+  ---
+  duration_ms: 0.561208
+  type: 'test'
+  ...
+# Subtest: replacement picker and candidate preview return to the same final negotiation entry
+ok 80 - replacement picker and candidate preview return to the same final negotiation entry
+  ---
+  duration_ms: 0.736512
+  type: 'test'
+  ...
+# Subtest: cancelling a candidate returns to its picker; cancelling picker returns to final terms
+ok 81 - cancelling a candidate returns to its picker; cancelling picker returns to final terms
+  ---
+  duration_ms: 0.658505
+  type: 'test'
+  ...
+# PASS: all 1600 portraits at four age stages; independent wizard/picker/page/step scroll positions
+# Subtest: /mnt/data/lasttake-v1.6.0-work/lasttake/tests/portraits-scroll.mjs
+ok 9 - /mnt/data/lasttake-v1.6.0-work/lasttake/tests/portraits-scroll.mjs
+  ---
+  duration_ms: 149.170418
+  type: 'test'
+  ...
+# PASS: 50 agencies, five levels, independent affinity, monthly hold/up/down, save continuity, contract and campaign effects, 39 subgenres, validation and migration
+# Subtest: /mnt/data/lasttake-v1.6.0-work/lasttake/tests/relationships.mjs
+ok 10 - /mnt/data/lasttake-v1.6.0-work/lasttake/tests/relationships.mjs
+  ---
+  duration_ms: 714.962754
+  type: 'test'
+  ...
+# PASS: warehouse persistence, delayed release, no slot/fee, timelines and reshoots, timed genre boosts and expiry, historical migration, version history
+# Subtest: /mnt/data/lasttake-v1.6.0-work/lasttake/tests/release.mjs
+ok 11 - /mnt/data/lasttake-v1.6.0-work/lasttake/tests/release.mjs
+  ---
+  duration_ms: 10111.855315
+  type: 'test'
+  ...
+# {
+#   "result": "PASS",
+#   "checks": [
+#     "exact 1600-person roster",
+#     "three production slots",
+#     "exclusive bookings",
+#     "four events and blocking",
+#     "two-month release cadence",
+#     "12-month one-time extension",
+#     "competition effects",
+#     "audience-led closure",
+#     "gross versus net receipts",
+#     "loans and interest",
+#     "annual awards",
+#     "save restoration",
+#     "48-month simulations"
+#   ],
+#   "simulations": [
+#     {
+#       "seed": 318,
+#       "months": 48,
+#       "films": 121,
+#       "playerFilms": 16,
+#       "awards": 4,
+#       "cash": 26.02
+#     },
+#     {
+#       "seed": 2026,
+#       "months": 48,
+#       "films": 116,
+#       "playerFilms": 15,
+#       "awards": 4,
+#       "cash": 25.52
+#     },
+#     {
+#       "seed": 9901,
+#       "months": 48,
+#       "films": 126,
+#       "playerFilms": 11,
+#       "awards": 4,
+#       "cash": 14.89
+#     }
+#   ]
+# }
+# Subtest: /mnt/data/lasttake-v1.6.0-work/lasttake/tests/simulation.mjs
+ok 12 - /mnt/data/lasttake-v1.6.0-work/lasttake/tests/simulation.mjs
+  ---
+  duration_ms: 48569.667245
+  type: 'test'
+  ...
+# PASS: 3000 proportional-fit cases; viewport module integration; original save key
+# Subtest: /mnt/data/lasttake-v1.6.0-work/lasttake/tests/start-screen.mjs
+ok 13 - /mnt/data/lasttake-v1.6.0-work/lasttake/tests/start-screen.mjs
+  ---
+  duration_ms: 57.552594
+  type: 'test'
+  ...
+# Subtest: presentation formats add only the technical base costs; valid combinations retain exact budget
+ok 87 - presentation formats add only the technical base costs; valid combinations retain exact budget
+  ---
+  duration_ms: 53.297842
+  type: 'test'
+  ...
+# Subtest: genre-matched formats improve quality more and malformed formats fail without mutation
+ok 88 - genre-matched formats improve quality more and malformed formats fail without mutation
+  ---
+  duration_ms: 127.44705
+  type: 'test'
+  ...
+# Subtest: same-time cast is rejected in offers, preflight and final contract, including stale approvals
+ok 89 - same-time cast is rejected in offers, preflight and final contract, including stale approvals
+  ---
+  duration_ms: 122.653707
+  type: 'test'
+  ...
+# Subtest: seven critic viewpoints are deterministic, varied, moderated and independent of audience
+ok 90 - seven critic viewpoints are deterministic, varied, moderated and independent of audience
+  ---
+  duration_ms: 37.128381
+  type: 'test'
+  ...
+# Subtest: audience reactions appear only after screening, have a separate score and remain stable
+ok 91 - audience reactions appear only after screening, have a separate score and remain stable
+  ---
+  duration_ms: 45.276822
+  type: 'test'
+  ...
+# Subtest: run graphs, cumulative admissions and trends use exact stored week/month records
+ok 92 - run graphs, cumulative admissions and trends use exact stored week/month records
+  ---
+  duration_ms: 0.402588
+  type: 'test'
+  ...
+# Subtest: finance history captures real loans, repayments, spending and weekly balances
+ok 93 - finance history captures real loans, repayments, spending and weekly balances
+  ---
+  duration_ms: 32.314587
+  type: 'test'
+  ...
+# Subtest: legacy finance reconstructs only retained actual transactions and never fabricates earlier points
+ok 94 - legacy finance reconstructs only retained actual transactions and never fabricates earlier points
+  ---
+  duration_ms: 10.846219
+  type: 'test'
+  ...
+# Subtest: five OTT services give distinct stable genre-sensitive offers without mutating game state
+ok 95 - five OTT services give distinct stable genre-sensitive offers without mutating game state
+  ---
+  duration_ms: 86.755817
+  type: 'test'
+  ...
+# Subtest: OTT contract posts cash once, pays original royalty, prevents all double distribution
+ok 96 - OTT contract posts cash once, pays original royalty, prevents all double distribution
+  ---
+  duration_ms: 113.985189
+  type: 'test'
+  ...
+# Subtest: OTT viewer reviews arrive after one week, never enter the theatrical boxoffice
+ok 97 - OTT viewer reviews arrive after one week, never enter the theatrical boxoffice
+  ---
+  duration_ms: 57.844973
+  type: 'test'
+  ...
+# Subtest: OTT rejects premature, competing, active-promotion and nonexistent offers atomically
+ok 98 - OTT rejects premature, competing, active-promotion and nonexistent offers atomically
+  ---
+  duration_ms: 202.446247
+  type: 'test'
+  ...
+# Subtest: completed plots are persistent expanded narratives rather than only the source pitch
+ok 99 - completed plots are persistent expanded narratives rather than only the source pitch
+  ---
+  duration_ms: 43.767422
+  type: 'test'
+  ...
+# Subtest: saved released legacy scores/runs/cash survive migration while unshown films gain new reviews
+ok 100 - saved released legacy scores/runs/cash survive migration while unshown films gain new reviews
+  ---
+  duration_ms: 108.662657
+  type: 'test'
+  ...
+# Subtest: life and historic boxoffice alerts carry clickable IDs and are de-duplicated
+ok 101 - life and historic boxoffice alerts carry clickable IDs and are de-duplicated
+  ---
+  duration_ms: 31.299102
+  type: 'test'
+  ...
+# Subtest: retirement at the end of an existing production raises one profile-linked notification
+ok 102 - retirement at the end of an existing production raises one profile-linked notification
+  ---
+  duration_ms: 9.61629
+  type: 'test'
+  ...
+# Subtest: original eight licensed works retain dossiers; rotating offers gate new planning
+ok 103 - original eight licensed works retain dossiers; rotating offers gate new planning
+  ---
+  duration_ms: 567.775271
+  type: 'test'
+  ...
+# Subtest: runtime choices map to transparent capacity and influence production budget, not contracts
+ok 104 - runtime choices map to transparent capacity and influence production budget, not contracts
+  ---
+  duration_ms: 165.153979
+  type: 'test'
+  ...
+# Subtest: matching narrative length helps quality; short films are not always superior
+ok 105 - matching narrative length helps quality; short films are not always superior
+  ---
+  duration_ms: 0.241945
+  type: 'test'
+  ...
+# Subtest: only post-production accepts an edit proposal and proposing spends nothing
+ok 106 - only post-production accepts an edit proposal and proposing spends nothing
+  ---
+  duration_ms: 91.605051
+  type: 'test'
+  ...
+# Subtest: cancel is atomic and free even when the company has negative cash
+ok 107 - cancel is atomic and free even when the company has negative cash
+  ---
+  duration_ms: 28.39591
+  type: 'test'
+  ...
+# Subtest: director conflict is repeatable; collaboration and forced cuts carry distinct tradeoffs
+ok 108 - director conflict is repeatable; collaboration and forced cuts carry distinct tradeoffs
+  ---
+  duration_ms: 44.010884
+  type: 'test'
+  ...
+# Subtest: confirmed edit charges once, modifies quality and relation, survives saves, prevents repeat farming
+ok 109 - confirmed edit charges once, modifies quality and relation, survives saves, prevents repeat farming
+  ---
+  duration_ms: 142.939471
+  type: 'test'
+  ...
+# Subtest: pending edits persist across reload; insufficient cash cannot apply a half edit
+ok 110 - pending edits persist across reload; insufficient cash cannot apply a half edit
+  ---
+  duration_ms: 84.031552
+  type: 'test'
+  ...
+# Subtest: editing completed/released/foreign films is rejected without mutation
+ok 111 - editing completed/released/foreign films is rejected without mutation
+  ---
+  duration_ms: 475.915005
+  type: 'test'
+  ...
+# Subtest: post-production availability notification is unique and links to editing
+ok 112 - post-production availability notification is unique and links to editing
+  ---
+  duration_ms: 41.459401
+  type: 'test'
+  ...
+# Subtest: new screening records carry runtime/capacity and shorter runtime affects actual receipts
+ok 113 - new screening records carry runtime/capacity and shorter runtime affects actual receipts
+  ---
+  duration_ms: 270.092569
+  type: 'test'
+  ...
+# Subtest: 2026 marginal national and standard local brackets are exact at boundaries
+ok 114 - 2026 marginal national and standard local brackets are exact at boundaries
+  ---
+  duration_ms: 0.280934
+  type: 'test'
+  ...
+# Subtest: taxable business income excludes capital, loan principal and repayments
+ok 115 - taxable business income excludes capital, loan principal and repayments
+  ---
+  duration_ms: 9.948857
+  type: 'test'
+  ...
+# Subtest: monthly overhead includes only the change in annual tax, with no weekly or duplicate debit
+ok 116 - monthly overhead includes only the change in annual tax, with no weekly or duplicate debit
+  ---
+  duration_ms: 258.181759
+  type: 'test'
+  ...
+# Subtest: losses cause a reserve refund instead of a negative tax and loans stay neutral
+ok 117 - losses cause a reserve refund instead of a negative tax and loans stay neutral
+  ---
+  duration_ms: 182.636956
+  type: 'test'
+  ...
+# Subtest: year closure keeps national/local reserves separate and carries eligible losses for 15 years
+ok 118 - year closure keeps national/local reserves separate and carries eligible losses for 15 years
+  ---
+  duration_ms: 24.955503
+  type: 'test'
+  ...
+# Subtest: monthly reserve function is idempotent, annual thresholds never restart each month
+ok 119 - monthly reserve function is idempotent, annual thresholds never restart each month
+  ---
+  duration_ms: 9.558878
+  type: 'test'
+  ...
+# Subtest: legacy runtime defaults and new taxes preserve prior cash, revenue and reviews without back charges
+ok 120 - legacy runtime defaults and new taxes preserve prior cash, revenue and reviews without back charges
+  ---
+  duration_ms: 45.615819
+  type: 'test'
+  ...
+# Subtest: retired index keeps former retirees and excludes active, pending and never-retired deceased people
+ok 121 - retired index keeps former retirees and excludes active, pending and never-retired deceased people
+  ---
+  duration_ms: 10.294339
+  type: 'test'
+  ...
+# Subtest: studio metrics filter only own relevant films and retain per-award entries
+ok 122 - studio metrics filter only own relevant films and retain per-award entries
+  ---
+  duration_ms: 26.282297
+  type: 'test'
+  ...
+# Subtest: script news contains durable pitch links and writer identities
+ok 123 - script news contains durable pitch links and writer identities
+  ---
+  duration_ms: 11.940596
+  type: 'test'
+  ...
+# Subtest: migration preserves old current stats, balances and completed film snapshots
+ok 124 - migration preserves old current stats, balances and completed film snapshots
+  ---
+  duration_ms: 36.839363
+  type: 'test'
+  ...
+# Subtest: skills, recognition and cooperation develop with actual elapsed weeks
+ok 125 - skills, recognition and cooperation develop with actual elapsed weeks
+  ---
+  duration_ms: 668.181831
+  type: 'test'
+  ...
+# Subtest: same-week recalculation cannot reroll or farm ability bonuses
+ok 126 - same-week recalculation cannot reroll or farm ability bonuses
+  ---
+  duration_ms: 29.834201
+  type: 'test'
+  ...
+# Subtest: saved games resume the same development rather than rerolling
+ok 127 - saved games resume the same development rather than rerolling
+  ---
+  duration_ms: 445.065639
+  type: 'test'
+  ...
+# Subtest: retired people remain frozen and new generations get independent records
+ok 128 - retired people remain frozen and new generations get independent records
+  ---
+  duration_ms: 202.224121
+  type: 'test'
+  ...
+# Subtest: past cast snapshots are unchanged after weekly development
+ok 129 - past cast snapshots are unchanged after weekly development
+  ---
+  duration_ms: 306.649825
+  type: 'test'
+  ...
+# Subtest: history stays bounded and ratings cannot run away on long careers
+ok 130 - history stays bounded and ratings cannot run away on long careers
+  ---
+  duration_ms: 249.695318
+  type: 'test'
+  ...
+# Subtest: 40 distinct source works cover 20 media with complete dossiers
+ok 131 - 40 distinct source works cover 20 media with complete dossiers
+  ---
+  duration_ms: 0.37069
+  type: 'test'
+  ...
+# Subtest: each offer window contains two stable titles, changes after 4 weeks and covers the catalog
+ok 132 - each offer window contains two stable titles, changes after 4 weeks and covers the catalog
+  ---
+  duration_ms: 10.841693
+  type: 'test'
+  ...
+# Subtest: unoffered licenses fail without mutation; a saved pitch survives a window change
+ok 133 - unoffered licenses fail without mutation; a saved pitch survives a window change
+  ---
+  duration_ms: 29.560962
+  type: 'test'
+  ...
+# Subtest: all 21 genres have stories, subgenres and available trained specialists
+ok 134 - all 21 genres have stories, subgenres and available trained specialists
+  ---
+  duration_ms: 348.973619
+  type: 'test'
+  ...
+# Subtest: 40 new weekly snippets and 16 additional choice-card topics are present
+ok 135 - 40 new weekly snippets and 16 additional choice-card topics are present
+  ---
+  duration_ms: 0.219322
+  type: 'test'
+  ...
+# Subtest: quiet weeks give a saved production summary and no duplicate summaries
+ok 136 - quiet weeks give a saved production summary and no duplicate summaries
+  ---
+  duration_ms: 8.838817
+  type: 'test'
+  ...
+# Subtest: weekly events rotate and never silently charge the player
+ok 137 - weekly events rotate and never silently charge the player
+  ---
+  duration_ms: 8.754529
+  type: 'test'
+  ...
+# Subtest: progress summary reports each active player film and stage
+ok 138 - progress summary reports each active player film and stage
+  ---
+  duration_ms: 62.249308
+  type: 'test'
+  ...
+# Subtest: v15 migration adds optional records without rewriting existing money or film results
+ok 139 - v15 migration adds optional records without rewriting existing money or film results
+  ---
+  duration_ms: 31.552588
+  type: 'test'
+  ...
+# Subtest: favorites toggle stable person IDs, persist and reject unknown IDs
+ok 140 - favorites toggle stable person IDs, persist and reject unknown IDs
+  ---
+  duration_ms: 33.946014
+  type: 'test'
+  ...
+# Subtest: saved production teams retain seven roles, clear approvals and never spend money
+ok 141 - saved production teams retain seven roles, clear approvals and never spend money
+  ---
+  duration_ms: 83.533421
+  type: 'test'
+  ...
+# Subtest: retired and occupied cast become vacancies when loading a saved team
+ok 142 - retired and occupied cast become vacancies when loading a saved team
+  ---
+  duration_ms: 131.757582
+  type: 'test'
+  ...
+# Subtest: team limit and incomplete draft checks are enforced before adding records
+ok 143 - team limit and incomplete draft checks are enforced before adding records
+  ---
+  duration_ms: 94.051569
+  type: 'test'
+  ...
+# Subtest: draft archive copies input, preserves expired proposals, resets approvals and removes contracted drafts
+ok 144 - draft archive copies input, preserves expired proposals, resets approvals and removes contracted drafts
+  ---
+  duration_ms: 57.388131
+  type: 'test'
+  ...
+# Subtest: one auto draft replaces itself while eight direct drafts remain separate
+ok 145 - one auto draft replaces itself while eight direct drafts remain separate
+  ---
+  duration_ms: 45.399764
+  type: 'test'
+  ...
+# Subtest: facility quotes do not debit and lease/own upkeep is separately calculated
+ok 146 - facility quotes do not debit and lease/own upkeep is separately calculated
+  ---
+  duration_ms: 22.435117
+  type: 'test'
+  ...
+# Subtest: facility effects apply to future technical costs and frozen contract snapshots only
+ok 147 - facility effects apply to future technical costs and frozen contract snapshots only
+  ---
+  duration_ms: 80.942249
+  type: 'test'
+  ...
+# Subtest: facility expense is collected once per four live weeks, not every week
+ok 148 - facility expense is collected once per four live weeks, not every week
+  ---
+  duration_ms: 248.355917
+  type: 'test'
+  ...
+# Subtest: investor offers are deterministic previews with distinct shares and no funds transferred
+ok 149 - investor offers are deterministic previews with distinct shares and no funds transferred
+  ---
+  duration_ms: 70.703333
+  type: 'test'
+  ...
+# Subtest: joint production receives contribution and spends full budget once without creating debt
+ok 150 - joint production receives contribution and spends full budget once without creating debt
+  ---
+  duration_ms: 85.826956
+  type: 'test'
+  ...
+# Subtest: unfulfilled investor runtime or invalid provider rejects before any debit
+ok 151 - unfulfilled investor runtime or invalid provider rejects before any debit
+  ---
+  duration_ms: 86.492382
+  type: 'test'
+  ...
+# Subtest: investment contribution is not a sale in the tax model
+ok 152 - investment contribution is not a sale in the tax model
+  ---
+  duration_ms: 65.531061
+  type: 'test'
+  ...
+# Subtest: OTT sharing returns precisely the producer net and never counts theatrical receipts
+ok 153 - OTT sharing returns precisely the producer net and never counts theatrical receipts
+  ---
+  duration_ms: 75.355019
+  type: 'test'
+  ...
+# Subtest: domestic weekly receipts pay the investor after source royalty exactly once
+ok 154 - domestic weekly receipts pay the investor after source royalty exactly once
+  ---
+  duration_ms: 50.646508
+  type: 'test'
+  ...
+# Subtest: late investor adjustment is only five percentage points once and has no immediate cash fine
+ok 155 - late investor adjustment is only five percentage points once and has no immediate cash fine
+  ---
+  duration_ms: 68.509549
+  type: 'test'
+  ...
+# Subtest: a test screening charges once and live week progression delivers three audience viewpoints
+ok 156 - a test screening charges once and live week progression delivers three audience viewpoints
+  ---
+  duration_ms: 161.515936
+  type: 'test'
+  ...
+# Subtest: keeping the original is free and unlocks distribution
+ok 157 - keeping the original is free and unlocks distribution
+  ---
+  duration_ms: 59.411617
+  type: 'test'
+  ...
+# Subtest: recut respects its paid delay and applies bounded quality only at completion
+ok 158 - recut respects its paid delay and applies bounded quality only at completion
+  ---
+  duration_ms: 89.116445
+  type: 'test'
+  ...
+# Subtest: supplemental screening shoot reserves people and saved teams skip them
+ok 159 - supplemental screening shoot reserves people and saved teams skip them
+  ---
+  duration_ms: 110.9141
+  type: 'test'
+  ...
+# Subtest: crew conflict disables supplemental shoot without any side effects
+ok 160 - crew conflict disables supplemental shoot without any side effects
+  ---
+  duration_ms: 104.79757
+  type: 'test'
+  ...
+# Subtest: foreign offers vary by region and genre without rerolling or accounting mutation
+ok 161 - foreign offers vary by region and genre without rerolling or accounting mutation
+  ---
+  duration_ms: 73.516122
+  type: 'test'
+  ...
+# Subtest: foreign buyout posts localization and royalties plus investor share without domestic inflation
+ok 162 - foreign buyout posts localization and royalties plus investor share without domestic inflation
+  ---
+  duration_ms: 87.526653
+  type: 'test'
+  ...
+# Subtest: foreign participation pays eight actual weekly installments and then stops
+ok 163 - foreign participation pays eight actual weekly installments and then stops
+  ---
+  duration_ms: 141.2634
+  type: 'test'
+  ...
+# Subtest: foreign sale rejects OTT, unfinished movie, lack of localization funds and unknown mode
+ok 164 - foreign sale rejects OTT, unfinished movie, lack of localization funds and unknown mode
+  ---
+  duration_ms: 86.713706
+  type: 'test'
+  ...
+# Subtest: franchise variants produce persistent, free pitches tied to their parent
+ok 165 - franchise variants produce persistent, free pitches tied to their parent
+  ---
+  duration_ms: 65.573636
+  type: 'test'
+  ...
+# Subtest: franchise fan base, fatigue and production continuity affect capped initial demand
+ok 166 - franchise fan base, fatigue and production continuity affect capped initial demand
+  ---
+  duration_ms: 103.580792
+  type: 'test'
+  ...
+# Subtest: franchise identity and expectation effect are frozen when production starts
+ok 167 - franchise identity and expectation effect are frozen when production starts
+  ---
+  duration_ms: 138.714024
+  type: 'test'
+  ...
+# Subtest: festival windows, premiere eligibility and repeat-entry restrictions are explicit
+ok 168 - festival windows, premiere eligibility and repeat-entry restrictions are explicit
+  ---
+  duration_ms: 116.741106
+  type: 'test'
+  ...
+# Subtest: withdrawing festival entry gives no refund but releases its premiere restriction
+ok 169 - withdrawing festival entry gives no refund but releases its premiere restriction
+  ---
+  duration_ms: 74.830337
+  type: 'test'
+  ...
+# Subtest: festival due week publishes a single selection result and clears restriction
+ok 170 - festival due week publishes a single selection result and clears restriction
+  ---
+  duration_ms: 57.201219
+  type: 'test'
+  ...
+# Subtest: festival prestige improves foreign offer without rewriting earlier deals
+ok 171 - festival prestige improves foreign offer without rewriting earlier deals
+  ---
+  duration_ms: 47.385032
+  type: 'test'
+  ...
+# Subtest: save JSON roundtrip retains drafts, favorites, facilities and contracts
+ok 172 - save JSON roundtrip retains drafts, favorites, facilities and contracts
+  ---
+  duration_ms: 214.948037
+  type: 'test'
+  ...
+# Subtest: save import rejects corrupt checksums, future formats, unsafe keys and malformed records
+ok 173 - save import rejects corrupt checksums, future formats, unsafe keys and malformed records
+  ---
+  duration_ms: 207.552766
+  type: 'test'
+  ...
+# Subtest: original raw saves migrate and new UI snapshots remain clone safe
+ok 174 - original raw saves migrate and new UI snapshots remain clone safe
+  ---
+  duration_ms: 185.813581
+  type: 'test'
+  ...
+# Subtest: save vault fails clearly without IndexedDB and never pretends to save
+ok 175 - save vault fails clearly without IndexedDB and never pretends to save
+  ---
+  duration_ms: 59.160659
+  type: 'test'
+  ...
+# Subtest: vault API double: completed writes, exact restore, overwrite isolation and deletion
+ok 176 - vault API double: completed writes, exact restore, overwrite isolation and deletion
+  ---
+  duration_ms: 430.248044
+  type: 'test'
+  ...
+# Subtest: weekly popup has no progress bar or fill animation
+ok 177 - weekly popup has no progress bar or fill animation
+  ---
+  duration_ms: 2.015936
+  type: 'test'
+  ...
+# Subtest: weekly popup retains old and new date, notice and single advance lock
+ok 178 - weekly popup retains old and new date, notice and single advance lock
+  ---
+  duration_ms: 0.150287
+  type: 'test'
+  ...
+# Subtest: weekly popup timing and completion cleanup are unchanged
+ok 179 - weekly popup timing and completion cleanup are unchanged
+  ---
+  duration_ms: 0.135895
+  type: 'test'
+  ...
+# Subtest: calendar advances one week; costs and interest settle only every fourth week
+ok 180 - calendar advances one week; costs and interest settle only every fourth week
+  ---
+  duration_ms: 472.285129
+  type: 'test'
+  ...
+# Subtest: paid script refresh works repeatedly without time advancing and is atomic without funds
+ok 181 - paid script refresh works repeatedly without time advancing and is atomic without funds
+  ---
+  duration_ms: 427.483227
+  type: 'test'
+  ...
+# Subtest: the original genre is optional; at least one valid genre is still mandatory
+ok 182 - the original genre is optional; at least one valid genre is still mandatory
+  ---
+  duration_ms: 748.022549
+  type: 'test'
+  ...
+# Subtest: casting replies are repeatable, have refusals/counters, and never debit before signing
+ok 183 - casting replies are repeatable, have refusals/counters, and never debit before signing
+  ---
+  duration_ms: 765.47181
+  type: 'test'
+  ...
+# Subtest: changed participants invalidate accepted casting conditions
+ok 184 - changed participants invalidate accepted casting conditions
+  ---
+  duration_ms: 308.008788
+  type: 'test'
+  ...
+# Subtest: 24 production weeks contain four blocking decisions and one completion notification
+ok 185 - 24 production weeks contain four blocking decisions and one completion notification
+  ---
+  duration_ms: 1215.631929
+  type: 'test'
+  ...
+# Subtest: promotion unlocks at 75%, uses one agency and completes after one week with one debit
+ok 186 - promotion unlocks at 75%, uses one agency and completes after one week with one debit
+  ---
+  duration_ms: 861.401896
+  type: 'test'
+  ...
+# Subtest: poster selection persists and release is blocked until active promotion is completed
+ok 187 - poster selection persists and release is blocked until active promotion is completed
+  ---
+  duration_ms: 1012.719042
+  type: 'test'
+  ...
+# Subtest: eight weeks of opening reports include weekly receipts, posters and ranking with no ninth alert
+ok 188 - eight weeks of opening reports include weekly receipts, posters and ranking with no ninth alert
+  ---
+  duration_ms: 1150.308332
+  type: 'test'
+  ...
+# Subtest: release cadence is exactly eight weeks, not two rounded-up calendar months
+ok 189 - release cadence is exactly eight weeks, not two rounded-up calendar months
+  ---
+  duration_ms: 1060.534496
+  type: 'test'
+  ...
+# Subtest: additional production lasts 48 weeks and preserves the first completed cycle
+ok 190 - additional production lasts 48 weeks and preserves the first completed cycle
+  ---
+  duration_ms: 3821.47375
+  type: 'test'
+  ...
+# Subtest: v1.0.3 month saves migrate to week schema without changing cash, IDs or prior dates
+ok 191 - v1.0.3 month saves migrate to week schema without changing cash, IDs or prior dates
+  ---
+  duration_ms: 1198.128259
+  type: 'test'
+  ...
+# Subtest: all 1600 identities have distinct reproducible portrait recipes and generations change faces
+ok 192 - all 1600 identities have distinct reproducible portrait recipes and generations change faces
+  ---
+  duration_ms: 368.932185
+  type: 'test'
+  ...
+# Subtest: 192-week simulations preserve ledger, save validity and company financials
+ok 193 - 192-week simulations preserve ledger, save validity and company financials
+  ---
+  duration_ms: 66221.500639
+  type: 'test'
+  ...
+1..193
+# tests 193
+# suites 0
+# pass 193
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 94310.192536

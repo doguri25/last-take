@@ -11,7 +11,7 @@ def fixture_payload():
   source=source.replace('new URL(`./assets/portraits-${gender}.png`,import.meta.url).href',"window.__fixtureAssets['portraits-'+gender+'.png']")
   modules['lasttake/'+path.name]=source
  html=re.sub(r'<link\b[^>]*>|<script\b[^>]*>[\s\S]*?</script>','',(dist/'index.html').read_text())
- return {'html':html,'css':'\n'.join((dist/n).read_text() for n in ['style.css','portrait.css','start-screen.css','experience.css','studio-v12.css','studio-v13.css','studio-v14.css','mobile-v141.css','mobile-v142.css']),'modules':modules,'assets':{p.name:base64.b64encode(p.read_bytes()).decode() for p in (dist/'assets').glob('*.png')}}
+ return {'html':html,'css':'\n'.join((dist/n).read_text() for n in ['style.css','portrait.css','start-screen.css','experience.css','studio-v12.css','studio-v13.css','studio-v14.css','mobile-v141.css','mobile-v142.css','studio-v15.css']),'modules':modules,'assets':{p.name:base64.b64encode(p.read_bytes()).decode() for p in (dist/'assets').glob('*.png')}}
 
 def load(page,payload,saved=None):
  page.set_content(payload['html'])

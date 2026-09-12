@@ -1,3 +1,5 @@
+import {difficulty} from './economy.js';
+import {facilityMonthlyCost} from './studio-growth.js';
 /** 2026 ordinary domestic corporation brackets; all values are in KRW 100 million.
  * Monthly reserve transfers are a GAME abstraction, not statutory monthly payments.
  * Production outlays are expensed when paid; VAT, credits and asset depreciation
@@ -29,10 +31,10 @@ export function syncTax(s) {
  const tax=initTax(s);
  for(const l of [...(s.ledger??[])].filter(l=>l.id>tax.lastId).sort((a,b)=>a.id-b.id)){
   const year=2026+Math.floor(l.month/12),y=tax.years[year]??=emptyYear(year);
-  if(!y.closed&&!['capital','loan','repayment','tax','tax-refund'].includes(l.kind)){
+  if(!y.closed&&!['capital','investment','loan','repayment','tax','tax-refund'].includes(l.kind)){
    if(l.kind==='overhead')y.expenses=round(y.expenses+(Number.isFinite(l.operatingBase)?l.operatingBase:Math.max(0,-l.amount)));
-   else if(l.kind==='boxoffice'||l.kind==='ott')y.income=round(y.income+l.amount);
-   else y.expenses=round(y.expenses-l.amount); // refunds reduce the corresponding cost
+   else if(l.kind==='boxoffice'||l.kind==='ott'||l.kind==='foreign')y.income=round(y.income+l.amount);
+   else y.expenses=round(y.expenses-l.amount-(l.kind==='production'?Math.max(0,l.externalFunding??0):0)); // refunds reduce the corresponding cost
   }
   tax.lastId=Math.max(tax.lastId,l.id);
  }
@@ -47,7 +49,7 @@ export function taxPosition(s,extraExpenses=0) {
  return {...corporateTax(Math.max(0,profit-used)),year,income:y.income,expenses:round(y.expenses+extraExpenses),profit,lossAvailable:available,lossUsed:used,reserved:y.reserve,legacy:tax.legacy};
 }
 export function monthlyCosts(s,{afterInterest=false}={}) {
- const base=.25,interest=afterInterest?0:round((s.companies[0]?.debt??0)*.005),position=taxPosition(s,base+interest);
+ const base=round(.25*difficulty(s).overhead+facilityMonthlyCost(s)),interest=afterInterest?0:round((s.companies[0]?.debt??0)*.005),position=taxPosition(s,base+interest);
  const settled=s.tax.lastMonth===s.month,delta=settled?0:round(position.total-position.reserved);
  return {base,interest,tax:delta,total:round(base+interest+delta),overhead:round(base+delta),position,settled};
 }
@@ -56,7 +58,7 @@ export function reserveMonthlyTax(s) {
  const tax=syncTax(s);if(tax.lastMonth===s.month)return null;
  const costs=monthlyCosts(s,{afterInterest:true}),p=costs.position,y=tax.years[p.year];
  y.reserve=p.total;y.national=p.national;y.local=p.local;tax.lastMonth=s.month;
- tax.history.push({month:s.month,week:s.week??s.month*4,year:p.year,profit:p.profit,taxable:p.taxable,lossUsed:p.lossUsed,national:p.national,local:p.local,total:p.total,delta:costs.tax,operatingBase:.25});
+ tax.history.push({month:s.month,week:s.week??s.month*4,year:p.year,profit:p.profit,taxable:p.taxable,lossUsed:p.lossUsed,national:p.national,local:p.local,total:p.total,delta:costs.tax,operatingBase:costs.base});
  return costs;
 }
 /** Close the year without a second cash debit: reserves already left available cash. */

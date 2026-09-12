@@ -20,7 +20,7 @@ for(const [age,stage] of [[8,0],[28,1],[52,2],[76,3]])assert.equal(X.portrait({.
 assert.equal(X.portrait({...guest,id:'reincarnation',age:6}).row,X.portrait(guest).row);
 // All three romance-news reactions are reachable and modify interest exactly as recorded.
 const reactions=new Set();for(let seed=1;seed<1000&&reactions.size<3;seed++){s.seed=seed;const count=f.businessHistory.length;X.socialNews(s);for(const record of f.businessHistory.slice(count)){if(/결혼|열애설/.test(record.text))reactions.add(record.text.includes('긍정')?'positive':record.text.includes('부정')?'negative':'neutral');}}assert.equal(reactions.size,3);
-// Release accounting: royalty is taken from the studio half, never ticket gross.
-f.pending=null;f.status='ready';f.reviews=[{name:'검사',base:75}];f.quality=75;f.publicity=0;E.releaseFilm(s,f.id);for(const other of E.myFilms(s))other.pending=null;E.advanceMonth(s);assert.equal(f.runs.length,1);const run=f.runs[0];assert.equal(run.receipts,E.round(run.gross*.5-E.round(run.gross*.5*.09)));assert.equal(f.royalties,E.round(run.gross*.5*.09));assert.equal(f.receipts,run.receipts);
+// v1.6: royalty is charged after VAT, exhibitor share and distribution fee; never on gross.
+f.pending=null;f.status='ready';f.reviews=[{name:'검사',base:75}];f.quality=75;f.publicity=0;E.releaseFilm(s,f.id);for(const other of E.myFilms(s))other.pending=null;E.advanceMonth(s);assert.equal(f.runs.length,1);const run=f.runs[0];const netVat=E.round(run.gross/1.1),rights=E.round(netVat*.5),distribution=E.round(rights*.1),royalty=E.round((rights-distribution)*.09);assert.equal(run.receipts,E.round(rights-distribution-royalty));assert.equal(f.royalties,royalty);assert.equal(f.receipts,run.receipts);
 assert.equal(E.round(s.ledger.reduce((sum,l)=>sum+l.amount,0)),E.player(s).cash);
 console.log('PASS: licenses, royalties, marketing, extra fees, departure settlements, booking exclusivity, free cameos, portraits, three romance reactions, migration, ledger');

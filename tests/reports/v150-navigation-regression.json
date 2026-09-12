@@ -1,0 +1,612 @@
+{
+  "version": "1.4.6",
+  "transport": "Offline actual dist modules, native History API, in-memory storage fixture, Chromium",
+  "checks": [
+    {
+      "check": "390x844: actual app starts on dashboard",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844 finance: graph and selection control exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844 finance: first point can be inspected",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844 finance: last point and its coordinates still work",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: finance graph back returns to finance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: company work opens a film after viewing graph",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: film footer back returns to its company",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: film X also returns to its company",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: company close returns to box office",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844 audience: graph and selection control exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844 audience: first point can be inspected",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844 audience: last point and its coordinates still work",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: graph back restores film (audience)",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844 gross: graph and selection control exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844 gross: first point can be inspected",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844 gross: last point and its coordinates still work",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: graph back restores film (gross)",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844 cumulative: graph and selection control exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844 cumulative: first point can be inspected",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844 cumulative: last point and its coordinates still work",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: graph back restores film (cumulative)",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: person film history opens film detail",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: browser back restores the same person",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: browser forward restores the same film",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: reload restores film screen safely",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: footer back after reload returns to person",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: nested profile X restores crew tab",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: critic-reviews opens after repeated graphs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: review back returns to film",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: audience-reviews opens after repeated graphs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: review back returns to film",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: browser back from chart restores film",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: browser forward restores chart",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844 restored chart: graph and selection control exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844 restored chart: first point can be inspected",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844 restored chart: last point and its coordinates still work",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: final close returns to box office",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: history contains no graph runtime cache",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: saved week, money, contracts and films are unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: no red error toast or dialog feedback",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: actual app starts on dashboard",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390 finance: graph and selection control exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390 finance: first point can be inspected",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390 finance: last point and its coordinates still work",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: finance graph back returns to finance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: company work opens a film after viewing graph",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: film footer back returns to its company",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: film X also returns to its company",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: company close returns to box office",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390 audience: graph and selection control exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390 audience: first point can be inspected",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390 audience: last point and its coordinates still work",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: graph back restores film (audience)",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390 gross: graph and selection control exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390 gross: first point can be inspected",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390 gross: last point and its coordinates still work",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: graph back restores film (gross)",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390 cumulative: graph and selection control exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390 cumulative: first point can be inspected",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390 cumulative: last point and its coordinates still work",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: graph back restores film (cumulative)",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: person film history opens film detail",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: browser back restores the same person",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: browser forward restores the same film",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: reload restores film screen safely",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: footer back after reload returns to person",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: nested profile X restores crew tab",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: critic-reviews opens after repeated graphs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: review back returns to film",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: audience-reviews opens after repeated graphs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: review back returns to film",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: browser back from chart restores film",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: browser forward restores chart",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390 restored chart: graph and selection control exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390 restored chart: first point can be inspected",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390 restored chart: last point and its coordinates still work",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: final close returns to box office",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: history contains no graph runtime cache",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: saved week, money, contracts and films are unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: no red error toast or dialog feedback",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: actual app starts on dashboard",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768 finance: graph and selection control exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768 finance: first point can be inspected",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768 finance: last point and its coordinates still work",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: finance graph back returns to finance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: company work opens a film after viewing graph",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: film footer back returns to its company",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: film X also returns to its company",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: company close returns to box office",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768 audience: graph and selection control exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768 audience: first point can be inspected",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768 audience: last point and its coordinates still work",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: graph back restores film (audience)",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768 gross: graph and selection control exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768 gross: first point can be inspected",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768 gross: last point and its coordinates still work",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: graph back restores film (gross)",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768 cumulative: graph and selection control exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768 cumulative: first point can be inspected",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768 cumulative: last point and its coordinates still work",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: graph back restores film (cumulative)",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: person film history opens film detail",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: browser back restores the same person",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: browser forward restores the same film",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: reload restores film screen safely",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: footer back after reload returns to person",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: nested profile X restores crew tab",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: critic-reviews opens after repeated graphs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: review back returns to film",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: audience-reviews opens after repeated graphs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: review back returns to film",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: browser back from chart restores film",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: browser forward restores chart",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768 restored chart: graph and selection control exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768 restored chart: first point can be inspected",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768 restored chart: last point and its coordinates still work",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: final close returns to box office",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: history contains no graph runtime cache",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: saved week, money, contracts and films are unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: no red error toast or dialog feedback",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "No JavaScript runtime errors",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "pageErrors": []
+}

@@ -1,0 +1,1091 @@
+{
+  "version": "1.4.3",
+  "transport": "offline actual dist modules and CSS; native DOM and History API",
+  "checks": [
+    {
+      "check": "initial page loads with current version 1.5.0",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "(320, 568) subgenre 1 retains native node and only three controls",
+      "passed": true,
+      "detail": {
+        "same": true,
+        "count": 3,
+        "mutations": 0,
+        "focus": 0,
+        "active": "BODY",
+        "scroll": 650
+      }
+    },
+    {
+      "check": "(320, 568) subgenre 1 never refocuses another selector",
+      "passed": true,
+      "detail": {
+        "same": true,
+        "count": 3,
+        "mutations": 0,
+        "focus": 0,
+        "active": "BODY",
+        "scroll": 650
+      }
+    },
+    {
+      "check": "(320, 568) subgenre 1 preserves scroll",
+      "passed": true,
+      "detail": {
+        "before": 650,
+        "after": 650
+      }
+    },
+    {
+      "check": "(320, 568) subgenre 2 retains native node and only three controls",
+      "passed": true,
+      "detail": {
+        "same": true,
+        "count": 3,
+        "mutations": 0,
+        "focus": 0,
+        "active": "BODY",
+        "scroll": 650
+      }
+    },
+    {
+      "check": "(320, 568) subgenre 2 never refocuses another selector",
+      "passed": true,
+      "detail": {
+        "same": true,
+        "count": 3,
+        "mutations": 0,
+        "focus": 0,
+        "active": "BODY",
+        "scroll": 650
+      }
+    },
+    {
+      "check": "(320, 568) subgenre 2 preserves scroll",
+      "passed": true,
+      "detail": {
+        "before": 650,
+        "after": 650
+      }
+    },
+    {
+      "check": "(320, 568) subgenre 3 retains native node and only three controls",
+      "passed": true,
+      "detail": {
+        "same": true,
+        "count": 3,
+        "mutations": 0,
+        "focus": 0,
+        "active": "BODY",
+        "scroll": 650
+      }
+    },
+    {
+      "check": "(320, 568) subgenre 3 never refocuses another selector",
+      "passed": true,
+      "detail": {
+        "same": true,
+        "count": 3,
+        "mutations": 0,
+        "focus": 0,
+        "active": "BODY",
+        "scroll": 650
+      }
+    },
+    {
+      "check": "(320, 568) subgenre 3 preserves scroll",
+      "passed": true,
+      "detail": {
+        "before": 650,
+        "after": 650
+      }
+    },
+    {
+      "check": "(320, 568) subgenre explanation updates to current combination",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "(320, 568) still shows all three selectors on one row",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "(320, 568) viewport resize does not rebuild a live wizard select",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "(320, 568) selection survives next/back",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "(390, 844) subgenre 1 retains native node and only three controls",
+      "passed": true,
+      "detail": {
+        "same": true,
+        "count": 3,
+        "mutations": 0,
+        "focus": 0,
+        "active": "BODY",
+        "scroll": 426
+      }
+    },
+    {
+      "check": "(390, 844) subgenre 1 never refocuses another selector",
+      "passed": true,
+      "detail": {
+        "same": true,
+        "count": 3,
+        "mutations": 0,
+        "focus": 0,
+        "active": "BODY",
+        "scroll": 426
+      }
+    },
+    {
+      "check": "(390, 844) subgenre 1 preserves scroll",
+      "passed": true,
+      "detail": {
+        "before": 426,
+        "after": 426
+      }
+    },
+    {
+      "check": "(390, 844) subgenre 2 retains native node and only three controls",
+      "passed": true,
+      "detail": {
+        "same": true,
+        "count": 3,
+        "mutations": 0,
+        "focus": 0,
+        "active": "BODY",
+        "scroll": 426
+      }
+    },
+    {
+      "check": "(390, 844) subgenre 2 never refocuses another selector",
+      "passed": true,
+      "detail": {
+        "same": true,
+        "count": 3,
+        "mutations": 0,
+        "focus": 0,
+        "active": "BODY",
+        "scroll": 426
+      }
+    },
+    {
+      "check": "(390, 844) subgenre 2 preserves scroll",
+      "passed": true,
+      "detail": {
+        "before": 426,
+        "after": 426
+      }
+    },
+    {
+      "check": "(390, 844) subgenre 3 retains native node and only three controls",
+      "passed": true,
+      "detail": {
+        "same": true,
+        "count": 3,
+        "mutations": 0,
+        "focus": 0,
+        "active": "BODY",
+        "scroll": 426
+      }
+    },
+    {
+      "check": "(390, 844) subgenre 3 never refocuses another selector",
+      "passed": true,
+      "detail": {
+        "same": true,
+        "count": 3,
+        "mutations": 0,
+        "focus": 0,
+        "active": "BODY",
+        "scroll": 426
+      }
+    },
+    {
+      "check": "(390, 844) subgenre 3 preserves scroll",
+      "passed": true,
+      "detail": {
+        "before": 426,
+        "after": 426
+      }
+    },
+    {
+      "check": "(390, 844) subgenre explanation updates to current combination",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "(390, 844) still shows all three selectors on one row",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "(390, 844) viewport resize does not rebuild a live wizard select",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "(390, 844) selection survives next/back",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "(568, 320) subgenre 1 retains native node and only three controls",
+      "passed": true,
+      "detail": {
+        "same": true,
+        "count": 3,
+        "mutations": 0,
+        "focus": 0,
+        "active": "BODY",
+        "scroll": 633
+      }
+    },
+    {
+      "check": "(568, 320) subgenre 1 never refocuses another selector",
+      "passed": true,
+      "detail": {
+        "same": true,
+        "count": 3,
+        "mutations": 0,
+        "focus": 0,
+        "active": "BODY",
+        "scroll": 633
+      }
+    },
+    {
+      "check": "(568, 320) subgenre 1 preserves scroll",
+      "passed": true,
+      "detail": {
+        "before": 633,
+        "after": 633
+      }
+    },
+    {
+      "check": "(568, 320) subgenre 2 retains native node and only three controls",
+      "passed": true,
+      "detail": {
+        "same": true,
+        "count": 3,
+        "mutations": 0,
+        "focus": 0,
+        "active": "BODY",
+        "scroll": 633
+      }
+    },
+    {
+      "check": "(568, 320) subgenre 2 never refocuses another selector",
+      "passed": true,
+      "detail": {
+        "same": true,
+        "count": 3,
+        "mutations": 0,
+        "focus": 0,
+        "active": "BODY",
+        "scroll": 633
+      }
+    },
+    {
+      "check": "(568, 320) subgenre 2 preserves scroll",
+      "passed": true,
+      "detail": {
+        "before": 633,
+        "after": 633
+      }
+    },
+    {
+      "check": "(568, 320) subgenre 3 retains native node and only three controls",
+      "passed": true,
+      "detail": {
+        "same": true,
+        "count": 3,
+        "mutations": 0,
+        "focus": 0,
+        "active": "BODY",
+        "scroll": 633
+      }
+    },
+    {
+      "check": "(568, 320) subgenre 3 never refocuses another selector",
+      "passed": true,
+      "detail": {
+        "same": true,
+        "count": 3,
+        "mutations": 0,
+        "focus": 0,
+        "active": "BODY",
+        "scroll": 633
+      }
+    },
+    {
+      "check": "(568, 320) subgenre 3 preserves scroll",
+      "passed": true,
+      "detail": {
+        "before": 633,
+        "after": 633
+      }
+    },
+    {
+      "check": "(568, 320) subgenre explanation updates to current combination",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "(568, 320) still shows all three selectors on one row",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "(568, 320) viewport resize does not rebuild a live wizard select",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "(568, 320) selection survives next/back",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "(1366, 768) subgenre 1 retains native node and only three controls",
+      "passed": true,
+      "detail": {
+        "same": true,
+        "count": 3,
+        "mutations": 0,
+        "focus": 0,
+        "active": "SELECT",
+        "scroll": 421
+      }
+    },
+    {
+      "check": "(1366, 768) subgenre 1 never refocuses another selector",
+      "passed": true,
+      "detail": {
+        "same": true,
+        "count": 3,
+        "mutations": 0,
+        "focus": 0,
+        "active": "SELECT",
+        "scroll": 421
+      }
+    },
+    {
+      "check": "(1366, 768) subgenre 1 preserves scroll",
+      "passed": true,
+      "detail": {
+        "before": 421,
+        "after": 421
+      }
+    },
+    {
+      "check": "(1366, 768) subgenre 2 retains native node and only three controls",
+      "passed": true,
+      "detail": {
+        "same": true,
+        "count": 3,
+        "mutations": 0,
+        "focus": 0,
+        "active": "SELECT",
+        "scroll": 421
+      }
+    },
+    {
+      "check": "(1366, 768) subgenre 2 never refocuses another selector",
+      "passed": true,
+      "detail": {
+        "same": true,
+        "count": 3,
+        "mutations": 0,
+        "focus": 0,
+        "active": "SELECT",
+        "scroll": 421
+      }
+    },
+    {
+      "check": "(1366, 768) subgenre 2 preserves scroll",
+      "passed": true,
+      "detail": {
+        "before": 421,
+        "after": 421
+      }
+    },
+    {
+      "check": "(1366, 768) subgenre 3 retains native node and only three controls",
+      "passed": true,
+      "detail": {
+        "same": true,
+        "count": 3,
+        "mutations": 0,
+        "focus": 0,
+        "active": "SELECT",
+        "scroll": 421
+      }
+    },
+    {
+      "check": "(1366, 768) subgenre 3 never refocuses another selector",
+      "passed": true,
+      "detail": {
+        "same": true,
+        "count": 3,
+        "mutations": 0,
+        "focus": 0,
+        "active": "SELECT",
+        "scroll": 421
+      }
+    },
+    {
+      "check": "(1366, 768) subgenre 3 preserves scroll",
+      "passed": true,
+      "detail": {
+        "before": 421,
+        "after": 421
+      }
+    },
+    {
+      "check": "(1366, 768) subgenre explanation updates to current combination",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "(1366, 768) still shows all three selectors on one row",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "(1366, 768) viewport resize does not rebuild a live wizard select",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "(1366, 768) selection survives next/back",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "every accepted or counteroffer member has a replacement button",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "final report includes accepted and additional-fee states",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "picker explicitly returns to final terms",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement preview opens a single reply",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "candidate inspection does not spend money",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "preview close returns to same replacement picker",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "picker cancel preserves all original members",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "native browser back returns to original final report",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "refused candidate cannot be accepted",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "refusal preserves original team and money",
+      "passed": true,
+      "detail": {
+        "ids": [
+          "p254",
+          "p462",
+          "p721",
+          "p1185",
+          "p1235",
+          "p1156",
+          "p1433"
+        ],
+        "original": [
+          "p254",
+          "p462",
+          "p721",
+          "p1185",
+          "p1235",
+          "p1156",
+          "p1433"
+        ],
+        "fundsUnchanged": true
+      }
+    },
+    {
+      "check": "candidate p254 previews without payment",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p254 returns to all seven terms",
+      "passed": true,
+      "detail": [
+        "p200",
+        "p462",
+        "p721",
+        "p1185",
+        "p1235",
+        "p1156",
+        "p1433"
+      ]
+    },
+    {
+      "check": "replacement p254 recomputes p200",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p254 recomputes p462",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p254 recomputes p721",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p254 recomputes p1185",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p254 recomputes p1235",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p254 recomputes p1156",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p254 recomputes p1433",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p254 summary is visible",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p254 clears old person and still offers seven replace buttons",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p254 has not altered game funds or time",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "candidate p462 previews without payment",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p462 returns to all seven terms",
+      "passed": true,
+      "detail": [
+        "p200",
+        "p400",
+        "p721",
+        "p1185",
+        "p1235",
+        "p1156",
+        "p1433"
+      ]
+    },
+    {
+      "check": "replacement p462 recomputes p200",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p462 recomputes p400",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p462 recomputes p721",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p462 recomputes p1185",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p462 recomputes p1235",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p462 recomputes p1156",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p462 recomputes p1433",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p462 summary is visible",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p462 clears old person and still offers seven replace buttons",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p462 has not altered game funds or time",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "candidate p721 previews without payment",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p721 returns to all seven terms",
+      "passed": true,
+      "detail": [
+        "p200",
+        "p400",
+        "p401",
+        "p1185",
+        "p1235",
+        "p1156",
+        "p1433"
+      ]
+    },
+    {
+      "check": "replacement p721 recomputes p200",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p721 recomputes p400",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p721 recomputes p401",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p721 recomputes p1185",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p721 recomputes p1235",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p721 recomputes p1156",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p721 recomputes p1433",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p721 summary is visible",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p721 clears old person and still offers seven replace buttons",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p721 has not altered game funds or time",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "candidate p1185 previews without payment",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1185 returns to all seven terms",
+      "passed": true,
+      "detail": [
+        "p200",
+        "p400",
+        "p401",
+        "p800",
+        "p1235",
+        "p1156",
+        "p1433"
+      ]
+    },
+    {
+      "check": "replacement p1185 recomputes p200",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1185 recomputes p400",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1185 recomputes p401",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1185 recomputes p800",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1185 recomputes p1235",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1185 recomputes p1156",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1185 recomputes p1433",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1185 summary is visible",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1185 clears old person and still offers seven replace buttons",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1185 has not altered game funds or time",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "candidate p1235 previews without payment",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1235 returns to all seven terms",
+      "passed": true,
+      "detail": [
+        "p200",
+        "p400",
+        "p401",
+        "p800",
+        "p801",
+        "p1156",
+        "p1433"
+      ]
+    },
+    {
+      "check": "replacement p1235 recomputes p200",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1235 recomputes p400",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1235 recomputes p401",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1235 recomputes p800",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1235 recomputes p801",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1235 recomputes p1156",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1235 recomputes p1433",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1235 summary is visible",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1235 clears old person and still offers seven replace buttons",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1235 has not altered game funds or time",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "candidate p1156 previews without payment",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1156 returns to all seven terms",
+      "passed": true,
+      "detail": [
+        "p200",
+        "p400",
+        "p401",
+        "p800",
+        "p801",
+        "p802",
+        "p1433"
+      ]
+    },
+    {
+      "check": "replacement p1156 recomputes p200",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1156 recomputes p400",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1156 recomputes p401",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1156 recomputes p800",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1156 recomputes p801",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1156 recomputes p802",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1156 recomputes p1433",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1156 summary is visible",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1156 clears old person and still offers seven replace buttons",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1156 has not altered game funds or time",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "candidate p1433 previews without payment",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1433 returns to all seven terms",
+      "passed": true,
+      "detail": [
+        "p200",
+        "p400",
+        "p401",
+        "p800",
+        "p801",
+        "p802",
+        "p803"
+      ]
+    },
+    {
+      "check": "replacement p1433 recomputes p200",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1433 recomputes p400",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1433 recomputes p401",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1433 recomputes p800",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1433 recomputes p801",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1433 recomputes p802",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1433 recomputes p803",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1433 summary is visible",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1433 clears old person and still offers seven replace buttons",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "replacement p1433 has not altered game funds or time",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "closing recomputed final terms returns to production confirmation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "reopened final conditions preserve replacements",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "accepting final new terms does not spend cash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "final acceptance returns to confirmation rather than home",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "exactly one replacement-based movie is started",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "the recalculated production price is charged only once",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "back after production cannot revive a stale draft or duplicate payment",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "existing mobile guide close still returns to More",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "closing More stays inside the game",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "no JavaScript errors",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "pageErrors": [],
+  "sizes": [
+    [
+      320,
+      568
+    ],
+    [
+      390,
+      844
+    ],
+    [
+      568,
+      320
+    ],
+    [
+      1366,
+      768
+    ]
+  ],
+  "realMobileDevicesTested": false
+}

@@ -1,0 +1,462 @@
+{
+  "checks": [
+    {
+      "check": "saved game starts on studio with no automatic wizard",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "favorite pins coexist with person cards",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "favorite touch toggles only the selected ID",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "favorites use the existing modal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "favorite profile opens",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "profile X returns to favorites",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "saved team shows seven profile links",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "load team returns to casting wizard",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "team load has no fee",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "manual draft and automatic draft are separate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "three investment offers shown",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "selecting financing does not debit or lend money",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "investor back returns to wizard",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "wizard close returns to prior game screen, not home",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "draft load asks before replacing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "cancel stays in archive",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "draft confirmed restores wizard",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "nested dialogs return to game without leaving home",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "facility quote is non-mutating",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "facility cancel restores facility menu",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "lease charges setup exactly once",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "lease recorded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "save manager opened from More",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "manual slot committed through transaction adapter",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "manual snapshot captures current balance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "aborted storage transaction reports failure",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "aborted write preserves old slot",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "JSON download contains versioned checksum and game",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "corrupt file leaves current state unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "valid import opens confirmation not immediate replacement",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "cancel import returns to storage",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "cancel import leaves game unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "restoring slot always opens dashboard",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "old game gets safety backup before replacement",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "screening provides three cohort scores",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "screening choice preview does not debit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "cancel screening action retains pending choice",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "keep original completed without fee",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "screening back returns to movie",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "cancel new screening spends nothing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "screening start charges .35 once",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "five independent territory cards",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "foreign quote spends nothing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "signed regional buyout records exactly one deal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "foreign amount does not inflate domestic admission",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "region can no longer be sold again",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "overseas results chart and ledger exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "four franchise options shown",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "confirmed spinoff opens planning rather than debiting",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "new script stores parent and series type",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "festival menu presents all four programs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "cancel festival entry costs nothing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "festival submission fee charged once",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "withdrawal releases premiere without refund",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "360x640: facilities dialog within viewport",
+      "passed": true,
+      "detail": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 640
+      }
+    },
+    {
+      "check": "360x640: bottom modal action is reachable",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "360x640: no document horizontal overflow",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "360x640: foreign quote scroll stays inside dialog",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "360x640: detail back works without clone error",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: facilities dialog within viewport",
+      "passed": true,
+      "detail": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "check": "390x844: bottom modal action is reachable",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: no document horizontal overflow",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: foreign quote scroll stays inside dialog",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "390x844: detail back works without clone error",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "568x320: facilities dialog within viewport",
+      "passed": true,
+      "detail": {
+        "x": 0,
+        "y": 0,
+        "width": 568,
+        "height": 320
+      }
+    },
+    {
+      "check": "568x320: bottom modal action is reachable",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "568x320: no document horizontal overflow",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "568x320: foreign quote scroll stays inside dialog",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "568x320: detail back works without clone error",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: facilities dialog within viewport",
+      "passed": true,
+      "detail": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 390
+      }
+    },
+    {
+      "check": "844x390: bottom modal action is reachable",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: no document horizontal overflow",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: foreign quote scroll stays inside dialog",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "844x390: detail back works without clone error",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "768x1024: facilities dialog within viewport",
+      "passed": true,
+      "detail": {
+        "x": 0,
+        "y": 0,
+        "width": 768,
+        "height": 1024
+      }
+    },
+    {
+      "check": "768x1024: bottom modal action is reachable",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "768x1024: no document horizontal overflow",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "768x1024: foreign quote scroll stays inside dialog",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "768x1024: detail back works without clone error",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: facilities dialog within viewport",
+      "passed": true,
+      "detail": {
+        "x": 143,
+        "y": 20,
+        "width": 1080,
+        "height": 728
+      }
+    },
+    {
+      "check": "1366x768: bottom modal action is reachable",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: no document horizontal overflow",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: foreign quote scroll stays inside dialog",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "1366x768: detail back works without clone error",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "no uncaught JavaScript errors in new feature flows",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "storage": "Explicit memory IndexedDB API adapter; native disk persistence not tested",
+  "environment": "offline Chromium, actual dist JS/CSS via blob URLs"
+}

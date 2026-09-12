@@ -1,3 +1,28 @@
+/** Copy navigation data only. Rendering helpers (functions, DOM nodes, class
+ * instances) are transient and must never enter structured-clone/history state.
+ * Circular references are ignored; simulation/save data never uses this codec.
+ */
+export function cloneNavigationState(value, ancestors = new WeakSet()) {
+  if (value === null || typeof value === 'string' || typeof value === 'boolean') return value;
+  if (typeof value === 'number') return Number.isFinite(value) ? value : null;
+  if (typeof value !== 'object') return undefined;
+  const array = Array.isArray(value), prototype = Object.getPrototypeOf(value);
+  if (!array && prototype !== Object.prototype && prototype !== null) return undefined;
+  if (ancestors.has(value)) return undefined;
+  ancestors.add(value);
+  try {
+    if (array) return value.map(item => cloneNavigationState(item, ancestors) ?? null);
+    const copy = {};
+    for (const [key, item] of Object.entries(value)) {
+      // Never restore a prototype setter from a history entry.
+      if (key === '__proto__') continue;
+      const data = cloneNavigationState(item, ancestors);
+      if (data !== undefined) copy[key] = data;
+    }
+    return copy;
+  } finally { ancestors.delete(value); }
+}
+
 /** Navigation stores screens, never the simulation. Back/forward cannot undo money or time.
  * Uses pushState/replaceState + popstate; the initial home entry remains a normal exit boundary.
  */
@@ -15,7 +40,7 @@ export function createNavigation({read, restore, home, window: win = globalThis.
   let started = false, available = true, queued = false, restoring = false, travelling = false;
   let session = '', index = 0, parentIndex = null, current = null, pending = null;
   const entries = new Map();
-  const copy = value => JSON.parse(JSON.stringify(value));
+  const copy = cloneNavigationState;
   const modalIdentity = screen => screen?.modal ? JSON.stringify([screen.home, screen.view, screen.modal.type, screen.modal.id ?? '']) : null;
   const matches = value => value?.app === MARK && typeof value.session === 'string' &&
     Number.isInteger(value.index) && value.index >= 0 && value.screen && typeof value.screen.view === 'string';

@@ -1,0 +1,283 @@
+{
+  "transport": "offline modules; simulated localStorage and JSON restore; no disk durability claim",
+  "agentBrowser": "agent-browser unavailable; localhost navigation blocked by managed Chromium; offline Playwright transport used",
+  "checks": [
+    {
+      "name": "very-easy: initial default is normal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "very-easy: selector DOM retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "very-easy: capital preview",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "very-easy: founding selection saved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "very-easy: JSON restoration preserves difficulty/cash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "very-easy: resume card displays difficulty",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "very-easy: resumes dashboard without dialog",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "easy: initial default is normal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "easy: selector DOM retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "easy: capital preview",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "easy: founding selection saved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "easy: JSON restoration preserves difficulty/cash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "easy: resume card displays difficulty",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "easy: resumes dashboard without dialog",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "normal: initial default is normal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "normal: selector DOM retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "normal: capital preview",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "normal: founding selection saved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "normal: JSON restoration preserves difficulty/cash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "normal: resume card displays difficulty",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "normal: resumes dashboard without dialog",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hard: initial default is normal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hard: selector DOM retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hard: capital preview",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hard: founding selection saved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hard: JSON restoration preserves difficulty/cash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hard: resume card displays difficulty",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "hard: resumes dashboard without dialog",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "very-hard: initial default is normal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "very-hard: selector DOM retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "very-hard: capital preview",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "very-hard: founding selection saved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "very-hard: JSON restoration preserves difficulty/cash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "very-hard: resume card displays difficulty",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "very-hard: resumes dashboard without dialog",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "start 320x568: fits screen with new selector",
+      "passed": true,
+      "detail": {
+        "scroll": 568,
+        "view": 568,
+        "width": 320,
+        "vw": 320,
+        "button": 467.7369384765625
+      }
+    },
+    {
+      "name": "start 390x844: fits screen with new selector",
+      "passed": true,
+      "detail": {
+        "scroll": 844,
+        "view": 844,
+        "width": 390,
+        "vw": 390,
+        "button": 716.5462646484375
+      }
+    },
+    {
+      "name": "start 430x932: fits screen with new selector",
+      "passed": true,
+      "detail": {
+        "scroll": 932,
+        "view": 932,
+        "width": 430,
+        "vw": 430,
+        "button": 787.6975708007812
+      }
+    },
+    {
+      "name": "start 568x320: fits screen with new selector",
+      "passed": true,
+      "detail": {
+        "scroll": 320,
+        "view": 320,
+        "width": 568,
+        "vw": 568,
+        "button": 265.51824951171875
+      }
+    },
+    {
+      "name": "start 844x390: fits screen with new selector",
+      "passed": true,
+      "detail": {
+        "scroll": 390,
+        "view": 390,
+        "width": 844,
+        "vw": 844,
+        "button": 322.5242614746094
+      }
+    },
+    {
+      "name": "start 1366x768: fits screen with new selector",
+      "passed": true,
+      "detail": {
+        "scroll": 768,
+        "view": 768,
+        "width": 1366,
+        "vw": 1366,
+        "button": 620.5511474609375
+      }
+    },
+    {
+      "name": "movie has settlement button",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "cinema deductions and cost recovery shown",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "settlement back returns to movie",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "finance shows current difficulty and model shortcut",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "all five levels documented",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "model back returns to finance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "no uncaught JavaScript errors",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "errors": []
+}

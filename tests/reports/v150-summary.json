@@ -1,0 +1,55 @@
+{
+  "appVersion": "1.5.0",
+  "baseCommit": "9903ac7a6e5420093562df855ce4a4e8f39887b2",
+  "node": {
+    "checks": 157,
+    "passed": 157,
+    "failed": 0
+  },
+  "browserSuites": [
+    {
+      "suite": "new_studio_growth",
+      "checks": 85,
+      "passed": 85,
+      "failed": 0,
+      "js_errors": [],
+      "report": "tests/reports/v150-growth-browser-report.json"
+    },
+    {
+      "suite": "navigation_regression",
+      "checks": 121,
+      "passed": 121,
+      "failed": 0,
+      "js_errors": [],
+      "report": "tests/reports/v150-navigation-regression.json"
+    },
+    {
+      "suite": "casting_regression",
+      "checks": 157,
+      "passed": 157,
+      "failed": 0,
+      "js_errors": [],
+      "report": "tests/reports/v150-casting-regression.json"
+    },
+    {
+      "suite": "viewport_regression",
+      "checks": 78,
+      "passed": 78,
+      "failed": 0,
+      "js_errors": [],
+      "report": "tests/reports/v150-layout-report.json"
+    }
+  ],
+  "browserChecks": 441,
+  "browserPassed": 441,
+  "pageErrors": [],
+  "environment": "Actual dist modules/CSS/assets in offline Chromium blob/import-map harness; native DOM and History API; localStorage memory fixture",
+  "slotStorageTests": "Explicit in-memory IndexedDB API adapter (tests only), not native disk persistence",
+  "nativeIndexedDBPersistenceTested": false,
+  "realMobileDevicesTested": false,
+  "realCrossDeviceTransferTested": false,
+  "finalImportCacheTags": "app.js imports updated to v1.5.0; import-map tests resolve identical source modules without URL query strings",
+  "remotePush": "not_performed",
+  "deployment": "not_performed",
+  "historicalSuiteLabels": "Navigation/casting raw report version fields identify the original suite version (1.4.6 / 1.4.3); this run loaded the current v1.5.0 dist source."
+}

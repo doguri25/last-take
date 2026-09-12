@@ -1,0 +1,48 @@
+PASS very-easy: initial default is normal
+PASS very-easy: selector DOM retained
+PASS very-easy: capital preview
+PASS very-easy: founding selection saved
+PASS very-easy: JSON restoration preserves difficulty/cash
+PASS very-easy: resume card displays difficulty
+PASS very-easy: resumes dashboard without dialog
+PASS easy: initial default is normal
+PASS easy: selector DOM retained
+PASS easy: capital preview
+PASS easy: founding selection saved
+PASS easy: JSON restoration preserves difficulty/cash
+PASS easy: resume card displays difficulty
+PASS easy: resumes dashboard without dialog
+PASS normal: initial default is normal
+PASS normal: selector DOM retained
+PASS normal: capital preview
+PASS normal: founding selection saved
+PASS normal: JSON restoration preserves difficulty/cash
+PASS normal: resume card displays difficulty
+PASS normal: resumes dashboard without dialog
+PASS hard: initial default is normal
+PASS hard: selector DOM retained
+PASS hard: capital preview
+PASS hard: founding selection saved
+PASS hard: JSON restoration preserves difficulty/cash
+PASS hard: resume card displays difficulty
+PASS hard: resumes dashboard without dialog
+PASS very-hard: initial default is normal
+PASS very-hard: selector DOM retained
+PASS very-hard: capital preview
+PASS very-hard: founding selection saved
+PASS very-hard: JSON restoration preserves difficulty/cash
+PASS very-hard: resume card displays difficulty
+PASS very-hard: resumes dashboard without dialog
+PASS start 320x568: fits screen with new selector
+PASS start 390x844: fits screen with new selector
+PASS start 430x932: fits screen with new selector
+PASS start 568x320: fits screen with new selector
+PASS start 844x390: fits screen with new selector
+PASS start 1366x768: fits screen with new selector
+PASS movie has settlement button
+PASS cinema deductions and cost recovery shown
+PASS settlement back returns to movie
+PASS finance shows current difficulty and model shortcut
+PASS all five levels documented
+PASS model back returns to finance
+PASS no uncaught JavaScript errors

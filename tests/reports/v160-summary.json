@@ -1,0 +1,22 @@
+{
+  "version": "1.6.0",
+  "date": "2026-09-12",
+  "node": {
+    "total": 193,
+    "passed": 193,
+    "failed": 0
+  },
+  "browser": {
+    "total": 48,
+    "passed": 48,
+    "errors": []
+  },
+  "syntax_files": 30,
+  "playability_runs": 5,
+  "limitations": [
+    "Offline Chromium, actual dist modules; local HTTP navigation blocked by managed browser.",
+    "localStorage is the existing in-memory test adapter. JSON restore is tested, not disk persistence.",
+    "No iPhone or Android hardware test; no actual market profit forecast or guarantee.",
+    "GitHub push and deployment not performed."
+  ]
+}

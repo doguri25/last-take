@@ -1,0 +1,29 @@
+{
+  "version": "1.4.6",
+  "nodeTests": 119,
+  "nodePassed": 119,
+  "nodeFailed": 0,
+  "browserChecks": 121,
+  "browserPassed": 121,
+  "browserFailed": 0,
+  "pageErrors": [],
+  "viewports": [
+    [
+      390,
+      844
+    ],
+    [
+      844,
+      390
+    ],
+    [
+      1366,
+      768
+    ]
+  ],
+  "baselineCloneErrors": 5,
+  "transport": "Offline actual dist modules, native History API, in-memory storage fixture, Chromium",
+  "realMobileDevicesTested": false,
+  "remotePush": "not_performed",
+  "deployment": "not_performed"
+}

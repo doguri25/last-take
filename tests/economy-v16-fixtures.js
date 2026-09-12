@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import * as E from '../dist/engine.js';
+import * as C from '../dist/cinema.js';
+const out=process.argv[2]??'.';fs.mkdirSync(out,{recursive:true});
+const s=E.createGame('새 정산 영화사',20260912);
+const script=s.pitches.find(p=>E.available(s,E.person(s,p.writer))&&!E.busyFilm(s,p.writer));
+const draft=E.recommend(s,{script,title:'첫빛의 새 정산',genres:[script.genre],scale:'small',runtime:120,leads:[],supports:[],investorId:'seed'});
+const f=E.greenlight(s,draft);Object.assign(f,{status:'ready',readyMonth:s.month,elapsedWeeks:f.months*4,elapsed:f.months,completionAcknowledged:true,productionCompletedWeek:s.week});C.makeCriticReviews(f);C.ensurePlot(f);E.releaseFilm(s,f.id);E.advanceWeek(s);s.notifications.forEach(n=>{n.popup=false});
+fs.writeFileSync(out+'/v16-film.json',JSON.stringify(s));
+fs.writeFileSync(out+'/v16-film-meta.json',JSON.stringify({id:f.id,draft,received:f.receipts}));
